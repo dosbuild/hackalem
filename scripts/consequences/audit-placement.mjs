@@ -2,7 +2,16 @@ import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import {mapXY,contains,CENTER} from '../../src/world/city-math.js';
 import {bounds,polygonTouches,rectangle,corridor,spatialIndex,inPolygon,distance} from '../../src/world/placement-geometry.js';
-const read=async p=>JSON.parse(await readFile(p,'utf8')),catalog=await read('src/world/placements.json'),boot=await read('src/world/bootstrap.json'),manifest=await read('public/city/data/manifest.json');
+const catalogIndex=process.argv.indexOf('--catalog');
+if(catalogIndex!==-1&&(!process.argv[catalogIndex+1]||process.argv[catalogIndex+1].startsWith('--')))throw Error('--catalog requires a file path');
+const read=async p=>JSON.parse(await readFile(p,'utf8')),catalog=await read(catalogIndex===-1?'src/world/placements.json':process.argv[catalogIndex+1]),boot=await read('src/world/bootstrap.json'),manifest=await read('public/city/data/manifest.json');
+const expectedKeys=boot.districts.features.flatMap(d=>Array.from({length:14},(_,i)=>`M${i+1}:${d.id}`));
+assert.deepEqual(Object.keys(catalog.records).sort(),expectedKeys.sort(),'Catalog must contain all 70 initiative/district identities');
+for(const [key,site] of Object.entries(catalog.records)){
+ assert.equal(site.key,key,'Placement key must match its catalog entry');
+ assert.equal(`${site.id}:${site.district}`,key,'Placement identity must match its catalog entry');
+ if(['M1','M10','M14'].includes(site.id))assert((site.furniture?.length??0)>=2,`${key} needs at least two safe street fixtures`);
+}
 const buildings=[],water=[],roads=[],segments=new Map(),seen=new Set();
 const node=p=>p.map(n=>n.toFixed(6)).join('/'),edge=(a,b)=>[node(a),node(b)].sort().join('|');
 for(const chunk of manifest.chunks){if(!['buildings','water','streets'].includes(chunk.layer))continue;for(const f of (await read('public/city/'+chunk.url)).features){const k=chunk.layer+f.id;if(seen.has(k))continue;seen.add(k);const g=f.geometry,t=f.properties.tags||{};

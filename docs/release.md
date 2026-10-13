@@ -19,7 +19,17 @@ Linux CI exposed two expensive byte-array assertions and platform-dependent
 placement serialization. The assertions now use exact native byte comparison.
 Placement verification keeps identities and topology exact, allows only tiny
 continuous-coordinate drift, and still runs the full geometric clearance audit.
-The corrected Linux run must finish before enabling Wait for CI deployment.
+A later CI run exposed a separate authoring-search failure: the highest-ranked
+M10/Esil road had only one usable street fixture. The generator now tries the next
+ranked route without weakening clearance rules. CI generates and audits a separate
+70-site candidate catalog; the published placements and their complete geometric
+checks remain unchanged.
+
+Railway deployment 708528 reported `EBUSY` while a redundant `npm ci` removed
+`node_modules/.vite` in the build phase. Railpack already installs dependencies,
+so the build command now runs only `npm run verify && npm run test:runtime`.
+The corrected Linux run must finish before merging the deployment fix. A green
+GitHub check confirms source validation, not successful Railway deployment.
 
 ## Reproduce
 

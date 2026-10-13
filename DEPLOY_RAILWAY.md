@@ -11,7 +11,7 @@ repository or sibling checkout is required.
 1. Create or select the intended Railway service. Upload this directory with the
    Railway CLI, or connect a new GitHub repository whose root contains this file.
 2. Use `railway.json`: Railpack, build
-   `npm ci --include=dev --ignore-scripts && npm run verify && npm run test:runtime`,
+   `npm run verify && npm run test:runtime`,
    start `npm start`, health check `/healthz`.
 3. Mount a durable volume at `/data`; set `ALEM_DATA_DIR=/data/alem`. Use one replica.
    The server binds to `0.0.0.0` and Railway supplies `PORT`.

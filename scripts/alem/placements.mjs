@@ -7,6 +7,8 @@ import {sourceHeight} from './architecture.mjs';
 import {SCENARIO_GROUND} from './rebase-roofs.mjs';
 import {Mesh} from '../../src/world/mesh-kit.js';
 import {lrtStation} from '../../src/world/lrt-model.js';
+const outputIndex=process.argv.indexOf('--output');
+if(outputIndex!==-1&&(!process.argv[outputIndex+1]||process.argv[outputIndex+1].startsWith('--')))throw Error('--output requires a file path');
 const read=async p=>JSON.parse(await readFile(new URL(p,import.meta.url),'utf8'));
 const manifest=await read('../../public/city/data/manifest.json'),bootstrap=await read('../../src/world/bootstrap.json');
 const buildings=[],water=[],roads=[],greens=[],seen=new Set();
@@ -63,6 +65,9 @@ function openSite(id,d){
 }
 const roadGraph=new Map(),nodeKey=p=>p.map(n=>n.toFixed(6)).join('/');for(const r of roads.filter(r=>r.major&&r.tags.bridge!=='yes'))for(let i=1;i<r.points.length;i++){const a=r.points[i-1],b=r.points[i];for(const [p,q] of [[a,b],[b,a]]){const k=nodeKey(p);if(!roadGraph.has(k))roadGraph.set(k,[]);roadGraph.get(k).push({point:q,source:r.id});}}
 const degrees=new Map();for(const r of roads.filter(r=>r.major))for(const p of r.points){const k=p.map(n=>n.toFixed(6)).join('/');degrees.set(k,(degrees.get(k)||0)+1);}
+function streetFurniture(route,d){ const furniture=[];for(let i=0;i<40;i++){const q=routeAt(route,.03+i*.024),side=i%2?-1:1,point=[q.point[0]-Math.sin(q.angle)*.00094*side,q.point[1]+Math.cos(q.angle)*.00094*side],ring=rectangle(point,.00075,.00034,q.angle),b=expanded(bounds(ring),.00006);if(![...bIndex(b),...wIndex(b),...rIndex(b)].some(x=>polygonTouches([ring],x.rings,.00005))&&ring.every(p=>contains(d.geometry,geographic(p)))&&furniture.every(f=>distance(f.point,point)>.002))furniture.push({point,angle:q.angle,ground:SCENARIO_GROUND.foot});}
+ return furniture;
+}
 function routeSite(id,d){const kind=id==='M11'?'crossing':id==='M10'?'crossing':'service',base=mapXY(bootstrap.anchors[`${d.id}:${kind}`].position),options=[];
  for(const r of roads.filter(r=>r.major&&r.tags.bridge!=='yes')){
   let chain=[];
@@ -77,10 +82,18 @@ function routeSite(id,d){const kind=id==='M11'?'crossing':id==='M10'?'crossing':
   for(let end=0;end<2;end++){if(end)route.reverse();for(let step=0;step<100&&length<.12;step++){const a=route.at(-2),b=route.at(-1),dx=b[0]-a[0],dy=b[1]-a[1],next=(roadGraph.get(nodeKey(b))||[]).filter(e=>!visited.has(nodeKey(e.point))).sort((u,v)=>{const angle=q=>Math.abs(Math.atan2(dx*(q[1]-b[1])-dy*(q[0]-b[0]),dx*(q[0]-b[0])+dy*(q[1]-b[1])));return angle(u.point)-angle(v.point)||u.source.localeCompare(v.source);}).find(e=>clear(corridor(b,e.point,.00105),d,false));if(!next)break;route.push(next.point);visited.add(nodeKey(next.point));sources.add(next.source);length+=distance(b,next.point);}if(end)route.reverse();}
   return {...o,route,sources:[...sources],length,mid:routeAt(route,.5)};
  };
- if(id!=='M11'&&id!=='M2'){const extended=options.slice(0,30).map(grow).filter(o=>viewSafe(o.mid.point,.009));selected=extended.find(o=>o.length>=.06)||extended.sort((a,b)=>b.length-a.length)[0]||selected;}
+ if(id!=='M11'&&id!=='M2'){
+  const extended=options.slice(0,30).map(grow).filter(o=>viewSafe(o.mid.point,.009));
+  // A clear road does not guarantee usable verge space (for example on paired
+  // carriageways). Keep the original route priority, but vet required fixtures
+  // before choosing the road instead of aborting after its selection.
+  const ranked=[...extended.filter(o=>o.length>=.06),...extended.filter(o=>o.length<.06).sort((a,b)=>b.length-a.length),selected];
+  selected=ranked.find(o=>{o.furniture=streetFurniture(o.route,d);return !['M1','M10','M14'].includes(id)||o.furniture.length>=2;});
+  if(!selected)throw Error('No safe street furniture '+id+'/'+d.id+' among '+ranked.length+' candidate routes');
+ }
  const {route,source,tags}=selected;let mid=selected.mid;
  if(id==='M2'){const junction=route.find(p=>new Set((roadGraph.get(nodeKey(p))||[]).map(e=>nodeKey(e.point))).size>=3);if(!junction)throw Error('No true junction '+d.id);mid={...mid,point:junction};}
- const furniture=[];for(let i=0;i<40;i++){const q=routeAt(route,.03+i*.024),side=i%2?-1:1,point=[q.point[0]-Math.sin(q.angle)*.00094*side,q.point[1]+Math.cos(q.angle)*.00094*side],ring=rectangle(point,.00075,.00034,q.angle),b=expanded(bounds(ring),.00006);if(![...bIndex(b),...wIndex(b),...rIndex(b)].some(x=>polygonTouches([ring],x.rings,.00005))&&ring.every(p=>contains(d.geometry,geographic(p)))&&furniture.every(f=>distance(f.point,point)>.002))furniture.push({point,angle:q.angle,ground:SCENARIO_GROUND.foot});}
+ const furniture=selected.furniture??streetFurniture(route,d);
  if(['M1','M10','M14'].includes(id)&&furniture.length<2)throw Error('No safe street furniture '+id+'/'+d.id);
  const peopleSpots=routePeopleSpots(id,d,route,mid);
  // Parallel initiatives reserve distinct street corridors. No visual collision bonuses.
@@ -105,5 +118,5 @@ if(process.argv.includes('--lrt-people-only')){
  for(const d of bootstrap.districts.features){for(const id of ['M4','M7','M8','M9','M6','M12','M1','M3','M10','M11','M13','M2','M14','M5']){const site=id==='M7'&&d.id==='nura'?schoolHero:id==='M5'?fuelSite(d):['M4','M6','M7','M8','M9','M12'].includes(id)?openSite(id,d):routeSite(id,d);if(site===schoolHero)reserved.push({rings:[site.footprint],bounds:bounds(site.footprint)});records[`${id}:${d.id}`]={key:`${id}:${d.id}`,id,district:d.id,...site};}}
  catalog={version:1,note:'Illustrative scenario placements; not proposed real construction or transit alignments.',source:'OpenStreetMap / Geofabrik prepared fixture',checked:{buildings:buildings.length,water:water.length,roadSegments:roadPolys.length},records};
 }
-await writeFile(new URL('../../src/world/placements.json',import.meta.url),JSON.stringify(catalog)+'\n');
+await writeFile(outputIndex===-1?new URL('../../src/world/placements.json',import.meta.url):process.argv[outputIndex+1],JSON.stringify(catalog)+'\n');
 console.log(JSON.stringify({sites:Object.keys(catalog.records).length,checked:catalog.checked,parcels:Object.values(catalog.records).filter(r=>r.type==='parcel').map(r=>({key:r.key,placement:r.placement,position:r.position}))},null,2));

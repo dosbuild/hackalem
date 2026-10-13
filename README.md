@@ -109,7 +109,7 @@ These are local agent walkthroughs and automated checks, not human usability tes
 
 Use this directory as the root of the Railway service. It can be uploaded with the Railway CLI or connected to a new GitHub repository. Follow [the Railway setup](DEPLOY_RAILWAY.md), including the durable volume and release identity for direct uploads.
 
-[Deployment preparation and rollback](docs/integration/DEPLOYMENT.md) covers the durable volume, server-only AI configuration, verification and recovery. The checked-in `railway.json` keeps the existing build (`npm ci --include=dev --ignore-scripts && npm run verify && npm run test:runtime`), start (`npm start`) and `/healthz` gate. Confirm the service's actual settings at release time.
+[Deployment preparation and rollback](docs/integration/DEPLOYMENT.md) covers the durable volume, server-only AI configuration, verification and recovery. The checked-in `railway.json` defines the build (`npm run verify && npm run test:runtime`), start (`npm start`) and `/healthz` gate. Railpack installs dependencies before the build; do not run `npm ci` again from the build step, where its cache directories may be mounted. Confirm the service's actual settings at release time.
 
 ## Repository contents
 

@@ -21,9 +21,27 @@ separate checked positions beside streets. Clean fuel uses existing residential
 roof surfaces, not a new building. These are educational scenario placements,
 not approved parcels, addresses or proposed real transit alignments.
 
-Regenerate with `npm run prepare:placements`; audit independently with
-`node scripts/consequences/audit-placement.mjs`. Raw authoring chunks and audit dumps are excluded from the production asset
-allowlist; the attributed prepared database download remains available.
+Generate a candidate catalog with
+`npm run prepare:placements -- --output /tmp/alem-placement-candidates.json`, then
+independently audit every candidate with
+`node scripts/consequences/audit-placement.mjs --catalog /tmp/alem-placement-candidates.json`.
+The generator retains its route ranking but skips routes without the two safe
+street fixtures required by transport, lighting and street-maintenance projects.
+Clearance dimensions and source-geometry checks are unchanged.
+
+The released catalog is authoritative: curated scenes, camera framing and program
+sites depend on its locations. A full search may choose different valid locations,
+so CI generates and audits a separate candidate file instead of silently replacing
+those authored locations. `npm run verify` still runs all canonical placement,
+program, supporting-site and hero-school audits. CI checks the candidate catalog's
+70 identities, district boundaries, source roads, fixture clearances and independent
+site separation. Candidate checks do not replace canonical checks.
+
+Use `npm run prepare:placements` without `--output` only when intentionally
+reauthoring the runtime catalog and updating its dependent scenes. Audit it with
+`node scripts/consequences/audit-placement.mjs`. Raw authoring chunks and audit
+dumps are excluded from the production asset allowlist; the attributed prepared
+database download remains available.
 
 ## Camera and layers
 

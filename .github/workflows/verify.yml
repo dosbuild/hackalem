@@ -74,8 +74,13 @@ jobs:
           static_pid=$!
           trap 'kill "$static_pid"' EXIT
           npm run test:static
-      - name: Reproduce scenario placements from the attributed fixture
-        run: npm run prepare:placements
+      - name: Generate and audit scenario placement candidates
+        # Full authoring search proposes new routes; released placements also
+        # contain curated scenes and camera work. Validate a separate candidate
+        # catalog while npm run verify audits the unchanged runtime catalog.
+        run: |
+          npm run prepare:placements -- --output /tmp/alem-placement-candidates.json
+          RELEASE_OUTPUT=/tmp/alem-placement-candidate-audit node scripts/consequences/audit-placement.mjs --catalog /tmp/alem-placement-candidates.json
       - name: Ensure code and runtime assets are reproducible
         # Generated descriptors contain hashes of CPU-dependent floating-point
         # geometry. Native preview pixels and their provenance manifest are also
