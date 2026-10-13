@@ -49,7 +49,8 @@
     "test:khanate": "node scripts/khanate/check.mjs",
     "test:static": "node scripts/khanate/static-journey.mjs && WORLD_MODE=astana node scripts/khanate/static-journey.mjs",
     "test:automation": "node scripts/integration/automation-presentation.mjs",
-    "preverify": "npm run prepare:city && npm run prepare:alem && npm run prepare:khanate"
+    "preverify": "npm run prepare:city && npm run prepare:alem && npm run prepare:khanate",
+    "test:design": "node scripts/design/verify.mjs"
   },
   "dependencies": {
     "react": "19.3.0",

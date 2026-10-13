@@ -290,7 +290,7 @@ async function resultPeople(result){
 }
 async function bookAndPeople(plan){
  const page=active.page,receipts=JSON.stringify((await draft()).construction),result=expectedResult(plan);
- await click('open complete result book',page.getByTestId('outcome-sheet').getByRole('button',{name:'Разбор, совет и реестр ↗',exact:true}));
+ await click('open complete result book',page.getByTestId('outcome-sheet').getByRole('button',{name:'Подробные итоги ↗',exact:true}));
  const tabs=page.getByRole('navigation',{name:'Разделы дашборда'});await tabs.waitFor();
  check('Full book retains the canonical numerical result',Math.abs(parseNumber(await page.locator('.dash-score-orbit strong').innerText())-result.finalScore)<=.0051);
  for(const section of ['Разбор плана','Совет',active.mode==='khanate'?'Книга города':'Реестр']){

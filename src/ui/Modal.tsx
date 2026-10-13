@@ -3,11 +3,12 @@ import {useEffect,useRef} from 'react';
 import type {ReactNode} from 'react';
 
 export function Modal({title,onClose,children}:{title:string;onClose:()=>void;children:ReactNode}) {
- const ref=useRef<HTMLDialogElement>(null);
+ const ref=useRef<HTMLDialogElement>(null),heading=useRef<HTMLHeadingElement>(null);
  useEffect(()=>{
-  const previous=document.activeElement;
+  const previous=document.activeElement,dialog=ref.current;
   ref.current?.showModal();
-  return()=>{if(previous instanceof HTMLElement&&previous.isConnected)previous.focus({preventScroll:true});};
+  heading.current?.focus({preventScroll:true});
+  return()=>{dialog?.close();if(previous instanceof HTMLElement&&previous.isConnected)previous.focus({preventScroll:true});};
  },[]);
  return <dialog ref={ref} className="game-dialog paper-sheet" aria-labelledby="game-dialog-title" onKeyDown={event=>{
   if(event.key!=='Tab')return;
@@ -16,6 +17,6 @@ export function Modal({title,onClose,children}:{title:string;onClose:()=>void;ch
   if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
   else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
  }} onCancel={event=>{event.preventDefault();onClose();}} onClick={event=>{if(event.target===ref.current)onClose();}}>
-  <div className="game-dialog-content"><header><h2 id="game-dialog-title">{title}</h2><button type="button" onClick={onClose} aria-label="Закрыть окно"><ControlIcon kind="close"/></button></header>{children}</div>
+  <div className="game-dialog-content"><header><h2 id="game-dialog-title" ref={heading} tabIndex={-1}>{title}</h2><button type="button" onClick={onClose} aria-label="Закрыть окно"><ControlIcon kind="close"/></button></header>{children}</div>
  </dialog>;
 }

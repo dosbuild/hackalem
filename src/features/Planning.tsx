@@ -54,7 +54,7 @@ export function Candidate({ state,dispatch,onRelation,onPlace,onCatalogue,onBack
     <div className="proposal-project-title"><ProjectGlyph id={item.id}/><div><span className="eyebrow">{candidate.replaces?'ИЗМЕНИТЬ РЕШЕНИЕ':'ВАШЕ РЕШЕНИЕ'}</span><h3 id="candidate-title" className="paper-title" ref={titleRef} tabIndex={-1}>{PROJECT_NAMES[item.id]}</h3></div><b className="proposal-fixed-price paper-price">{item.cost}<small>{unitFor(item.cost)}</small></b></div>
     <p className="project-benefit">{story.benefit}</p>
     <p className="compact-tradeoff"><ControlIcon kind="chevron-down" size={18}/>{SHORT_LIMITS[item.id]}</p>
-    <div className="proposal-context-actions"><button data-context-action="meet" disabled={!onRelation||(candidate.decision.scope==='district'&&!district)} onClick={onRelation}>Встретить {person.name.split(' ')[0]} <ControlIcon kind="arrow-right" size={18}/></button><button onClick={onPlace}>Показать место <ControlIcon kind="place" size={18}/></button></div>
+    <div className="proposal-context-actions"><button data-context-action="meet" disabled={!onRelation||(candidate.decision.scope==='district'&&!district)} onClick={onRelation}>Встретиться с жителем <ControlIcon kind="arrow-right" size={18}/></button><button onClick={onPlace}>Показать место <ControlIcon kind="place" size={18}/></button></div>
     {candidate.decision.scope === 'district' ? <label className="field">{text.district}<select value={candidate.decision.districtId ?? ''} onChange={e=>{if(e.target.value)dispatch({type:'district',districtId:e.target.value as DistrictId});}}><option value="" disabled>{text.chooseDistrict}</option>{DISTRICTS.map(d=><option key={d.id} value={d.id}>{d.name}</option>)}</select></label>:<p className="proposal-citywide">{mode.id==='khanate'?'Во всех пяти кварталах':'Во всех пяти районах'}</p>}
     {originalId&&<p className="replacement-summary">Вместо «{PROJECT_NAMES[originalId]}» · разница {signed(item.cost-INITIATIVES[originalId].cost)} {terms.unit}</p>}
     <details className="proposal-details secondary-details"><summary>Подробности и точный расчёт<ControlIcon kind="chevron-down" size={18}/></summary>
@@ -63,7 +63,7 @@ export function Candidate({ state,dispatch,onRelation,onPlace,onCatalogue,onBack
     {connections.synergies.filter(s=>s.active).map(s=><p className="compact-synergy" key={s.partnerId}>Вместе с «{PROJECT_NAMES[s.partnerId]}»: ещё {signed(s.amount)} к «{indicatorNames[s.indicatorId]}».</p>)}
 
       <p>{person.opening}</p>
-      <p><strong>{item.name}</strong> · {item.id}. Эффект с {item.lag+1}-го {mode.id==='khanate'?'сезона':'квартала'}; итог через {RULES.horizon} {terms.seasons}.</p>
+      <p><strong>{item.name}</strong>. Эффект с {item.lag+1}-го {mode.id==='khanate'?'сезона':'квартала'}; итог через {RULES.horizon} {terms.seasons}.</p>
       {district&&<p>{story.need}: исходно {BASELINE[district][story.indicator]}/100.</p>}
       <p>{story.limitation}</p>
       {connections.conflicts.map(c=><p key={c.partnerId}>Не сочетается с «{INITIATIVES[c.partnerId].name}» {c.scope==='plan'?'в одном плане':mode.id==='khanate'?'в том же квартале':'в том же районе'}.</p>)}

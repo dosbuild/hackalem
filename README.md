@@ -4,7 +4,7 @@ Alem is a small decision game set in a geographic Astana. Hear a resident’s ne
 
 **Хандық — Город у Есиля** is a second, deliberately fictional world inspired by the late eighteenth-century Kazakh steppe. The permanent world selector opens it directly. Teaching yurts, caravan paths, gardens, healers, a petition book and a council at the khan’s court translate the same fourteen initiatives into another time. Each world keeps its own five decisions, treasury, residents, chronicle and camera. [Materials and provenance](docs/khanate-art-direction.md).
 
-The visual identity is **River atlas / Есильский атлас**: a mineral palette, graphite contours, drawn shadows and quiet paper surfaces. Both worlds share the same camera, physical depth, native people and original procedural architecture. Headings use Noto Serif; body text and calculations use Noto Sans, with Shantell Sans reserved for small handwritten time notes. The catalogue’s 140 images are exported from Alem’s own playable models. [Visual direction](docs/river-atlas.md) and [current release evidence](docs/release.md) describe the shipped sources and the checks actually completed.
+The world retains its **River atlas / Есильский атлас** identity: a mineral palette, graphite contours and drawn shadows. Both worlds share the same camera, physical depth, native people and original procedural architecture. The interface uses system typography, quiet light surfaces, consistent rounded controls and restrained motion. The catalogue’s 140 images are exported from Alem’s own playable models. The [interface design package](docs/design-system/README.md) specifies type, colour, radii, motion and interaction decisions; its [verification record](docs/design-system/verification.md) documents the rendered checks. [World visual direction](docs/river-atlas.md) and [release evidence](docs/release.md) cover the underlying city.
 
 The first screen offers three priced stories. Five visible plan slots remember the player’s choices. A proposal visits its actual site and shows one benefit, the important limitation and the confirmation. The full fourteen-project catalogue, calculations and appeal archive remain available when wanted. No demonstration or assistant action spends money automatically on arrival.
 
@@ -91,6 +91,7 @@ npm run test:release
 npm run test:fullscreen
 npm run test:integration
 npm run test:refinement
+npm run test:design
 npm run test:budget
 npm run test:map-loading
 npm run test:renderer

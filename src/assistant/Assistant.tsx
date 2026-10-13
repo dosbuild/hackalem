@@ -34,16 +34,17 @@ export function Assistant(props:AssistantProps) {
  function append(value:Omit<AyaMessage,'id'|'time'>){setMessages(previous=>[...previous,{...value,id:uid(),time:Date.now()}].slice(-60));}
  function setOpened(value:boolean){if(!value)returnFocus.current=true;setOpen(value);props.onOpenChanged?.(value);}
  useEffect(()=>{setStorageFailed(!saveConversation(messages,storage));},[messages]);
- useEffect(()=>{if(open){inputRef.current?.focus();if(logRef.current)logRef.current.scrollTop=logRef.current.scrollHeight;}else if(returnFocus.current){entryRef.current?.focus();returnFocus.current=false;}},[open]);
+ useEffect(()=>{if(open){inputRef.current?.focus();followLog.current=true;}else if(returnFocus.current){entryRef.current?.focus();returnFocus.current=false;}},[open]);
  useEffect(()=>{
-  const log=logRef.current;if(!log||!followLog.current)return;
+  const log=logRef.current;if(!open||!log||!followLog.current)return;
+  if(!messages.length){log.scrollTop=0;return;}
   const reply=log.querySelector<HTMLElement>('.aya-message:last-of-type');
   if(messages.at(-1)?.role==='assistant'&&reply&&reply.offsetHeight>log.clientHeight-16){
    // A complete, long answer should begin with its explanation, not its last fact.
    log.scrollTop+=reply.getBoundingClientRect().top-log.getBoundingClientRect().top-12;
    followLog.current=false;
   }else log.scrollTop=log.scrollHeight;
- },[messages,pending,automation.progress]);
+ },[open,messages,pending,automation.progress]);
  useEffect(()=>{setDistrictChoice(null);},[contextStamp]);
  useEffect(()=>{const request=pendingRef.current;if(request&&request.stamp!==contextStamp){request.controller.abort();pendingRef.current=null;busyRef.current=false;setPending(false);setExpression('attention');append({role:'assistant',text:'Контекст изменился. Я остановила прежний запрос, чтобы не действовать по устаревшему плану. Можно продолжить с текущего состояния.',mode:'action'});}},[contextStamp]);
  useEffect(()=>()=>{actionSerial.current++;pendingRef.current?.controller.abort();pendingRef.current=null;},[]);
@@ -99,7 +100,7 @@ export function Assistant(props:AssistantProps) {
    </div>
    {districtChoice?.kind==='add'&&<div className="aya-districts" aria-label="Выберите район для проекта">{DISTRICTS.map(d=><button key={d.id} disabled={busy} onClick={()=>void execute({...districtChoice,districtId:d.id})}>{d.name}</button>)}</div>}
    {!busy&&<div className="aya-suggestions" aria-label="Возможные следующие шаги">{suggestions.map(suggestion=><button key={suggestion} type="button" onClick={()=>void send(suggestion==='Что даст этот проект?'&&project?`Что даст ${INITIATIVES[project].name}?`:suggestion)}>{suggestion}</button>)}</div>}
-   <div className="aya-control-row">{busy?<button className="aya-stop" onClick={stop}><ControlIcon kind="stop" size={18}/>Остановить</button>:retry?<button onClick={()=>void send(retry)}>Повторить запрос</button>:<span>Можно спросить или поручить действие.</span>}{canUndo&&<button disabled={busy} onClick={()=>{undo();inputRef.current?.focus();setExpression('attention');append({role:'assistant',text:'Запросила отмену последней применимой последовательности. Более поздние ручные изменения защищены.',mode:'action'});}}>Отменить мой шаг</button>}</div>
+   <div className="aya-control-row">{busy?<button className="aya-stop" onClick={stop}><ControlIcon kind="stop" size={18}/>Остановить</button>:retry?<button onClick={()=>void send(retry)}>Повторить запрос</button>:<span>Можно спросить или поручить действие.</span>}{canUndo&&<button disabled={busy} onClick={()=>{undo();inputRef.current?.focus();setExpression('attention');append({role:'assistant',text:'Попросила отменить мои последние действия. Ваши последующие изменения останутся в плане.',mode:'action'});}}>Отменить мой шаг</button>}</div>
    <form className="aya-composer" onSubmit={event=>{event.preventDefault();void send(draft);}}><label className="aya-sr-only" htmlFor="aya-message">Сообщение Ае</label><textarea ref={inputRef} id="aya-message" rows={2} maxLength={2000} value={draft} onChange={event=>setDraft(event.target.value)} placeholder="Что хотите изменить в городе?" onKeyDown={event=>{if(event.key==='Enter'&&!event.shiftKey&&!event.nativeEvent.isComposing){event.preventDefault();void send(draft);}}}/><button type="submit" disabled={!draft.trim()||busy} aria-label="Отправить сообщение Ае"><ControlIcon kind="arrow-up"/></button></form>
    <p className="aya-chat-note">{storageFailed?'История доступна в этой вкладке. Браузер не разрешил её сохранить.':providerMode==='local'?'Свободный AI-диалог недоступен. Проверенные действия продолжают работать.':'Числа — из модели города. Решения проверяются перед применением.'}</p>
   </section>}

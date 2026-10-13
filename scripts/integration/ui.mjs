@@ -43,7 +43,7 @@ export async function navigate(page,name){
  const historical=await page.locator('html').getAttribute('data-mode')==='khanate';
  const labels={map:'Город',residents:historical?'Прошения':'Жители',dashboard:historical?'Летопись':'Итог'};
  await page.getByRole('navigation',{name:'Пространства Алем'}).getByRole('button',{name:labels[name]||name,exact:true}).click();
- if(name==='dashboard'&&await page.getByTestId('outcome-sheet').count())await page.getByTestId('outcome-sheet').getByRole('button',{name:/^Разбор, совет и реестр/}).click();
+ if(name==='dashboard'&&await page.getByTestId('outcome-sheet').count())await page.getByTestId('outcome-sheet').getByRole('button',{name:/^Подробные итоги/}).click();
  if(name==='dashboard')await page.getByRole('navigation',{name:'Разделы дашборда'}).waitFor();
 }
 export async function openTools(page){
