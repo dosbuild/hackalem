@@ -1,0 +1,261 @@
+{
+  "checkedAt": "2026-09-26T16:22:27.188772+00:00",
+  "baseCommit": "33ed68b9e7d3e1039ce8e521a448bd342a0878a4",
+  "branch": "codex/city-synthesis-release",
+  "scope": "Fixed snapshot of the complete city and geographic consequences; source workspace remains untouched.",
+  "install": "Clean npm ci --include=dev --ignore-scripts; audit: zero vulnerabilities",
+  "unitTests": 165,
+  "typecheck": "passed",
+  "productionBuild": "passed",
+  "runtimeChecks": 11,
+  "oracle": {
+    "baseline": 52.55768,
+    "example": 56.54307,
+    "improvement": 3.98539
+  },
+  "worldModelChecks": {
+    "placements": 70,
+    "meshes": 560,
+    "placementRegeneration": "byte-identical",
+    "placementsSha256": "f1961447852d9be612d9b3753b21783cccc56c0d9f0e9ffce219dd7370d55152"
+  },
+  "compiledGeometry": {
+    "passed": true,
+    "buildingFeatures": 60978,
+    "vertices": 8809842,
+    "bytes": 176196840,
+    "spatialBatches": 1689,
+    "environment": {
+      "trees": 30506,
+      "courtyards": 169,
+      "benches": 1317,
+      "lamps": 1148,
+      "planters": 338,
+      "districts": {
+        "nura": 7248,
+        "almaty": 4432,
+        "baikonur": 7808,
+        "saryarka": 5182,
+        "esil": 5836
+      },
+      "sources": {
+        "avenue": 1574,
+        "grove": 8095,
+        "shore": 640,
+        "yard": 20197
+      },
+      "reservedSites": 70,
+      "residentAnchors": 35,
+      "vertices": 3296820,
+      "rules": "Mapped groves, street allees, clearance-tested shared courts; all scenario parcels/routes and people spots reserved."
+    },
+    "checks": [
+      "Exact building ID coverage against complete OSM source",
+      "Every building has native roof/wall triangles",
+      "Identical city data behind both compatibility URLs",
+      "Every emitted triangle belongs to a contiguous spatial draw batch",
+      "All vertex coordinates finite",
+      "Every environment footprint clears all buildings",
+      "Every environment footprint clears all scenario and resident reservations",
+      "Vegetation in all five districts"
+    ]
+  },
+  "placementAudit": {
+    "checks": [
+      "70 deterministic records cover all measures and districts",
+      "All building-like footprints clear full OSM buildings, water and streets",
+      "Every corridor segment exists in its recorded OSM source",
+      "Routes and footprints remain in the intended district",
+      "Street furniture clears roads, water and mapped buildings",
+      "Independent intervention footprints do not overlap",
+      "Clean fuel modifies a cluster of actual residential roofs"
+    ],
+    "sourceCounts": {
+      "buildings": 61325,
+      "water": 3144,
+      "roadSegments": 190859
+    },
+    "sites": 70
+  },
+  "browserChecks": {
+    "release": {
+      "checks": 37,
+      "passed": true,
+      "errors": [],
+      "origin": "http://127.0.0.1:4188"
+    },
+    "fullscreen": {
+      "checks": 50,
+      "passed": true,
+      "errors": [],
+      "origin": "http://127.0.0.1:4188"
+    },
+    "budget": {
+      "checks": 38,
+      "passed": true,
+      "errors": [],
+      "origin": "http://127.0.0.1:4188"
+    },
+    "public": {
+      "checks": 7,
+      "passed": true,
+      "errors": [],
+      "origin": "http://127.0.0.1:4188"
+    }
+  },
+  "consequenceJourney": {
+    "checks": 40,
+    "passed": true,
+    "errors": [],
+    "score": "55,14",
+    "coverage": [
+      "five fixed-cost commitments",
+      "3D resident picking and evaluated evidence",
+      "removal",
+      "manual interruption"
+    ]
+  },
+  "gallery": {
+    "initiatives": [
+      "M1",
+      "M2",
+      "M3",
+      "M4",
+      "M5",
+      "M6",
+      "M7",
+      "M8",
+      "M9",
+      "M10",
+      "M11",
+      "M12",
+      "M13",
+      "M14"
+    ],
+    "views": [
+      "construction",
+      "overview",
+      "close"
+    ],
+    "errors": []
+  },
+  "cameraAudit": {
+    "samples": 2808,
+    "anchorObservations": 12658,
+    "distinctZooms": 370,
+    "maxErrorPixels": 0.0007005490725448356,
+    "tracked": [
+      "esil:garden",
+      "M4:esil",
+      "M5:esil",
+      "M7:esil",
+      "M8:esil",
+      "M8:nura",
+      "M11:nura",
+      "M11:almaty",
+      "M12:esil",
+      "M12:almaty",
+      "M12:saryarka",
+      "M12:baikonur",
+      "M12:nura",
+      "M14:esil",
+      "M14:almaty",
+      "M14:saryarka",
+      "M14:baikonur",
+      "M14:nura",
+      "scenario:M4:esil"
+    ],
+    "method": "Independently reconstruct GPU clip projection from each sampled camera pose and checked-in placement or sampled physical actor position; compare to resident foot and project anchor delivered in that same frame. Includes motion, orientation changes and safe-area shifts."
+  },
+  "cityNavigation": {
+    "views": [
+      "A-full-city",
+      "B-esil-district",
+      "C-esil-urban",
+      "D-return",
+      "district-almaty",
+      "urban-almaty",
+      "district-saryarka",
+      "urban-saryarka",
+      "district-baikonur",
+      "urban-baikonur",
+      "district-nura",
+      "urban-nura"
+    ],
+    "errors": [],
+    "movingCameraIntervalsMs": {
+      "samples": 867,
+      "median": 33.30000000000109,
+      "p95": 33.400000000001455,
+      "over50": 0
+    },
+    "closeDistricts": [
+      "esil",
+      "almaty",
+      "saryarka",
+      "baikonur",
+      "nura"
+    ]
+  },
+  "runtimeAssets": {
+    "count": 30,
+    "sourceDumpsPublished": false,
+    "meshBytes": 176196840,
+    "meshGzipBytes": 34748204,
+    "meshSha256": "61e257fbf23b6cace776c8a8bc69070ee57434fc7a520db5e8ef81640abf89d1",
+    "compatibilityMeshIdentical": true
+  },
+  "localPerformance": {
+    "viewports": [
+      [
+        1440,
+        900
+      ],
+      [
+        1366,
+        768
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "firstDrawMs": [
+      384.9,
+      339.1,
+      328
+    ],
+    "initialTransferredBytes": [
+      34983396,
+      34983396,
+      34983396
+    ],
+    "environment": {
+      "platform": "darwin",
+      "arch": "arm64",
+      "cpu": "Apple M4",
+      "browser": "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
+      "node": "v24.21.0"
+    }
+  },
+  "explanation": {
+    "status": 200,
+    "mode": "local",
+    "reason": "unavailable",
+    "resultId": "astana-education-1/M11@almaty|M12@city|M14@city|M4@esil|M8@nura",
+    "statementCount": 0,
+    "visibleStatus": "Локальное объяснение по формулам. Живое ИИ-объяснение недоступно; численный результат готов."
+  },
+  "railwayBaseline": {
+    "commit": "33ed68b9e7d3e1039ce8e521a448bd342a0878a4",
+    "health": "200 OK"
+  },
+  "limitations": [
+    "Local production verification, not a deployment of this candidate",
+    "Touch emulation; physical low-memory phones and remote-network download times unmeasured",
+    "Camera update intervals are not GPU fence timings",
+    "No paid AI-provider call or new native Kazakh review",
+    "Prepared geometry is illustrative, not an engineering survey"
+  ],
+  "artifacts": "Ignored artifacts/ contains screenshots, browser recordings and raw frame traces."
+}

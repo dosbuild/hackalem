@@ -1,0 +1,49 @@
+/* Decision clarity: the proposal, its consequences and its price belong together. */
+.connected-application .hud-guide{width:44px;min-width:44px;padding:8px;font:19px Georgia;border-radius:50%}
+.game-dialog{width:min(590px,calc(100vw - 28px));max-height:calc(100dvh - 36px);padding:0;border:1px solid #d9e0cc;border-radius:20px;background:#f8f6ed;color:#294b3d;box-shadow:0 30px 100px #0e30295c;overflow:auto;overscroll-behavior:contain}
+.game-dialog::backdrop{background:#18373070;backdrop-filter:blur(5px)}
+.game-dialog-content{padding:28px}.game-dialog header{display:flex;align-items:start;gap:15px;margin-bottom:18px}
+.game-dialog header h2{font:29px/1.14 Georgia;margin:0;flex:1}.game-dialog header button{min-width:40px;min-height:40px;padding:0;border:0;border-radius:50%;font-size:26px;background:#e9eede}
+.game-dialog p{font-size:14px;line-height:1.65}.game-dialog footer{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}.game-dialog footer button{min-height:46px;font-size:13px;border-radius:9px}
+.game-guide-numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0;background:#e9eedf;border-radius:12px;padding:18px}
+.game-guide-numbers div{display:grid;gap:6px}.game-guide-numbers strong{font:32px Georgia}.game-guide-numbers span{font-size:11px;color:#526b55}
+.game-guide-steps{padding-left:24px;display:grid;gap:15px}.game-guide-steps li{padding-left:7px}.game-guide-steps li::marker{color:#75966b;font-weight:700}.game-guide-steps strong{font-size:14px}.game-guide-steps p{font-size:13px;margin:5px 0}
+.game-guide-formula{font-size:13px;border-top:1px solid #d4dec9;margin-top:20px;padding-top:8px}.game-guide-formula summary{padding:10px 0;cursor:pointer;min-height:44px}.game-guide-formula p{font-size:12px}
+.game-dialog .game-guide-note{font-size:11px;color:#61715c;line-height:1.6;margin-top:16px}
+.connected-application .arrival-reassurance{font-size:11px;color:#5d7564;margin:12px 0 0}
+.restore-plan-link{width:100%;background:#e4ecd9;border:1px solid #b6c9ab;font-size:12px;min-height:44px;border-radius:8px;margin-top:18px}
+.recovery-plan-list{list-style:none;padding:0;display:grid;gap:10px}.recovery-plan-list li{padding:10px 12px;background:#e9eedf;border-radius:8px}.recovery-plan-list strong{display:block;font-size:13px}.recovery-plan-list span{display:block;margin-top:5px;font-size:11px;color:#60735a}
+.aya-context-card{position:relative;padding-right:45px}.aya-assistant .aya-clear-context{position:absolute;right:7px;top:7px;min-width:32px;min-height:32px;padding:3px;border:0;background:transparent;color:#627a61;font-size:20px}
+.dash-impact-summary{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:8px 0 26px}
+.dash-impact-summary article{padding:23px;border:1px solid #405447;border-radius:13px;background:#1a2921}
+.dash-impact-summary article:first-child{background:linear-gradient(120deg,#223b29,#19291f);border-color:#577348}
+.dash-impact-summary .dash-eyebrow{font-size:9px;letter-spacing:.12em;color:#bbcea7}
+.dash-impact-summary h3{font-size:17px;line-height:1.4;margin:11px 0;color:#eff3e7}
+.dash-impact-value{display:flex;align-items:baseline;gap:12px;min-height:44px;margin:14px 0 10px;font-variant-numeric:tabular-nums}
+.dash-impact-value strong{font-size:34px;font-weight:550;color:#d9efbf}.dash-impact-value span{font-size:21px;color:#a8bda8}.dash-impact-value i{font-style:normal;color:#849c86}.dash-impact-value b{margin-left:auto;color:#cce5b5;font-size:17px}
+.dash-impact-summary article>p{font-size:12px;color:#b6c7b7;line-height:1.65;margin:10px 0 15px}
+.dash-impact-summary article>button{font-size:12px;min-height:44px;text-align:left;background:transparent;border-color:#52694e;color:#e0eecf}
+.dash-impact-warning{grid-column:1/-1;color:#dfbe9c;padding:12px 16px;border-left:3px solid #ac8060;background:#362c232e;margin:0;font-size:12px;line-height:1.6}
+.dash-comparison-tradeoffs{margin-top:24px;padding:18px;border:1px solid #876c52;border-radius:10px;background:#372d225c}
+.dash-comparison-tradeoffs h3{font-size:16px;font-weight:550;margin:0 0 8px}.dash-comparison-tradeoffs>p{font-size:12px;line-height:1.65}
+.dash-comparison-tradeoffs>div{display:grid;grid-template-columns:1fr auto auto;align-items:baseline;gap:10px;font-size:12px;padding:8px 0;border-top:1px solid #705d434f}
+.dash-comparison-tradeoffs strong{font-weight:500;white-space:nowrap}.dash-comparison-tradeoffs b{color:#f4ad9c;font-weight:500;white-space:nowrap}
+.dash-comparison-tradeoffs summary{font-size:12px;cursor:pointer;min-height:44px;padding:12px 0}.dash-comparison-tradeoffs details p{font-size:12px}
+.connected-application .seal-heading h2{font-size:20px}.connected-application .seal-heading>span{font-size:11px}
+.connected-application .commitment-seal strong{font-size:11px}.connected-application .slots li{height:56px;min-height:56px}
+.connected-application .plan-progress-copy{font-size:12px;line-height:1.5;margin:12px 0;color:#526b55}
+.plan-rules{margin:4px 0 20px;font-size:12px;border-bottom:1px solid #b8c7ae70;padding-bottom:8px}
+.plan-rules summary{padding:10px 0;cursor:pointer;min-height:40px;color:#46664e}.plan-rules p{font-size:12px;line-height:1.6}
+.plan-area-counts{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.plan-area-counts span{font-size:10px;border:1px solid #b9c9b2;border-radius:6px;padding:5px 7px}.plan-area-counts span.full{background:#dce8d2}
+.project-choice-benefit{display:block;font-size:12px;line-height:1.5;margin-top:4px;color:#526b55}
+.connected-application .project-choice small{font-size:11px;margin-top:6px}.project-choice-constraint{display:block;margin-top:3px;color:#8a5735}
+.connected-application .project-choice{gap:10px;padding:14px 11px}.connected-application .project-choice strong{font-size:14px}
+.connected-application .project-choice>.project-glyph{align-self:start;margin-top:3px}
+.connected-application .project-choice>b{align-self:start;margin-top:3px}
+@media(max-width:800px){
+ .connected-application .hud-guide{width:36px;min-width:36px;min-height:40px;font-size:17px}
+ .game-dialog-content{padding:22px 18px}.game-dialog header h2{font-size:25px}.game-guide-numbers{padding:14px;gap:8px}.game-guide-numbers strong{font-size:28px}.game-guide-numbers span{font-size:10px}
+ .connected-application .project-choice{grid-template-columns:30px 1fr auto;gap:8px}.connected-application .project-choice>.project-glyph{width:28px;height:28px}
+ .connected-application .project-choice strong{font-size:13px}.project-choice-benefit{font-size:11px}
+}
+@media(max-width:650px){.dash-impact-summary{grid-template-columns:1fr;gap:12px}.dash-impact-summary article{padding:19px}.dash-impact-summary h3{font-size:16px}.dash-comparison-tradeoffs{padding:14px}.dash-comparison-tradeoffs>div{grid-template-columns:1fr auto}.dash-comparison-tradeoffs>div span{grid-column:1/-1}.dash-comparison-tradeoffs>div b{text-align:right}}

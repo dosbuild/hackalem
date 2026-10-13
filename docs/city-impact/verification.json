@@ -1,0 +1,118 @@
+{
+  "date": "2026-09-27",
+  "build": "assets/index-CStTfN8F.js",
+  "verification": {
+    "typecheck": "passed",
+    "unitTests": 179,
+    "placementRecords": 70,
+    "meshPhaseChecks": 560,
+    "supportingSpaces": 95,
+    "journey": {
+      "complete": true,
+      "checks": 41,
+      "errors": [],
+      "remainingBudget": 19,
+      "baselineScore": "55,14",
+      "finalScore": "55,14"
+    },
+    "gallery": [
+      {
+        "id": "M1",
+        "errors": []
+      },
+      {
+        "id": "M2",
+        "errors": []
+      },
+      {
+        "id": "M3",
+        "errors": []
+      },
+      {
+        "id": "M4",
+        "errors": []
+      },
+      {
+        "id": "M5",
+        "errors": []
+      },
+      {
+        "id": "M6",
+        "errors": []
+      },
+      {
+        "id": "M7",
+        "errors": []
+      },
+      {
+        "id": "M8",
+        "errors": []
+      },
+      {
+        "id": "M9",
+        "errors": []
+      },
+      {
+        "id": "M10",
+        "errors": []
+      },
+      {
+        "id": "M11",
+        "errors": []
+      },
+      {
+        "id": "M12",
+        "errors": []
+      },
+      {
+        "id": "M13",
+        "errors": []
+      },
+      {
+        "id": "M14",
+        "errors": []
+      }
+    ],
+    "fullscreenChecks": 50,
+    "maxAnchorErrorPixels": 0.0006986522195744472,
+    "schoolChecks": 18,
+    "rasterChecks": 31,
+    "productionRuntime": "passed"
+  },
+  "timing": {
+    "localDesktopOnly": true,
+    "eventFrameSamples": 1847,
+    "p95Milliseconds": 18.2,
+    "maxMilliseconds": 18.8,
+    "districtEventSeconds": {
+      "M4": 6.22,
+      "M1": 6.01,
+      "M8": 6.16,
+      "M10": 6.31
+    },
+    "citywideEventSeconds": 5.4,
+    "schoolEventSeconds": 12.94
+  },
+  "reviewed": {
+    "variants": [
+      "before",
+      "experiment-a",
+      "experiment-b"
+    ],
+    "selected": "experiment-b with the final visual edit",
+    "overviewDecisions": [
+      0,
+      1,
+      3,
+      5
+    ],
+    "interventions": 14,
+    "continuousRecording": "artifacts/city-impact/final/continuous-journey.webm",
+    "notes": "Reviewed the uninterrupted recording, sampled frames, all intervention galleries, and baseline/final overview captures. No simulation inputs changed."
+  },
+  "limitations": [
+    "Local desktop frame intervals are not physical-phone performance evidence.",
+    "Visual legibility has been reviewed by the implementing agent, not tested with new players.",
+    "Local preview only; no deployment."
+  ]
+}

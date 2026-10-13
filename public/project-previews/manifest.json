@@ -1,0 +1,4346 @@
+{
+  "author": "Alem implementation",
+  "method": "Native own project meshes, shared WebGL materials/ink and camera; no source-reference assets.",
+  "width": 480,
+  "height": 288,
+  "sources": {
+    "data/prepared/geography.tar.gz": "bb4c476540cc3e64193a21a522150e2f025f441e6e2fb18b08cf48e798b48a78",
+    "scripts/alem/architecture.mjs": "aed1c287bac061b372cf02425b0c315e166d481228a51ef17b8f16347441977b",
+    "scripts/alem/city-style.mjs": "a2195019692c62bda33fcb5dfd852f898c447aac443018b01650d23b918b4b5b",
+    "scripts/alem/environment.mjs": "3dae4dfd2e87e40be29680cef4e9f8a2446c59973e9a5a481724f19106573468",
+    "scripts/alem/landmarks/catalog.mjs": "3d3c66df09701340661bfb220ba1eeaf5dcd94fa025572308d7832242bce1f7b",
+    "scripts/alem/landmarks/civic.mjs": "21b72d5b455df82397d314d9befe44cbb38ea89ad8030bd18169f289ee4890a1",
+    "scripts/alem/landmarks/expo-pavilions-source.json": "2f30b153a3e1c5a35346de3bccfd40ab561fef707757b2082e84314937e6170f",
+    "scripts/alem/landmarks/expo-pavilions.mjs": "d1fd4a4260455b73dd89fdec2da380d5a0c5c7e8600002e78e447cbc5deb2512",
+    "scripts/alem/landmarks/grand-mosque-grounds.mjs": "9cf075305975b5cc7d572981bf20400ab9f59fc35a2e732093f271d5deaa68ae",
+    "scripts/alem/landmarks/hazret-annex-source.json": "c0aba14fa8fa2e1a89760d2569d8e20fec4e3ca217a1cce8082228ab16cea365",
+    "scripts/alem/landmarks/hazret-annex.mjs": "7ed2e456c1451091ca2b88af960deb45b2f0f370f682534a4df3127439b83332",
+    "scripts/alem/landmarks/kit.mjs": "9fa98ace1b9f4efed4b42548508709be1a6c3a67fb0a700295a854808cb8837f",
+    "scripts/alem/landmarks/lrt-bridge.mjs": "9107a5ef8d7b5e66f59a3bd4a90873b4e618533d5ffd4462b6aa209e434e308e",
+    "scripts/alem/landmarks/signature.mjs": "af469b80cdc4425aa108eae7ecad658d9f0711157eea539e67686591443abaf4",
+    "scripts/alem/landmarks/skyline.mjs": "a3f39080414df263389a136633e353669076d7c738511038519f6a19980ffd9d",
+    "scripts/alem/landmarks/transit.mjs": "a8675baa8719922c5ba3734b42597faee3b0e7fa06ee688ba9f4fc0d7c9e7168",
+    "scripts/alem/prepare.mjs": "9c40baa8cf5f46135bcb88fe5440def0825757a988eb238c9364d6f4d66f95c9",
+    "scripts/alem/rebase-roofs.mjs": "4f5ab5ec91abad58d2d0156b8f12f839e307ee2697b1b927ed1b1defb72ac408",
+    "scripts/alem/resident.mjs": "8b91bef1fc83fc8f92241b9a88ca50e7e4c4832d4b9e493e2e0c1ed1b6597c15",
+    "scripts/alem/terrain.mjs": "6d326ec7fff8cf46d767c3477693c455b2d32766c3144d6be7e7f438253deaef",
+    "scripts/city/prepare.mjs": "c4176d7a310a25abf09ecd8dfb275ae4c15148f41b1a5b4e52202db05aedf081",
+    "scripts/cityrt/check-previews.mjs": "14705510a879e1675d67e0bbfd441070c11435aead15e62b6e4245f0a3e9ac8c",
+    "scripts/cityrt/prepare-previews.mjs": "3b9ad9dddcd5a6156d0803371283d2bb663612a9c6b3a93e33f6a7479bb3d6bf",
+    "scripts/cityrt/preview-context.mjs": "c354d17728e1ee081e6ba7b5766707677b0514916354b76a05bcdaa602d5add6",
+    "scripts/cityrt/preview-studio.html": "f0b8c7701e06301d699a10517fd06c5704eb499e8fbfec66069ddce90f19c39a",
+    "scripts/khanate/prepare.mjs": "3dfe0af8b64a976c9befe06e275248ea4cd88513a91edc795caa5db90f5b546f",
+    "scripts/release/browser-options.mjs": "51e7c595f1e1e20df9e32af30ba65687aff1eef17616aba487d33376fbf07ea0",
+    "src/design/palette.js": "67d2dfbbc935e82409ad209c70c21b8c0d0f56847151d3f2e621fed6e06ce78c",
+    "src/world/architecture-models.js": "bb96e207385eea510cff7281b67b385cff7a27f66552fd69f29023ccf7170962",
+    "src/world/astana-programs.js": "068fc17773b0bffcfb9e832c2e9030d05539cda72f23cb79301ebce6d899ee0c",
+    "src/world/astana-programs.json": "539cb15a27a1cfd9016a14ae4c2b80e46ce595d6c0735683e4c2eee57096df0e",
+    "src/world/city-gl.js": "f458920fbd2d2d8f1eb6d1204c1a28032f73112185e511b4578cad00b93d72c8",
+    "src/world/city-math.js": "c3a28cf494aadced691f9a1ea79655e2dff4ebb7545e2f5c94873700fd1e0d9d",
+    "src/world/construction-clock.js": "3badaf2f3800836e4d9803510097449a1d39ff9227e822dd2a6e6972c6c1f838",
+    "src/world/construction-preparation.js": "5adbf5e5eea06840ef28f12395a92c7c3f5256d43de779b18b65cf39bbe03a2a",
+    "src/world/context-sites.json": "19308d1340d4ae6d3bc53d470eb1e65bc2feb732be225c950b4daf61b6fb9754",
+    "src/world/district-colors.js": "32992d7c9f22aaacde9272267d5ccec9d034d4e1ed1e13669ba60b7dda99e10b",
+    "src/world/hero-school.js": "bd4ea60a1d033c0b60463f97350f2e5c9bc13b56f805e745480ce530490b631c",
+    "src/world/ink-pass.js": "7144ec3b1238ec1300c0974c5128cecc84c158a23693e43af85dcef7a9f41d56",
+    "src/world/intervention-effects.js": "b8245d67f2c3f02515e90391ec4b06dcfe423a89d300f46d3810dc536dedffa2",
+    "src/world/khanate/bootstrap.json": "c741883fcd081da521741d2861035dc95b674aae8966d85e7c6a594df02caca7",
+    "src/world/khanate/geography.js": "fae0d7f843db45b2b7d1f30da3076983b9e87388846d74fa13cbf2865b365abc",
+    "src/world/khanate/landmark-models.js": "6508754f0eddcdbe3f2ed5cbbdd4c6bd6741519722b7640479a45538a2a08e8e",
+    "src/world/khanate/landscape.js": "8f2ca289adf5f64af971679a302cb2d25aad92b829c89962137b85f96883f7cb",
+    "src/world/khanate/life-models.js": "1af2e0f9def090d70704f15553e1a065637ccf9b34122b0533cc01e18cb12254",
+    "src/world/khanate/life.js": "fd230d403374e2fbac53aca572488285d3b0764b2700e1181dacd34deb546fac",
+    "src/world/khanate/models.js": "82c5b9c273b531a95e557c6d8af29ab6a704027610efcb8cca29e08719f3d664",
+    "src/world/khanate/program-models.js": "a84056e598ae5b66085895981ec1d997573179c28d60f23063aba76f77e56399",
+    "src/world/khanate/program-sites.json": "842ddf2b0393c62eebb4d5c56d3fc6f84690302d2c67330115ef4131b3a3a933",
+    "src/world/khanate/programs.js": "10ec6854d163cfc2747c3da67fe7dfb76a35c19f7acbe4cc97322427a9beedee",
+    "src/world/khanate/projects.js": "d2422f6497ab2edcd1de6831034d5e9ff842be8c69a6d390bb4f99f5e1dc6a61",
+    "src/world/khanate/scale.js": "8c28edc0b825127ecb80e01684653b3c3563c783d4c0a5c33a99610abd6a7adf",
+    "src/world/khanate/settlement-layout.json": "34a46f1447655216490a14a2245715d3ddfe9d69424aa118989368a4dbfe15fe",
+    "src/world/khanate/settlement.js": "5cacc582a77c3ae6466e4629dd866b9da1e8b97898a09fb8d8ba09f54d5a004c",
+    "src/world/khanate/site-views.json": "8e3279f0d7cda8ac43888ad8281bed69bf176c0e6e8a3ccc44509e7e64ebd8b4",
+    "src/world/lrt-model.js": "def07dc8cc27773c31b9848ef35e1d17e3b76548dbc89a15a3c6820910aaac5a",
+    "src/world/lrt-route.js": "347334a422a9a8210902ed7d0816642887fc120c858337b602fa96e217b2b90c",
+    "src/world/lrt-route.json": "fe9fd60a6685d24fc8eaef630ecb942967daab9333b12d033eedc7c8e20e80e8",
+    "src/world/macro-interventions.js": "b6840f6ef38e0cbb611bf16c918a47447600176f0a8c10a3d38080a67151c07c",
+    "src/world/map-wire.js": "678fbef0582add2a86e6a1cd72b96f460444024fa0adb18983d5d036c26be256",
+    "src/world/mesh-index.js": "84822ec75643925e08c45110364345cb28315af637e16f978f2868f4e8758ce1",
+    "src/world/mesh-kit.js": "dd1c991acd0c296a113a4a44b94d39436ce911fb1be1f5b56de4943f690cb7e0",
+    "src/world/placement-geometry.js": "f839a73b25d984849013013ca4646fbcdd200dcc9b1eb4f8a8bd778793a546d7",
+    "src/world/placements.json": "6eac8f109787a0a03e1b895b30811100a462c30e48a9c41e9c97de818071130c",
+    "src/world/project-detail.js": "12f2c74825bbfc0ffc8ec8e31bdac50cf286035c4485ac9cf207db59eee05f54",
+    "src/world/project-objects.js": "c5fa7ca128006d1f9ab252f779c32c95df119119232b2486335e248c9136c0fe",
+    "src/world/project-presentation.js": "3e19692e6dbe33360c67513a1e311ca4f2420f79dc598d201a854fe491afb963",
+    "src/world/projection.js": "bb0079c4f4f962051b08393c74bf83997d195d660f8aaff36628ae9d0aff1947",
+    "src/world/render-policy.js": "d82fdd0208f345b89c181e734c1fecc02208e9f6bd10e1c7dedcb91f1954f055",
+    "src/world/resident-models.js": "1a50c8be4732c7a76780d1ccaa3fc9422eff6c9e0420a40303486f428be778dc"
+  },
+  "images": [
+    {
+      "mode": "astana",
+      "initiativeId": "M1",
+      "districtId": "esil",
+      "path": "astana/M1-esil.webp",
+      "bytes": 4944,
+      "sha256": "4fd7d330d8e894c412dc64ebbf427fec7a98a519329f30008163bfde81da8224",
+      "modelBytes": 82560,
+      "pose": {
+        "x": -0.0006762541637826204,
+        "y": -0.5263221578494082,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -3.370849564675135,
+        "pitch": 1,
+        "zoom": 926.7377488410157
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M1",
+      "districtId": "almaty",
+      "path": "astana/M1-almaty.webp",
+      "bytes": 5104,
+      "sha256": "83270b416f2fcdfbf136b61efc3588ab4cb956eccc4f37160b31c5fa5d63890c",
+      "modelBytes": 79680,
+      "pose": {
+        "x": 0.3780337236697385,
+        "y": 0.10858041113325387,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -3.0354577297133734,
+        "pitch": 1,
+        "zoom": 926.7377560544571
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M1",
+      "districtId": "saryarka",
+      "path": "astana/M1-saryarka.webp",
+      "bytes": 4982,
+      "sha256": "d03ab141bd15762402940e4eb645ff52e260caadab9e8b5ee35f16c0e9c7b4d8",
+      "modelBytes": 78000,
+      "pose": {
+        "x": -0.3865991319328697,
+        "y": 0.4166975731059393,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -3.217771402555334,
+        "pitch": 1,
+        "zoom": 926.7377633177107
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M1",
+      "districtId": "baikonur",
+      "path": "astana/M1-baikonur.webp",
+      "bytes": 4878,
+      "sha256": "4af7ee9232644e767f4fd41280e50d85836f45b99d0689f092ab440983637541",
+      "modelBytes": 80640,
+      "pose": {
+        "x": 0.08481845993468297,
+        "y": 0.4322114374192545,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": 2.6216048401195198,
+        "pitch": 1,
+        "zoom": 926.7377693708254
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M1",
+      "districtId": "nura",
+      "path": "astana/M1-nura.webp",
+      "bytes": 5234,
+      "sha256": "689f041d67183d248bc7037de8f437d802ce6565c6155b667277560eb101bc7a",
+      "modelBytes": 78240,
+      "pose": {
+        "x": -0.4217065443226291,
+        "y": -0.15668323346271132,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -1.8106907243884263,
+        "pitch": 1,
+        "zoom": 926.7377937892807
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M2",
+      "districtId": "esil",
+      "path": "astana/M2-esil.webp",
+      "bytes": 5612,
+      "sha256": "abdbf4989f2df2e1862708872150dd4344083cd39477fec71a193fe68f0799f3",
+      "modelBytes": 134160,
+      "pose": {
+        "x": -0.011074464198105812,
+        "y": -0.46167576016863726,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 535.9192928915363
+      },
+      "activity": {
+        "kind": "native-project-dynamic",
+        "seconds": 4,
+        "bytes": 351360,
+        "sha256": "515ada811df3290affdf593d9de73d51e26a8982f4d6ff0251df62eea23c401f",
+        "siteId": "M2:esil:junction-1"
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/243133860",
+          "way/243133863",
+          "way/1428433590"
+        ],
+        "siteId": "M2:esil:junction-1",
+        "bounds": [
+          -0.013026399999991781,
+          -0.4645428000000499,
+          -0.00852639999999178,
+          -0.46004280000004993
+        ],
+        "kinds": [
+          4,
+          18
+        ],
+        "triangles": 12,
+        "authoringMesh": "alem/city.bin",
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 720,
+        "sha256": "4d5d09ee8e9d892a01f2c41777b4789992d10d2b94dfcafd6e67854c468ce160"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M2",
+      "districtId": "almaty",
+      "path": "astana/M2-almaty.webp",
+      "bytes": 8984,
+      "sha256": "36e07689748f675ce8ce76993bbf95994d32134f8e73fea30a8ddfeba1a32216",
+      "modelBytes": 147120,
+      "pose": {
+        "x": 0.4728665158018656,
+        "y": 0.050426439831362004,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 535.9192928915362
+      },
+      "activity": {
+        "kind": "native-project-dynamic",
+        "seconds": 4,
+        "bytes": 397440,
+        "sha256": "24966acf2600835234225f2ddea30575ce5077dbf726ccdb3c7a83641784303f",
+        "siteId": "M2:almaty:junction-1"
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/1539729918",
+          "way/1539729919",
+          "way/1214474788",
+          "way/24843888",
+          "way/609765365",
+          "way/1539729917"
+        ],
+        "siteId": "M2:almaty:junction-1",
+        "bounds": [
+          0.47091457999997965,
+          0.047559399999949376,
+          0.4754145799999796,
+          0.05205939999994938
+        ],
+        "kinds": [
+          0,
+          4,
+          18,
+          22
+        ],
+        "triangles": 60,
+        "authoringMesh": "alem/city.bin",
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 3600,
+        "sha256": "871c353f44e83089d6976abca32485b4900fafaf0c2a2187b9f866ec5fcae2c1"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M2",
+      "districtId": "saryarka",
+      "path": "astana/M2-saryarka.webp",
+      "bytes": 5684,
+      "sha256": "196c6d6c82df92dab00108ddd49c897ef5fb1e5353573ba633cfac3622f79129",
+      "modelBytes": 138360,
+      "pose": {
+        "x": -0.3045127041981289,
+        "y": 0.4275045398313872,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 535.9192928915386
+      },
+      "activity": {
+        "kind": "native-project-dynamic",
+        "seconds": 4,
+        "bytes": 393120,
+        "sha256": "e43690d49d369ef6fc11b035b6aa69ed69b281deb91d46ee9e6548138664754f",
+        "siteId": "M2:saryarka:junction-1"
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/230400420",
+          "way/924037901",
+          "way/1148486347"
+        ],
+        "siteId": "M2:saryarka:junction-1",
+        "bounds": [
+          -0.3064646400000149,
+          0.4246374999999746,
+          -0.30196464000001494,
+          0.4291374999999745
+        ],
+        "kinds": [
+          4,
+          18
+        ],
+        "triangles": 20,
+        "authoringMesh": "alem/city.bin",
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 1200,
+        "sha256": "a871626815bf3eafcbcc8b13cb94c6bc6171f739e61d309f6f215ec43d2658cf"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M2",
+      "districtId": "baikonur",
+      "path": "astana/M2-baikonur.webp",
+      "bytes": 4112,
+      "sha256": "9398619354423d6189272c8b6833d82e72d0f9923a22661bd163570a4167f0cf",
+      "modelBytes": 142920,
+      "pose": {
+        "x": 0.011811755801923498,
+        "y": 0.4700295648313905,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 535.9192928915363
+      },
+      "activity": {
+        "kind": "native-project-dynamic",
+        "seconds": 4,
+        "bytes": 366120,
+        "sha256": "707037505cfb5eeb0c282af04de30b9a7886081837b2a82d51205b9aedd8b9c3",
+        "siteId": "M2:baikonur:junction-1"
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/243384502",
+          "way/512139374",
+          "way/506215208"
+        ],
+        "siteId": "M2:baikonur:junction-1",
+        "bounds": [
+          0.009859820000037529,
+          0.4671625249999779,
+          0.01435982000003753,
+          0.47166252499997785
+        ],
+        "kinds": [
+          4,
+          18
+        ],
+        "triangles": 38,
+        "authoringMesh": "alem/city.bin",
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 2280,
+        "sha256": "0266e08cccd6093804c4312cec8f84a74d8d72a2e2f72a21208e8759f34bd1b9"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M2",
+      "districtId": "nura",
+      "path": "astana/M2-nura.webp",
+      "bytes": 7954,
+      "sha256": "915a286873e8effb923ae28ec43e09f550da29d7300b753a5c38e1dc09304d03",
+      "modelBytes": 129600,
+      "pose": {
+        "x": -0.37947712419813806,
+        "y": 0.032992964831380846,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 535.9192928915365
+      },
+      "activity": {
+        "kind": "native-project-dynamic",
+        "seconds": 4,
+        "bytes": 388800,
+        "sha256": "1e08c0122b86e02849164ed0935569f81a24b63dc5504ee078dc135def014425",
+        "siteId": "M2:nura:junction-1"
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/735050496",
+          "way/1561091775",
+          "way/1194654002"
+        ],
+        "siteId": "M2:nura:junction-1",
+        "bounds": [
+          -0.381429060000024,
+          0.03012592499996822,
+          -0.3769290600000241,
+          0.03462592499996822
+        ],
+        "kinds": [
+          4,
+          18,
+          22
+        ],
+        "triangles": 44,
+        "authoringMesh": "alem/city.bin",
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 2640,
+        "sha256": "d73ad1deccb8df624e1e1d9d2bff61070245884e439c08ca39b18db6a613203b"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M3",
+      "districtId": "esil",
+      "path": "astana/M3-esil.webp",
+      "bytes": 10500,
+      "sha256": "a02c70d434e0d699186bb4273dd616145e0a680c380e0cb113a2e318e51e5905",
+      "modelBytes": 846360,
+      "pose": {
+        "x": -0.06216543585622143,
+        "y": -0.4750571612945385,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": 1.7577728909185153,
+        "pitch": 1,
+        "zoom": 308.8572304271041
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M3",
+      "districtId": "almaty",
+      "path": "astana/M3-almaty.webp",
+      "bytes": 10376,
+      "sha256": "0047a1a2c6363d17bdcebe479f5ad7484b5a8e5268141a5bf75714644f11b6e9",
+      "modelBytes": 901920,
+      "pose": {
+        "x": 0.36379118272871647,
+        "y": 0.048667751379218166,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": 2.266357754665226,
+        "pitch": 1,
+        "zoom": 308.85721743318135
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M3",
+      "districtId": "saryarka",
+      "path": "astana/M3-saryarka.webp",
+      "bytes": 10750,
+      "sha256": "ca618e3c960909263b947370972dea30a3dd025e31d3f10daf87dd132b758624",
+      "modelBytes": 603960,
+      "pose": {
+        "x": -0.278500951643144,
+        "y": 0.37019957823272936,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.3534415689786739,
+        "pitch": 1,
+        "zoom": 308.85722331379554
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M3",
+      "districtId": "baikonur",
+      "path": "astana/M3-baikonur.webp",
+      "bytes": 11082,
+      "sha256": "1ed524a7af0ac89bdd4d1faae506cbf881bc26e6d2753db4f45b8660f9a9d9f7",
+      "modelBytes": 614280,
+      "pose": {
+        "x": -0.08902244873076799,
+        "y": 0.6566589384609102,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -2.15094900248933,
+        "pitch": 1,
+        "zoom": 308.8572277912216
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M3",
+      "districtId": "nura",
+      "path": "astana/M3-nura.webp",
+      "bytes": 10408,
+      "sha256": "6670351f9855372566770e7fda79ca16b3f0ea1cf9ee7375c6f2ae25900f16c7",
+      "modelBytes": 1103160,
+      "pose": {
+        "x": -0.4618824256729504,
+        "y": -0.30233346668738337,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -3.2817055609493964,
+        "pitch": 1,
+        "zoom": 308.8572202827106
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M4",
+      "districtId": "esil",
+      "path": "astana/M4-esil.webp",
+      "bytes": 14906,
+      "sha256": "59ba0f71fa211d1bcc6967c361454f6d653f47b8ced1a9eea08eea4efa77c87a",
+      "modelBytes": 17148120,
+      "pose": {
+        "x": -0.08402303512966822,
+        "y": -0.30303474200595815,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 30.386475465225764
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/1196402246"
+        ],
+        "siteId": "M4:esil:area-1196402246",
+        "bounds": [
+          -0.131553859999957,
+          -0.35131962500003056,
+          -0.03582833999994364,
+          -0.25612417500003204
+        ],
+        "kinds": [
+          0,
+          1,
+          4,
+          18,
+          22
+        ],
+        "triangles": 6850,
+        "authoringMesh": "alem/city.bin",
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 411000,
+        "sha256": "fe48e8f12c9883c1860dc0a41a30b18782e1954227570bc6b53e745ddff08466"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M4",
+      "districtId": "almaty",
+      "path": "astana/M4-almaty.webp",
+      "bytes": 8396,
+      "sha256": "d2dc9ee1fee326b59ecb66249acfebd8f51a6d9a0fc94b1721b20870214512b1",
+      "modelBytes": 3201360,
+      "pose": {
+        "x": 0.4015483248702751,
+        "y": 0.03024599549404894,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 98.78516165174949
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/243930491"
+        ],
+        "siteId": "M4:almaty:area-243930491",
+        "bounds": [
+          0.38983365999999364,
+          0.014849949999957701,
+          0.41392685999999235,
+          0.044267724999993874
+        ],
+        "kinds": [
+          0,
+          4,
+          18
+        ],
+        "triangles": 199,
+        "authoringMesh": "alem/city.bin",
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 11940,
+        "sha256": "fbf726a1feb05c407597266166a14b97180d328740fe8f54fadf4161db49f992"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M4",
+      "districtId": "saryarka",
+      "path": "astana/M4-saryarka.webp",
+      "bytes": 10858,
+      "sha256": "8749205b405f700b5158de56554459ea8c84cd41b9dcf6b9d6549093e23907ad",
+      "modelBytes": 8810880,
+      "pose": {
+        "x": -0.4495007551296837,
+        "y": 0.36645204549403154,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 119.170058286571
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/885788799"
+        ],
+        "siteId": "M4:saryarka:area-885788799",
+        "bounds": [
+          -0.45997711999995944,
+          0.3542823999999509,
+          -0.4383605199999721,
+          0.37724737499996586
+        ],
+        "kinds": [
+          0,
+          4,
+          18
+        ],
+        "triangles": 546,
+        "authoringMesh": "alem/city.bin",
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 32760,
+        "sha256": "4ce6b9216e7ea2a20fc77af27e2a566f9c7e7eb50225759fda1ee9dec0cc06d9"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M4",
+      "districtId": "baikonur",
+      "path": "astana/M4-baikonur.webp",
+      "bytes": 11652,
+      "sha256": "115a368f3b153f673ea421c058b418183e7518d61e9e44c1b756bb8a7d98ec89",
+      "modelBytes": 2503320,
+      "pose": {
+        "x": -0.023856445129685235,
+        "y": 0.2904512704940566,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 142.04342945414678
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/1428964223"
+        ],
+        "siteId": "M4:baikonur:area-1428964223",
+        "bounds": [
+          -0.02923199999996484,
+          0.27879870000000473,
+          -0.017817019999969833,
+          0.3007295249999622
+        ],
+        "kinds": [
+          0,
+          4,
+          18,
+          22
+        ],
+        "triangles": 246,
+        "authoringMesh": "alem/city.bin",
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 14760,
+        "sha256": "7633a50fdfe58051ebf3bf468ab8da0f982727c599d793171ceef84a0254cb97"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M4",
+      "districtId": "nura",
+      "path": "astana/M4-nura.webp",
+      "bytes": 7356,
+      "sha256": "2123fe271bd1093c98a700b226b8a25816091c1b7fe9d453749cd5dbddc3f0be",
+      "modelBytes": 1570680,
+      "pose": {
+        "x": -0.3930238351297319,
+        "y": -0.05449556700593472,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 253.83463157491084
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/1526900307"
+        ],
+        "siteId": "M4:nura:area-1526900307",
+        "bounds": [
+          -0.39735800000001964,
+          -0.05976980000001397,
+          -0.3880258000000083,
+          -0.05059565000000177
+        ],
+        "kinds": [
+          0,
+          4,
+          18
+        ],
+        "triangles": 203,
+        "authoringMesh": "alem/city.bin",
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 12180,
+        "sha256": "7b247154eaf669dacd431db02e00b4398ed874d661250b0082854a7db653d29f"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M5",
+      "districtId": "esil",
+      "path": "astana/M5-esil.webp",
+      "bytes": 6772,
+      "sha256": "47e8247786431c6ca5059e8e19fc838ecfe3431fa90fe65f15f8db0171f36ece",
+      "modelBytes": 30240,
+      "pose": {
+        "x": -0.02233508954010694,
+        "y": -0.48374705348193275,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 3200
+      },
+      "context": {
+        "kind": "native-source-building",
+        "sources": [
+          "way/914979610"
+        ],
+        "bytes": 5820,
+        "sha256": "d8e5e3fd44ea69cc347d1eb1eb1a7f9219e73eae9b0236f64f96d31e95de3621"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M5",
+      "districtId": "almaty",
+      "path": "astana/M5-almaty.webp",
+      "bytes": 4870,
+      "sha256": "433a502fdd3c25d3f570573fedb3a03f7deaa15172f8e78d0bf72d4c2ad77196",
+      "modelBytes": 30240,
+      "pose": {
+        "x": 0.41084528645989693,
+        "y": 0.0982136090180794,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 3200
+      },
+      "context": {
+        "kind": "native-source-building",
+        "sources": [
+          "way/167300570"
+        ],
+        "bytes": 2040,
+        "sha256": "372f99906829b13dff617925871314f22104bc35c48f28a1ab111015136ca544"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M5",
+      "districtId": "saryarka",
+      "path": "astana/M5-saryarka.webp",
+      "bytes": 4864,
+      "sha256": "40e5e679a6a4c4813ccce6206e2ac475fc05f9d978659c6ce59cb9fb7f5aa315",
+      "modelBytes": 30240,
+      "pose": {
+        "x": -0.3550425775401033,
+        "y": 0.41400842401808396,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 3200
+      },
+      "context": {
+        "kind": "native-source-building",
+        "sources": [
+          "way/297569395"
+        ],
+        "bytes": 2040,
+        "sha256": "128389bb0367426fb8378d634a7b6066e940ce4e1b5c6b68cfa01f4d0442d1d1"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M5",
+      "districtId": "baikonur",
+      "path": "astana/M5-baikonur.webp",
+      "bytes": 4930,
+      "sha256": "34bbef80ca24715e106a8e07fadea5b270c95f015f862a659dea30b5505984b5",
+      "modelBytes": 30240,
+      "pose": {
+        "x": -0.0007131095400785104,
+        "y": 0.5259388590180581,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 3200
+      },
+      "context": {
+        "kind": "native-source-building",
+        "sources": [
+          "way/216575993"
+        ],
+        "bytes": 2040,
+        "sha256": "99ab9878eadbb99cef1ab0ca626ba1434e29b1328620ce09dcd2eab5e5c063a6"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M5",
+      "districtId": "nura",
+      "path": "astana/M5-nura.webp",
+      "bytes": 6560,
+      "sha256": "383c0728e3fc6bb61508776021fa44d8d5392db35a2fef6e57a818490b55b6c3",
+      "modelBytes": 30240,
+      "pose": {
+        "x": -0.4075891095401004,
+        "y": -0.1120314959818922,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 3200
+      },
+      "context": {
+        "kind": "native-source-building",
+        "sources": [
+          "way/1479491295"
+        ],
+        "bytes": 5280,
+        "sha256": "e4b444de6f91ddc90fb860d86707f96230ca8aed20a69071d1712a6495f9abbf"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M6",
+      "districtId": "esil",
+      "path": "astana/M6-esil.webp",
+      "bytes": 6342,
+      "sha256": "ad2c08948ee134d968db2152f420a4e63c9e0f25cb62352b284fa387bff60854",
+      "modelBytes": 390600,
+      "pose": {
+        "x": -0.0690578441981098,
+        "y": -0.4992121351686316,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 323.4775694680895
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M6",
+      "districtId": "almaty",
+      "path": "astana/M6-almaty.webp",
+      "bytes": 7984,
+      "sha256": "aa8d1269ac770176ecc314a2d341fb864d72403aa4bea8226036f8ce522639ee",
+      "modelBytes": 390600,
+      "pose": {
+        "x": 0.41222737580189167,
+        "y": 0.023114239831383814,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 323.47756946808977
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M6",
+      "districtId": "saryarka",
+      "path": "astana/M6-saryarka.webp",
+      "bytes": 6186,
+      "sha256": "69b9fc39e706d3fdf7308d73c1827be441fd3e5e6f1ddd41975837adf1666200",
+      "modelBytes": 390600,
+      "pose": {
+        "x": -0.4572855241981092,
+        "y": 0.39798013983138236,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 323.4775694680896
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M6",
+      "districtId": "baikonur",
+      "path": "astana/M6-baikonur.webp",
+      "bytes": 6606,
+      "sha256": "620693adcbaeca6a0cf995082a9b721bc9b9ae4118ee8cc41fbbaaf6bb6f05b0",
+      "modelBytes": 390600,
+      "pose": {
+        "x": 0.09763429580186529,
+        "y": 0.19539288983140338,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 323.4775694680898
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M6",
+      "districtId": "nura",
+      "path": "astana/M6-nura.webp",
+      "bytes": 6602,
+      "sha256": "64f07e7e11e50a5f023ddca7a29665aab444ce33907754e348a645ae6938537d",
+      "modelBytes": 390600,
+      "pose": {
+        "x": -0.4189804041981183,
+        "y": -0.0383939851686396,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 323.47756946808977
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M7",
+      "districtId": "esil",
+      "path": "astana/M7-esil.webp",
+      "bytes": 9708,
+      "sha256": "791b791c3e4d527eff717d488d6ea3091eb7ea868725d6d051a912b10f10adae",
+      "modelBytes": 827400,
+      "pose": {
+        "x": -0.05058275896814793,
+        "y": -0.4796597606595369,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 391.3101802493291
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M7",
+      "districtId": "almaty",
+      "path": "astana/M7-almaty.webp",
+      "bytes": 8984,
+      "sha256": "bf057658d30b479642788b47ade079de6c178b9eb12c0e1c0ee7e21d8736466e",
+      "modelBytes": 827400,
+      "pose": {
+        "x": 0.28447414103189084,
+        "y": 0.21187098934044918,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 391.3101802493286
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M7",
+      "districtId": "saryarka",
+      "path": "astana/M7-saryarka.webp",
+      "bytes": 8878,
+      "sha256": "ea44683cfbae2fff2bcaf150a01d16bd547944814e27c2aa120ee46dd769da07",
+      "modelBytes": 827400,
+      "pose": {
+        "x": -0.3735372189681715,
+        "y": 0.3915025393404151,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 391.31018024932945
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M7",
+      "districtId": "baikonur",
+      "path": "astana/M7-baikonur.webp",
+      "bytes": 9210,
+      "sha256": "17b7c6c32cf95f99475ad2a95a055ba92971a1251a13207cc8821f35a6640954",
+      "modelBytes": 827400,
+      "pose": {
+        "x": 0.10426946103184632,
+        "y": 0.451440289340415,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 391.3101802493292
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M7",
+      "districtId": "nura",
+      "path": "astana/M7-nura.webp",
+      "bytes": 9684,
+      "sha256": "f92524d1d9358afc72dd60bbd951fd9a0e665c3dfb0281c1cf7f922aa042d4bf",
+      "modelBytes": 515880,
+      "pose": {
+        "x": -0.3816681531565504,
+        "y": -0.14361626002855202,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -4.961467689621876,
+        "pitch": 1,
+        "zoom": 306.8139443451281
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M8",
+      "districtId": "esil",
+      "path": "astana/M8-esil.webp",
+      "bytes": 7756,
+      "sha256": "f61860cd34b89530b405d2519a9883c3f8ffcb9ec8b9560942ebeb47be2385b8",
+      "modelBytes": 1183080,
+      "pose": {
+        "x": -0.1365669789681749,
+        "y": -0.5394706856595893,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 407.2807780262484
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M8",
+      "districtId": "almaty",
+      "path": "astana/M8-almaty.webp",
+      "bytes": 7700,
+      "sha256": "392d2eee83261681ed96a913e0b1b0dcb4c352b259cf6404d421ac2964470575",
+      "modelBytes": 1183080,
+      "pose": {
+        "x": 0.4680889810318911,
+        "y": 0.17760493934047333,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 407.2807780262456
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M8",
+      "districtId": "saryarka",
+      "path": "astana/M8-saryarka.webp",
+      "bytes": 7752,
+      "sha256": "08e9b9a8392c92b8327926c978316dcd332eae903779f3222fa6b74208e1a2de",
+      "modelBytes": 1183080,
+      "pose": {
+        "x": -0.1882409789681748,
+        "y": 0.49077113934042704,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 407.28077802624614
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M8",
+      "districtId": "baikonur",
+      "path": "astana/M8-baikonur.webp",
+      "bytes": 7844,
+      "sha256": "c935d265c712253a9d18bfdcba2cf22cd99a0d5ad2dcd28c49d479266c730564",
+      "modelBytes": 1183080,
+      "pose": {
+        "x": 0.0032755010318442006,
+        "y": 0.5143169143404279,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 407.28077802624864
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M8",
+      "districtId": "nura",
+      "path": "astana/M8-nura.webp",
+      "bytes": 7876,
+      "sha256": "e36817afafc344940d7129973be128bf5d5dfdf8709b9b5ec5ab9c8f87194806",
+      "modelBytes": 1183080,
+      "pose": {
+        "x": -0.29653071896814936,
+        "y": 0.10266438934043493,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 407.2807780262467
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M9",
+      "districtId": "esil",
+      "path": "astana/M9-esil.webp",
+      "bytes": 6128,
+      "sha256": "a8431d8c706bd761ef78b92ce318ba7fec1d3ac362a917afd5f7f5474c95066d",
+      "modelBytes": 82980,
+      "pose": {
+        "x": -0.08412219896815715,
+        "y": -0.49157891065957665,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 528.3723798387216
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M9",
+      "districtId": "almaty",
+      "path": "astana/M9-almaty.webp",
+      "bytes": 6126,
+      "sha256": "f51845d34bcdad857634222cc7ab4ebe2ec2e03dd835057e42874cf85cd068d8",
+      "modelBytes": 82980,
+      "pose": {
+        "x": 0.3550213410318943,
+        "y": 0.061968039340420805,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 528.3723798387218
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M9",
+      "districtId": "saryarka",
+      "path": "astana/M9-saryarka.webp",
+      "bytes": 6116,
+      "sha256": "8c91dd8406aa220a54547290511d5bcf77ba34d2c07e28a92a6311693b41cd9c",
+      "modelBytes": 82980,
+      "pose": {
+        "x": -0.44484987896815653,
+        "y": 0.3781133643404373,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 528.3723798387235
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M9",
+      "districtId": "baikonur",
+      "path": "astana/M9-baikonur.webp",
+      "bytes": 6188,
+      "sha256": "a92d3a70b7a462e351db6719a3386602146985fb7b238bca62baef007dd329c0",
+      "modelBytes": 82980,
+      "pose": {
+        "x": 0.08756994103181796,
+        "y": 0.19302611434045838,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 528.3723798387198
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M9",
+      "districtId": "nura",
+      "path": "astana/M9-nura.webp",
+      "bytes": 6238,
+      "sha256": "74fa6d37c23f196086c408b6fc15020be330d5e6266dae23ff2c4c1a120f04f5",
+      "modelBytes": 82980,
+      "pose": {
+        "x": -0.4165447589681656,
+        "y": -0.043260760659584604,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 528.3723798387218
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M10",
+      "districtId": "esil",
+      "path": "astana/M10-esil.webp",
+      "bytes": 7142,
+      "sha256": "f054d5a1f3f57ab58525d1e1a7d18c25dc7c0e1e3ddbab6341b03093920d2cb4",
+      "modelBytes": 132360,
+      "pose": {
+        "x": -0.04663586686580084,
+        "y": -0.5528040786177092,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -2.842048783256724,
+        "pitch": 1,
+        "zoom": 558.6570082691012
+      },
+      "presentation": {
+        "kind": "native-physical-neighborhood",
+        "siteId": "M10:esil",
+        "focus": {
+          "center": [
+            -0.04638770082035566,
+            -0.5520005272091234,
+            0.0005400000000000001
+          ],
+          "span": [
+            0.005415139452731839,
+            0.003
+          ],
+          "orientation": 2.392048783256724,
+          "bottom": 0.000040000000000000105,
+          "top": 0.0011233333333333334
+        },
+        "exposure": {
+          "left": 33.4200576031341,
+          "right": 440.4247393030662,
+          "top": 43.883246389662446,
+          "bottom": 284.07868903675535
+        },
+        "illumination": {
+          "kind": "native-project-lamps",
+          "time": 0.63,
+          "lamps": [
+            [
+              -0.04501576032716792,
+              -0.5532774537301572,
+              0.0011400000000000002
+            ],
+            [
+              -0.0477596413135434,
+              -0.5507236006880896,
+              0.0011400000000000002
+            ]
+          ]
+        },
+        "model": {
+          "kind": "full-native-project",
+          "bytes": 132360,
+          "sha256": "869bf7fd83d9da6efcdd24b053f700a67fe616a4be940e8a1c4799256b2c65c5",
+          "fullBytes": 132360,
+          "fullSha256": "869bf7fd83d9da6efcdd24b053f700a67fe616a4be940e8a1c4799256b2c65c5"
+        }
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/487944525"
+        ],
+        "siteId": "M10:esil",
+        "bounds": [
+          -0.049391598486739054,
+          -0.5549432074128743,
+          -0.04338380315397227,
+          -0.5490578470053725
+        ],
+        "kinds": [
+          4,
+          18
+        ],
+        "triangles": 36,
+        "authoringMesh": "alem/city.bin",
+        "focus": {
+          "center": [
+            -0.04638770082035566,
+            -0.5520005272091234,
+            0.0005400000000000001
+          ],
+          "span": [
+            0.005415139452731839,
+            0.003
+          ],
+          "orientation": 2.392048783256724,
+          "bottom": 0.000040000000000000105,
+          "top": 0.0011233333333333334
+        },
+        "illumination": {
+          "kind": "native-project-lamps",
+          "time": 0.63,
+          "lamps": [
+            [
+              -0.04501576032716792,
+              -0.5532774537301572,
+              0.0011400000000000002
+            ],
+            [
+              -0.0477596413135434,
+              -0.5507236006880896,
+              0.0011400000000000002
+            ]
+          ]
+        },
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 2160,
+        "sha256": "472f64b7254925d3b073b576ebc03fe542ba3aeca5e455110e696f1592d757db"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M10",
+      "districtId": "almaty",
+      "path": "astana/M10-almaty.webp",
+      "bytes": 7114,
+      "sha256": "40c3e756a162b6aa98104f592fdbf4609a18207cfa6e95c4bd33edf3e9cea3d1",
+      "modelBytes": 115680,
+      "pose": {
+        "x": 0.3982198370713092,
+        "y": 0.04737671258902798,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -3.1210745243498854,
+        "pitch": 1,
+        "zoom": 531.6301699219675
+      },
+      "presentation": {
+        "kind": "native-physical-neighborhood",
+        "siteId": "M10:almaty",
+        "focus": {
+          "center": [
+            0.39823709161085064,
+            0.048217535752707194,
+            0.0005400000000000001
+          ],
+          "span": [
+            0.005976880220430605,
+            0.003
+          ],
+          "orientation": 2.6710745243498852,
+          "bottom": 0.000040000000000000105,
+          "top": 0.0011233333333333334
+        },
+        "exposure": {
+          "left": 31.040289163127852,
+          "right": 447.21216529712586,
+          "top": 45.82876017851761,
+          "bottom": 281.5391398842346
+        },
+        "illumination": {
+          "kind": "native-project-lamps",
+          "time": 0.63,
+          "lamps": [
+            [
+              0.40015801050928385,
+              0.047240522034582094,
+              0.0011400000000000002
+            ],
+            [
+              0.39631617271241737,
+              0.04919454947083229,
+              0.0011400000000000002
+            ]
+          ]
+        },
+        "model": {
+          "kind": "full-native-project",
+          "bytes": 115680,
+          "sha256": "d5f12a18acf99e3390de2d298331c4e8647bff4fecb07018d1960f04915ae92b",
+          "fullBytes": 115680,
+          "fullSha256": "d5f12a18acf99e3390de2d298331c4e8647bff4fecb07018d1960f04915ae92b"
+        }
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/165570752"
+        ],
+        "siteId": "M10:almaty",
+        "bounds": [
+          0.39489337252507895,
+          0.04552573161875212,
+          0.4015808106966223,
+          0.05090933988666227
+        ],
+        "kinds": [
+          0,
+          4,
+          18
+        ],
+        "triangles": 21,
+        "authoringMesh": "alem/city.bin",
+        "focus": {
+          "center": [
+            0.39823709161085064,
+            0.048217535752707194,
+            0.0005400000000000001
+          ],
+          "span": [
+            0.005976880220430605,
+            0.003
+          ],
+          "orientation": 2.6710745243498852,
+          "bottom": 0.000040000000000000105,
+          "top": 0.0011233333333333334
+        },
+        "illumination": {
+          "kind": "native-project-lamps",
+          "time": 0.63,
+          "lamps": [
+            [
+              0.40015801050928385,
+              0.047240522034582094,
+              0.0011400000000000002
+            ],
+            [
+              0.39631617271241737,
+              0.04919454947083229,
+              0.0011400000000000002
+            ]
+          ]
+        },
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 1260,
+        "sha256": "556e894c71bb18cf6c558ae49653543349e2b8fb1dd26d4f18a266a0ae8df325"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M10",
+      "districtId": "saryarka",
+      "path": "astana/M10-saryarka.webp",
+      "bytes": 8590,
+      "sha256": "7d28416e15552ff657a5c08b97f72c21290c0f9e94abe205e4402f352328fc2f",
+      "modelBytes": 132360,
+      "pose": {
+        "x": -0.46728309901396536,
+        "y": 0.44770814392421704,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -3.186805271082844,
+        "pitch": 1,
+        "zoom": 462.08885258727764
+      },
+      "presentation": {
+        "kind": "native-physical-neighborhood",
+        "siteId": "M10:saryarka",
+        "focus": {
+          "center": [
+            -0.4673211098786417,
+            0.448548284641055,
+            0.0005400000000000001
+          ],
+          "span": [
+            0.007235951810743064,
+            0.003
+          ],
+          "orientation": 2.7368052710828437,
+          "bottom": 0.000040000000000000105,
+          "top": 0.0011233333333333334
+        },
+        "exposure": {
+          "left": 35.211906484113655,
+          "right": 451.3449954250309,
+          "top": 52.69732241080885,
+          "bottom": 270.32819012414376
+        },
+        "illumination": {
+          "kind": "native-project-lamps",
+          "time": 0.63,
+          "lamps": [
+            [
+              -0.46476150498906893,
+              0.4474516274187277,
+              0.0011400000000000002
+            ],
+            [
+              -0.46988071476821447,
+              0.44964494186338233,
+              0.0011400000000000002
+            ]
+          ]
+        },
+        "model": {
+          "kind": "full-native-project",
+          "bytes": 132360,
+          "sha256": "e79b31a0a5fa2d491a6d88fbb33159091668d6e9fd9505d08f774d70be869bb1",
+          "fullBytes": 132360,
+          "fullSha256": "e79b31a0a5fa2d491a6d88fbb33159091668d6e9fd9505d08f774d70be869bb1"
+        }
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/735392390"
+        ],
+        "siteId": "M10:saryarka",
+        "bounds": [
+          -0.47123743822926883,
+          0.44574466207937136,
+          -0.4634047815280146,
+          0.45135190720273866
+        ],
+        "kinds": [
+          4,
+          18,
+          22
+        ],
+        "triangles": 43,
+        "authoringMesh": "alem/city.bin",
+        "focus": {
+          "center": [
+            -0.4673211098786417,
+            0.448548284641055,
+            0.0005400000000000001
+          ],
+          "span": [
+            0.007235951810743064,
+            0.003
+          ],
+          "orientation": 2.7368052710828437,
+          "bottom": 0.000040000000000000105,
+          "top": 0.0011233333333333334
+        },
+        "illumination": {
+          "kind": "native-project-lamps",
+          "time": 0.63,
+          "lamps": [
+            [
+              -0.46476150498906893,
+              0.4474516274187277,
+              0.0011400000000000002
+            ],
+            [
+              -0.46988071476821447,
+              0.44964494186338233,
+              0.0011400000000000002
+            ]
+          ]
+        },
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 2580,
+        "sha256": "e456706709c0516dd1cdc21a489938b1a5ec193167c9f459f16bea5578e82448"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M10",
+      "districtId": "baikonur",
+      "path": "astana/M10-baikonur.webp",
+      "bytes": 5578,
+      "sha256": "c5625d4e408b3bfd5ce980dabc074c170558573d92571f8cd188358557684be5",
+      "modelBytes": 115680,
+      "pose": {
+        "x": 0.11885835472827758,
+        "y": 0.6315562975409015,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.42721567653669806,
+        "pitch": 1,
+        "zoom": 563.5570782932948
+      },
+      "presentation": {
+        "kind": "native-physical-neighborhood",
+        "siteId": "M10:baikonur",
+        "focus": {
+          "center": [
+            0.11920681332261555,
+            0.6307908840091905,
+            0.0005400000000000001
+          ],
+          "span": [
+            0.005270509078714645,
+            0.003
+          ],
+          "orientation": -0.02278432346330197,
+          "bottom": 0.000040000000000000105,
+          "top": 0.0011233333333333334
+        },
+        "exposure": {
+          "left": 35.145069534066465,
+          "right": 437.5901112848171,
+          "top": 43.7625043941611,
+          "bottom": 283.9348835299327
+        },
+        "illumination": {
+          "kind": "native-project-lamps",
+          "time": 0.63,
+          "lamps": [
+            [
+              0.11740535980788804,
+              0.6308319360127326,
+              0.0011400000000000002
+            ],
+            [
+              0.12100826683734307,
+              0.6307498320056485,
+              0.0011400000000000002
+            ]
+          ]
+        },
+        "model": {
+          "kind": "full-native-project",
+          "bytes": 115680,
+          "sha256": "20b2f72a9942e411a9cab776c736498f5585e4fa6c437eb9a835cdfe87e929af",
+          "fullBytes": 115680,
+          "fullSha256": "20b2f72a9942e411a9cab776c736498f5585e4fa6c437eb9a835cdfe87e929af"
+        }
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/732104630"
+        ],
+        "siteId": "M10:baikonur",
+        "bounds": [
+          0.11653806923915427,
+          0.629231236039357,
+          0.12187555740607683,
+          0.6323505319790239
+        ],
+        "kinds": [
+          4,
+          18,
+          22
+        ],
+        "triangles": 16,
+        "authoringMesh": "alem/city.bin",
+        "focus": {
+          "center": [
+            0.11920681332261555,
+            0.6307908840091905,
+            0.0005400000000000001
+          ],
+          "span": [
+            0.005270509078714645,
+            0.003
+          ],
+          "orientation": -0.02278432346330197,
+          "bottom": 0.000040000000000000105,
+          "top": 0.0011233333333333334
+        },
+        "illumination": {
+          "kind": "native-project-lamps",
+          "time": 0.63,
+          "lamps": [
+            [
+              0.11740535980788804,
+              0.6308319360127326,
+              0.0011400000000000002
+            ],
+            [
+              0.12100826683734307,
+              0.6307498320056485,
+              0.0011400000000000002
+            ]
+          ]
+        },
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 960,
+        "sha256": "1066f5176e163ba5dd63de8112fd1a3e645afd8999afffbff2e1a903b2ea2d00"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M10",
+      "districtId": "nura",
+      "path": "astana/M10-nura.webp",
+      "bytes": 8162,
+      "sha256": "7cb4693a8d60e56c654320431718ebce4b6a01e0fd4ea76428aa44587bb31f5d",
+      "modelBytes": 45600,
+      "pose": {
+        "x": -0.3632227284965223,
+        "y": 0.04004713674797716,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.23238612090640892,
+        "pitch": 1,
+        "zoom": 276.5348454212814
+      },
+      "presentation": {
+        "kind": "native-physical-neighborhood",
+        "siteId": "M10:nura",
+        "focus": {
+          "center": [
+            -0.3630290460201655,
+            0.0392287429677084,
+            0.0005400000000000001
+          ],
+          "span": [
+            0.0136333440746314,
+            0.003
+          ],
+          "orientation": -0.2176138790935911,
+          "bottom": 0.000040000000000000105,
+          "top": 0.0011233333333333334
+        },
+        "exposure": {
+          "left": 45.69384770007699,
+          "right": 461.4813492448159,
+          "top": 70.75146362185437,
+          "bottom": 242.31913274946865
+        },
+        "illumination": {
+          "kind": "native-project-lamps",
+          "time": 0.63,
+          "lamps": [
+            [
+              -0.3688712700318606,
+              0.04052054815570954,
+              0.0011400000000000002
+            ],
+            [
+              -0.3571868220084704,
+              0.03793693777970727,
+              0.0011400000000000002
+            ]
+          ]
+        },
+        "model": {
+          "kind": "full-native-project",
+          "bytes": 45600,
+          "sha256": "6d0c6963ebfa81c5a8e19f26abb1a52878c36f6e2f8d7803df2ab2805cbffdf5",
+          "fullBytes": 45600,
+          "fullSha256": "6d0c6963ebfa81c5a8e19f26abb1a52878c36f6e2f8d7803df2ab2805cbffdf5"
+        }
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/649664373"
+        ],
+        "siteId": "M10:nura",
+        "bounds": [
+          -0.37000880011806775,
+          0.03629239769469958,
+          -0.35604929192226326,
+          0.04216508824071723
+        ],
+        "kinds": [
+          0,
+          4,
+          18,
+          22
+        ],
+        "triangles": 168,
+        "authoringMesh": "alem/city.bin",
+        "focus": {
+          "center": [
+            -0.3630290460201655,
+            0.0392287429677084,
+            0.0005400000000000001
+          ],
+          "span": [
+            0.0136333440746314,
+            0.003
+          ],
+          "orientation": -0.2176138790935911,
+          "bottom": 0.000040000000000000105,
+          "top": 0.0011233333333333334
+        },
+        "illumination": {
+          "kind": "native-project-lamps",
+          "time": 0.63,
+          "lamps": [
+            [
+              -0.3688712700318606,
+              0.04052054815570954,
+              0.0011400000000000002
+            ],
+            [
+              -0.3571868220084704,
+              0.03793693777970727,
+              0.0011400000000000002
+            ]
+          ]
+        },
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 10080,
+        "sha256": "da028a3b3919d974f66f40a7f11c3c84e3ecfb4363d6da9c4e9f24c74e1a5437"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M11",
+      "districtId": "esil",
+      "path": "astana/M11-esil.webp",
+      "bytes": 9276,
+      "sha256": "a8266c37488e5b88380a426640466773e4ed751ca484f1c5fa6ba490e3b672e8",
+      "modelBytes": 28080,
+      "pose": {
+        "x": -0.036114979764888415,
+        "y": -0.46669977988943606,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -1.8006775079353545,
+        "pitch": 1,
+        "zoom": 634.2463837825273
+      },
+      "presentation": {
+        "kind": "native-physical-neighborhood",
+        "siteId": "M11:esil:crossing-1",
+        "focus": {
+          "center": [
+            -0.03567521283736595,
+            -0.46659686649750465,
+            0.00029
+          ],
+          "span": [
+            0.005,
+            0.0031666666666666666
+          ],
+          "orientation": 1.3506775079353546,
+          "bottom": 0.00004,
+          "top": 0.00054
+        },
+        "exposure": {
+          "left": 25.376406662169018,
+          "right": 441.41096655229217,
+          "top": 54.308049557806925,
+          "bottom": 283.5758592019291
+        },
+        "model": {
+          "kind": "full-native-project",
+          "bytes": 28080,
+          "sha256": "fe48883bc7cd3e99c9d2bf6a521f5adeeb2a8242d9377ff02d33eb52513da2ec",
+          "fullBytes": 28080,
+          "fullSha256": "fe48883bc7cd3e99c9d2bf6a521f5adeeb2a8242d9377ff02d33eb52513da2ec"
+        }
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/258781111"
+        ],
+        "siteId": "M11:esil:crossing-1",
+        "bounds": [
+          -0.03776620667379543,
+          -0.46938225910867853,
+          -0.03358421900093647,
+          -0.46381147388633076
+        ],
+        "kinds": [
+          4,
+          18,
+          22
+        ],
+        "triangles": 34,
+        "authoringMesh": "alem/city.bin",
+        "focus": {
+          "center": [
+            -0.03567521283736595,
+            -0.46659686649750465,
+            0.00029
+          ],
+          "span": [
+            0.005,
+            0.0031666666666666666
+          ],
+          "orientation": 1.3506775079353546,
+          "bottom": 0.00004,
+          "top": 0.00054
+        },
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 2040,
+        "sha256": "acb072d82b9e4ac62fa468224fb4642519fd353de2986f1440dc5d88e5a0f30d"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M11",
+      "districtId": "almaty",
+      "path": "astana/M11-almaty.webp",
+      "bytes": 5814,
+      "sha256": "945f8036f51836659b2c7d4cc9a603f10943b0669ab190310a8d724c7c965165",
+      "modelBytes": 39480,
+      "pose": {
+        "x": 0.37334097573124064,
+        "y": 0.0622826127078468,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": 0.07327736986049499,
+        "pitch": 1,
+        "zoom": 634.2463875810429
+      },
+      "presentation": {
+        "kind": "native-physical-neighborhood",
+        "siteId": "M11:almaty:crossing-1",
+        "focus": {
+          "center": [
+            0.37330790974522055,
+            0.061832176499044565,
+            0.00029
+          ],
+          "span": [
+            0.005,
+            0.0031666666666666666
+          ],
+          "orientation": -0.523277369860495,
+          "bottom": 0.00004,
+          "top": 0.00054
+        },
+        "exposure": {
+          "left": 25.376406032066058,
+          "right": 441.4109659284479,
+          "top": 54.30805317405941,
+          "bottom": 283.5758546717726
+        },
+        "model": {
+          "kind": "full-native-project",
+          "bytes": 39480,
+          "sha256": "d0312fdf5f48dc8ba8020a94ebeec50b1ed7b0bc1000a184072b388bbc77911d",
+          "fullBytes": 39480,
+          "fullSha256": "d0312fdf5f48dc8ba8020a94ebeec50b1ed7b0bc1000a184072b388bbc77911d"
+        }
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/113021076"
+        ],
+        "siteId": "M11:almaty:crossing-1",
+        "bounds": [
+          0.3703512186783994,
+          0.05921141116272466,
+          0.3762646008120417,
+          0.06445294183536447
+        ],
+        "kinds": [
+          0,
+          4,
+          18
+        ],
+        "triangles": 20,
+        "authoringMesh": "alem/city.bin",
+        "focus": {
+          "center": [
+            0.37330790974522055,
+            0.061832176499044565,
+            0.00029
+          ],
+          "span": [
+            0.005,
+            0.0031666666666666666
+          ],
+          "orientation": -0.523277369860495,
+          "bottom": 0.00004,
+          "top": 0.00054
+        },
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 1200,
+        "sha256": "1431af26abd2e67e2e1a543622dbd64508e7fc62773bc4e360f8bed30bc518ce"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M11",
+      "districtId": "saryarka",
+      "path": "astana/M11-saryarka.webp",
+      "bytes": 6078,
+      "sha256": "764294000dbeecdfbd725edb1ff875171593afb22750477c222c10163f557f61",
+      "modelBytes": 41760,
+      "pose": {
+        "x": -0.37798679917638023,
+        "y": 0.3968243918904025,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -3.246420489346181,
+        "pitch": 1,
+        "zoom": 634.2463907206903
+      },
+      "presentation": {
+        "kind": "native-physical-neighborhood",
+        "siteId": "M11:saryarka:crossing-1",
+        "focus": {
+          "center": [
+            -0.37803405782071653,
+            0.39727356084769644,
+            0.00029
+          ],
+          "span": [
+            0.005,
+            0.0031666666666666666
+          ],
+          "orientation": 2.796420489346181,
+          "bottom": 0.00004,
+          "top": 0.00054
+        },
+        "exposure": {
+          "left": 25.376405518790648,
+          "right": 441.41096541747095,
+          "top": 54.30805143810147,
+          "bottom": 283.57585897374787
+        },
+        "model": {
+          "kind": "full-native-project",
+          "bytes": 41760,
+          "sha256": "a2138e89af08ccec1deb60ba324b7ab7f701f4fec3a3a55bbc505c77bab086a9",
+          "fullBytes": 41760,
+          "fullSha256": "a2138e89af08ccec1deb60ba324b7ab7f701f4fec3a3a55bbc505c77bab086a9"
+        }
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/502839881"
+        ],
+        "siteId": "M11:saryarka:crossing-1",
+        "bounds": [
+          -0.38092233544924387,
+          0.39493772019721657,
+          -0.3751457801921892,
+          0.3996094014981763
+        ],
+        "kinds": [
+          0,
+          4,
+          18
+        ],
+        "triangles": 5,
+        "authoringMesh": "alem/city.bin",
+        "focus": {
+          "center": [
+            -0.37803405782071653,
+            0.39727356084769644,
+            0.00029
+          ],
+          "span": [
+            0.005,
+            0.0031666666666666666
+          ],
+          "orientation": 2.796420489346181,
+          "bottom": 0.00004,
+          "top": 0.00054
+        },
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 300,
+        "sha256": "1d83393994bc79f62920be7f219e165e847129a443bbf0793a071d3b7b0c85e8"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M11",
+      "districtId": "baikonur",
+      "path": "astana/M11-baikonur.webp",
+      "bytes": 3544,
+      "sha256": "4495a2ffdec4dedd3216c43dfcca2dc4ee11814bea56b5dc70d3c245642face4",
+      "modelBytes": 41760,
+      "pose": {
+        "x": 0.02293532433136824,
+        "y": 0.49431960831632155,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": 2.634964139465974,
+        "pitch": 1,
+        "zoom": 634.2463988520025
+      },
+      "presentation": {
+        "kind": "native-physical-neighborhood",
+        "siteId": "M11:baikonur:crossing-1",
+        "focus": {
+          "center": [
+            0.022716170145863673,
+            0.4947145229422056,
+            0.00029
+          ],
+          "span": [
+            0.005,
+            0.0031666666666666666
+          ],
+          "orientation": -3.084964139465974,
+          "bottom": 0.00004,
+          "top": 0.00054
+        },
+        "exposure": {
+          "left": 25.37640562613612,
+          "right": 441.4109655259483,
+          "top": 54.30804849912796,
+          "bottom": 283.5758640001094
+        },
+        "model": {
+          "kind": "full-native-project",
+          "bytes": 41760,
+          "sha256": "98e1d4549df1116e9702dd06140578c4ad15b48d0b09452fbd0f331ab9a69727",
+          "fullBytes": 41760,
+          "fullSha256": "98e1d4549df1116e9702dd06140578c4ad15b48d0b09452fbd0f331ab9a69727"
+        }
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/244679850"
+        ],
+        "siteId": "M11:baikonur:crossing-1",
+        "bounds": [
+          0.020130563659914058,
+          0.4929922320055945,
+          0.025301776631813287,
+          0.49643681387881666
+        ],
+        "kinds": [
+          4,
+          18
+        ],
+        "triangles": 16,
+        "authoringMesh": "alem/city.bin",
+        "focus": {
+          "center": [
+            0.022716170145863673,
+            0.4947145229422056,
+            0.00029
+          ],
+          "span": [
+            0.005,
+            0.0031666666666666666
+          ],
+          "orientation": -3.084964139465974,
+          "bottom": 0.00004,
+          "top": 0.00054
+        },
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 960,
+        "sha256": "5cb60b422b8ffbce7bbacbd4f59689ca6b99b9e563d611dd604978937c6af573"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M11",
+      "districtId": "nura",
+      "path": "astana/M11-nura.webp",
+      "bytes": 7982,
+      "sha256": "fc9abd8a9f98bbf7d68272d03fefe52f52fb30a337b5a4dc890adb6879862f3d",
+      "modelBytes": 39480,
+      "pose": {
+        "x": -0.4040738602166175,
+        "y": -0.06985116128748328,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": 1.3483532804582716,
+        "pitch": 1,
+        "zoom": 634.2463824703398
+      },
+      "presentation": {
+        "kind": "native-physical-neighborhood",
+        "siteId": "M11:nura:crossing-1",
+        "focus": {
+          "center": [
+            -0.4045143804682151,
+            -0.06995080081995768,
+            0.00029
+          ],
+          "span": [
+            0.005,
+            0.0031666666666666666
+          ],
+          "orientation": -1.7983532804582716,
+          "bottom": 0.00004,
+          "top": 0.00054
+        },
+        "exposure": {
+          "left": 25.376405777083505,
+          "right": 441.4109656695607,
+          "top": 54.3080512694507,
+          "bottom": 283.5758562420076
+        },
+        "model": {
+          "kind": "full-native-project",
+          "bytes": 39480,
+          "sha256": "ad43326e8ff01596b23977f09fd86442e5c1f55b5d7e25fb0798fd609724eaa7",
+          "fullBytes": 39480,
+          "fullSha256": "ad43326e8ff01596b23977f09fd86442e5c1f55b5d7e25fb0798fd609724eaa7"
+        }
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/649748231"
+        ],
+        "siteId": "M11:nura:crossing-1",
+        "bounds": [
+          -0.4066208915118761,
+          -0.0727435489857124,
+          -0.4024078694245541,
+          -0.06715805265420295
+        ],
+        "kinds": [
+          4,
+          18
+        ],
+        "triangles": 32,
+        "authoringMesh": "alem/city.bin",
+        "focus": {
+          "center": [
+            -0.4045143804682151,
+            -0.06995080081995768,
+            0.00029
+          ],
+          "span": [
+            0.005,
+            0.0031666666666666666
+          ],
+          "orientation": -1.7983532804582716,
+          "bottom": 0.00004,
+          "top": 0.00054
+        },
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 1920,
+        "sha256": "2ef1439d2847621a4148241bf0137c8281e63483a073b9e541f189bdf9df960a"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M12",
+      "districtId": "esil",
+      "path": "astana/M12-esil.webp",
+      "bytes": 5300,
+      "sha256": "72f450e6e5824b36836932e1ddc7090fe379f82bf92d6bf03dfacdfbeeb27200",
+      "modelBytes": 89040,
+      "pose": {
+        "x": -0.01427717896818025,
+        "y": -0.5143641356595648,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 680.7728922629939
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M12",
+      "districtId": "almaty",
+      "path": "astana/M12-almaty.webp",
+      "bytes": 5018,
+      "sha256": "7f67a6b4e4ea77d657e5768ac662f47b660cdcb018759f57afff0810b74c8f29",
+      "modelBytes": 89040,
+      "pose": {
+        "x": 0.4182647010318719,
+        "y": 0.0898556643404465,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 680.7728922629852
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M12",
+      "districtId": "saryarka",
+      "path": "astana/M12-saryarka.webp",
+      "bytes": 5252,
+      "sha256": "edd569d5970694f15d8306fac68f02044e4c6c0ac76c601f5cbe59b8326357d1",
+      "modelBytes": 89040,
+      "pose": {
+        "x": -0.2949439989681747,
+        "y": 0.3979021643404374,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 680.7728922629879
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M12",
+      "districtId": "baikonur",
+      "path": "astana/M12-baikonur.webp",
+      "bytes": 5450,
+      "sha256": "252f1cb2bdff1053703e0ac1646faad70cd972e7f8a5959dc5278027f9f87fde",
+      "modelBytes": 89040,
+      "pose": {
+        "x": -0.016707238968145095,
+        "y": 0.5455270643404362,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 680.7728922629939
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M12",
+      "districtId": "nura",
+      "path": "astana/M12-nura.webp",
+      "bytes": 5356,
+      "sha256": "508a0638d6d7ab3d55517b47cb7753e4b450b5eddc41f3469d80765891df8d41",
+      "modelBytes": 89040,
+      "pose": {
+        "x": -0.42317605896816357,
+        "y": -0.08283513565957804,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.45,
+        "pitch": 1,
+        "zoom": 680.7728922629852
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M13",
+      "districtId": "esil",
+      "path": "astana/M13-esil.webp",
+      "bytes": 4428,
+      "sha256": "88b77688d0b04bb8810d1b0bf5f8b505dfd6f47f232a4f4a6b81a480136ca0e4",
+      "modelBytes": 7920,
+      "pose": {
+        "x": -0.10971830382039115,
+        "y": -0.39380757497222163,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -1.353002890007923,
+        "pitch": 1,
+        "zoom": 1254.3770409195415
+      },
+      "presentation": {
+        "kind": "native-physical-neighborhood",
+        "siteId": "M13:esil:household-0",
+        "focus": {
+          "center": [
+            -0.10915060702738742,
+            -0.3939332083530795,
+            0.0003733333333333333
+          ],
+          "span": [
+            0.0018333333333333333,
+            0.0018333333333333333
+          ],
+          "orientation": 1.3530028900079538,
+          "bottom": 0.00004,
+          "top": 0.0007066666666666666,
+          "cameraYaw": -1.353002890007923
+        },
+        "exposure": {
+          "left": 60.1528678098054,
+          "right": 419.8471339729536,
+          "top": 41.00014036360223,
+          "bottom": 280.93023719680866
+        },
+        "model": {
+          "kind": "exact-final-program-site",
+          "bytes": 7920,
+          "sha256": "c47936a4c13151eb672b87654b2c9b71eaa54879770e52a9eff2a9da28f3c1fe",
+          "fullBytes": 65520,
+          "fullSha256": "06f5b0995127eec493857e175a695db334825b9b37a937229d37bcacac4fea24"
+        },
+        "modelExposure": {
+          "left": 177.93664617369018,
+          "right": 242.69345668059887,
+          "top": 166.67417158938696,
+          "bottom": 215.3165239136739
+        }
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/499328473",
+          "way/1424048943"
+        ],
+        "siteId": "M13:esil:household-0",
+        "bounds": [
+          -0.11024368832508491,
+          -0.395026289650777,
+          -0.10805752572968993,
+          -0.39284012705538196
+        ],
+        "kinds": [
+          0,
+          4,
+          18
+        ],
+        "triangles": 122,
+        "authoringMesh": "alem/city.bin",
+        "focus": {
+          "center": [
+            -0.10915060702738742,
+            -0.3939332083530795,
+            0.0003733333333333333
+          ],
+          "span": [
+            0.0018333333333333333,
+            0.0018333333333333333
+          ],
+          "orientation": 1.3530028900079538,
+          "bottom": 0.00004,
+          "top": 0.0007066666666666666,
+          "cameraYaw": -1.353002890007923
+        },
+        "selection": "authored-household-service",
+        "surfaceBytes": 960,
+        "buildings": [
+          {
+            "source": "way/499328473",
+            "bytes": 6360,
+            "sha256": "166aea6016eab1ba984c3effce139ca5225aafdfc3ad1b02c6bd021bc1c3abfa"
+          }
+        ],
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 7320,
+        "sha256": "99b90b847cf9661a54958700629e1d14a18b9b7189f25d07228466b03d99b637"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M13",
+      "districtId": "almaty",
+      "path": "astana/M13-almaty.webp",
+      "bytes": 5078,
+      "sha256": "4f2c9d58a4c4d2e75f55aabd84c703a5916bb2000ee3ebe205a6bae0ec9ecc1b",
+      "modelBytes": 7920,
+      "pose": {
+        "x": 0.31276576017135355,
+        "y": 0.12046443851828367,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": 2.643199608003132,
+        "pitch": 1,
+        "zoom": 1099.2899853874592
+      },
+      "presentation": {
+        "kind": "native-physical-neighborhood",
+        "siteId": "M13:almaty:household-1",
+        "focus": {
+          "center": [
+            0.3124878270490655,
+            0.12097514057048964,
+            0.0003733333333333333
+          ],
+          "span": [
+            0.0018333333333333333,
+            0.002285434960393468
+          ],
+          "orientation": -2.6431996080031315,
+          "bottom": 0.00004,
+          "top": 0.0007066666666666666,
+          "cameraYaw": 2.643199608003132
+        },
+        "exposure": {
+          "left": 84.14364287605756,
+          "right": 395.8563627057076,
+          "top": 43.301206838475025,
+          "bottom": 283.21014794644356
+        },
+        "model": {
+          "kind": "exact-final-program-site",
+          "bytes": 7920,
+          "sha256": "f83ae3215edf1a60cafcbeded912ef1f0f21083131ca04000c65aafbe44bf990",
+          "fullBytes": 65520,
+          "fullSha256": "5cc850e6c16a67f34bc63dae97fca9747db042a65a9fd8b9d8398a1742114145"
+        },
+        "modelExposure": {
+          "left": 214.09091328285575,
+          "right": 265.90946351987435,
+          "top": 136.3561270060195,
+          "bottom": 174.70260952415933
+        }
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/242373760",
+          "way/824565161"
+        ],
+        "siteId": "M13:almaty:household-1",
+        "bounds": [
+          0.31113643545619357,
+          0.1195332524372699,
+          0.3138392186419375,
+          0.12241702870370938
+        ],
+        "kinds": [
+          4,
+          18
+        ],
+        "triangles": 63,
+        "authoringMesh": "alem/city.bin",
+        "focus": {
+          "center": [
+            0.3124878270490655,
+            0.12097514057048964,
+            0.0003733333333333333
+          ],
+          "span": [
+            0.0018333333333333333,
+            0.002285434960393468
+          ],
+          "orientation": -2.6431996080031315,
+          "bottom": 0.00004,
+          "top": 0.0007066666666666666,
+          "cameraYaw": 2.643199608003132
+        },
+        "selection": "authored-household-service",
+        "surfaceBytes": 660,
+        "buildings": [
+          {
+            "source": "way/242373760",
+            "bytes": 3120,
+            "sha256": "ba206dd77976e82a373b952a24d9e33aef349a2c9d9004568ddea94e86930bfa"
+          }
+        ],
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 3780,
+        "sha256": "171573b941ddb8d1450be3e481384521998f7752415f2d169772bf43c4ce30d9"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M13",
+      "districtId": "saryarka",
+      "path": "astana/M13-saryarka.webp",
+      "bytes": 3160,
+      "sha256": "79bb8b600767a6b150eda2cdab13e490a4e23dbc6775924f038b8be41b55b384",
+      "modelBytes": 7920,
+      "pose": {
+        "x": -0.4437122737785648,
+        "y": 0.31388501466844104,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": 0.9684103694551932,
+        "pitch": 1,
+        "zoom": 1181.3656530166897
+      },
+      "presentation": {
+        "kind": "native-physical-neighborhood",
+        "siteId": "M13:saryarka:household-0",
+        "focus": {
+          "center": [
+            -0.4441913657941237,
+            0.3135555693183775,
+            0.0003733333333333333
+          ],
+          "span": [
+            0.0018333333333333333,
+            0.0020316201046127287
+          ],
+          "orientation": -0.9684103694552464,
+          "bottom": 0.00004,
+          "top": 0.0007066666666666666,
+          "cameraYaw": 0.9684103694551932
+        },
+        "exposure": {
+          "left": 71.50928765646009,
+          "right": 408.4907070550118,
+          "top": 42.098718363829875,
+          "bottom": 282.0164129234024
+        },
+        "model": {
+          "kind": "exact-final-program-site",
+          "bytes": 7920,
+          "sha256": "e13aba9d4aa21185bc898e325e90beebc765d238a30809dec4c4cbe9f6a6fe27",
+          "fullBytes": 65520,
+          "fullSha256": "d81cfcc09c1644ad43a076a724503e3effc54018d5882a763c9dc7605d0d8524"
+        },
+        "modelExposure": {
+          "left": 211.31508018537366,
+          "right": 268.68609807360747,
+          "top": 144.79347065196856,
+          "bottom": 187.4264817915749
+        }
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/1077903075",
+          "way/1483322642"
+        ],
+        "siteId": "M13:saryarka:household-0",
+        "bounds": [
+          -0.445547771684083,
+          0.31222468055388314,
+          -0.44283495990416444,
+          0.3148864580828719
+        ],
+        "kinds": [
+          4,
+          18
+        ],
+        "triangles": 58,
+        "authoringMesh": "alem/city.bin",
+        "focus": {
+          "center": [
+            -0.4441913657941237,
+            0.3135555693183775,
+            0.0003733333333333333
+          ],
+          "span": [
+            0.0018333333333333333,
+            0.0020316201046127287
+          ],
+          "orientation": -0.9684103694552464,
+          "bottom": 0.00004,
+          "top": 0.0007066666666666666,
+          "cameraYaw": 0.9684103694551932
+        },
+        "selection": "authored-household-service",
+        "surfaceBytes": 360,
+        "buildings": [
+          {
+            "source": "way/1077903075",
+            "bytes": 3120,
+            "sha256": "f456f7add2b69d8a36faf2a37da2e766737657b50a392fa667ca1033c6481fe3"
+          }
+        ],
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 3480,
+        "sha256": "fa345046e286b601492c711286f944f7e922f66d9680debdb72f595c919b1ece"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M13",
+      "districtId": "baikonur",
+      "path": "astana/M13-baikonur.webp",
+      "bytes": 4024,
+      "sha256": "334a8ea1e68dadf14131c2b5b7d70e57d2cbc7c5f87017b9265525ca977ad0b3",
+      "modelBytes": 7920,
+      "pose": {
+        "x": -0.015068992181705886,
+        "y": 0.5234858394377951,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": 1.3774178934785772,
+        "pitch": 1,
+        "zoom": 1037.0610260431868
+      },
+      "presentation": {
+        "kind": "native-physical-neighborhood",
+        "siteId": "M13:baikonur:household-1",
+        "focus": {
+          "center": [
+            -0.015639586794348726,
+            0.5233741024537758,
+            0.0003733333333333333
+          ],
+          "span": [
+            0.0018333333333333333,
+            0.0025050874407268687
+          ],
+          "orientation": -1.377417893478677,
+          "bottom": 0.00004,
+          "top": 0.0007066666666666666,
+          "cameraYaw": 1.3774178934785772
+        },
+        "exposure": {
+          "left": 93.61684390275047,
+          "right": 386.383158099223,
+          "top": 44.17346141016411,
+          "bottom": 284.14024330390356
+        },
+        "model": {
+          "kind": "exact-final-program-site",
+          "bytes": 7920,
+          "sha256": "c0ab594570d2b5fbb415c5883a1ea2ed947e2513c47e050cb185d28f7c3e56e1",
+          "fullBytes": 65520,
+          "fullSha256": "7018b1538461306898de539307b44d0faa200a9fc454e2aa690b8373e34eda94"
+        },
+        "modelExposure": {
+          "left": 216.08991039133622,
+          "right": 263.9091104712335,
+          "top": 130.2475070611569,
+          "bottom": 165.52749634900547
+        }
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/216575970",
+          "way/243296048"
+        ],
+        "siteId": "M13:baikonur:household-1",
+        "bounds": [
+          -0.017044944658570742,
+          0.5222338137686127,
+          -0.01423422893012671,
+          0.5245143911389389
+        ],
+        "kinds": [
+          4,
+          18
+        ],
+        "triangles": 38,
+        "authoringMesh": "alem/city.bin",
+        "focus": {
+          "center": [
+            -0.015639586794348726,
+            0.5233741024537758,
+            0.0003733333333333333
+          ],
+          "span": [
+            0.0018333333333333333,
+            0.0025050874407268687
+          ],
+          "orientation": -1.377417893478677,
+          "bottom": 0.00004,
+          "top": 0.0007066666666666666,
+          "cameraYaw": 1.3774178934785772
+        },
+        "selection": "authored-household-service",
+        "surfaceBytes": 240,
+        "buildings": [
+          {
+            "source": "way/216575970",
+            "bytes": 2040,
+            "sha256": "2091b46f0cbf1cb41007bf9b04b6f19a7eab19e7e6197d54df1954b5dc606edd"
+          }
+        ],
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 2280,
+        "sha256": "05420817b6499d4e8e81c9bd79012e57798e5ab7a4b905869722c58853ac4c11"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M13",
+      "districtId": "nura",
+      "path": "astana/M13-nura.webp",
+      "bytes": 4264,
+      "sha256": "29d10378a62b67bacc63be3d8a86e8a4cbb966b970aa4343bfde3c863a0666e9",
+      "modelBytes": 7920,
+      "pose": {
+        "x": -0.28875104650276606,
+        "y": 0.016579955530364943,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -2.8648690005328596,
+        "pitch": 1,
+        "zoom": 1213.889487080207
+      },
+      "presentation": {
+        "kind": "native-physical-neighborhood",
+        "siteId": "M13:nura:household-2",
+        "focus": {
+          "center": [
+            -0.2885921960745113,
+            0.017139267544929657,
+            0.0003733333333333333
+          ],
+          "span": [
+            0.002236688772686895,
+            0.0018333333333333333
+          ],
+          "orientation": 2.8648690005328348,
+          "bottom": 0.00004,
+          "top": 0.0007066666666666666,
+          "cameraYaw": -2.8648690005328596
+        },
+        "exposure": {
+          "left": 31.095679432855007,
+          "right": 448.9043238176657,
+          "top": 44.39185338445587,
+          "bottom": 275.0001804860733
+        },
+        "model": {
+          "kind": "exact-final-program-site",
+          "bytes": 7920,
+          "sha256": "764712a19777d5bcc636eeb47beb222f67765a8bc906f6360882e441bf1bb5c5",
+          "fullBytes": 45720,
+          "fullSha256": "6b59daf7ef5d138464c8f019712c5a70b137dedc3d68c2ddb3a0a0a40b759a34"
+        },
+        "modelExposure": {
+          "left": 279.93031726758244,
+          "right": 344.86974105276863,
+          "top": 165.8249945999871,
+          "bottom": 212.58510792353036
+        }
+      },
+      "context": {
+        "kind": "native-surface-focus",
+        "sources": [
+          "way/706122536",
+          "way/1554831358"
+        ],
+        "siteId": "M13:nura:household-2",
+        "bounds": [
+          -0.28991843215039326,
+          0.015951937058089238,
+          -0.28726595999862936,
+          0.018326598031770076
+        ],
+        "kinds": [
+          4,
+          18
+        ],
+        "triangles": 59,
+        "authoringMesh": "alem/city.bin",
+        "focus": {
+          "center": [
+            -0.2885921960745113,
+            0.017139267544929657,
+            0.0003733333333333333
+          ],
+          "span": [
+            0.002236688772686895,
+            0.0018333333333333333
+          ],
+          "orientation": 2.8648690005328348,
+          "bottom": 0.00004,
+          "top": 0.0007066666666666666,
+          "cameraYaw": -2.8648690005328596
+        },
+        "selection": "authored-household-service",
+        "surfaceBytes": 420,
+        "buildings": [
+          {
+            "source": "way/706122536",
+            "bytes": 3120,
+            "sha256": "8e2358af0fb90e48c421e6dfc8957e26e705f0c7b56206a5a290d1cc676fb52a"
+          }
+        ],
+        "method": "Exact complete native ground, water and street triangles intersecting the measured project focus; spatial authoring ranges streamed in 960 KiB chunks. Any connected household retains its exact complete original source-building range.",
+        "bytes": 3540,
+        "sha256": "ec0736e8e6f2f1f7e078b7c93f46a8a9beecf740f03eb42a8e5554c2541c0ea4"
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M14",
+      "districtId": "esil",
+      "path": "astana/M14-esil.webp",
+      "bytes": 2452,
+      "sha256": "50b6780fda6ba565fddac1466edd8eb6eeda0a81346a9a8570e4571cd7759180",
+      "modelBytes": 82440,
+      "pose": {
+        "x": 0.10016220674555042,
+        "y": -0.426796465334316,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -3.3400097313711163,
+        "pitch": 1,
+        "zoom": 948.596432721822
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M14",
+      "districtId": "almaty",
+      "path": "astana/M14-almaty.webp",
+      "bytes": 2626,
+      "sha256": "4bca6a6a21b6a0aeac33855f0d40143ec79aa9c69c9b8b4b94b2f97d5bd68c1f",
+      "modelBytes": 82440,
+      "pose": {
+        "x": 0.43843761134821563,
+        "y": 0.2405229700377989,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -3.049385438408965,
+        "pitch": 1,
+        "zoom": 948.5964053924511
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M14",
+      "districtId": "saryarka",
+      "path": "astana/M14-saryarka.webp",
+      "bytes": 2580,
+      "sha256": "de5013a685cc6cf744985eea5eec9b777b60fb4348e910912a509d3d2f489fca",
+      "modelBytes": 82440,
+      "pose": {
+        "x": -0.4682013929566947,
+        "y": 0.33880684219137674,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -3.125937727158725,
+        "pitch": 1,
+        "zoom": 948.5964039453036
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M14",
+      "districtId": "baikonur",
+      "path": "astana/M14-baikonur.webp",
+      "bytes": 2520,
+      "sha256": "36ffb3172bde529d220bd9d6823f26639a7be184b78d7465ae962bf21c55e1b1",
+      "modelBytes": 82440,
+      "pose": {
+        "x": 0.08976011497927801,
+        "y": 0.655149191336304,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": 0.41050063622961147,
+        "pitch": 1,
+        "zoom": 948.5964224191687
+      }
+    },
+    {
+      "mode": "astana",
+      "initiativeId": "M14",
+      "districtId": "nura",
+      "path": "astana/M14-nura.webp",
+      "bytes": 2548,
+      "sha256": "5225b5eb5d1923266496454c464a3b3596e9efb6103e2a185ef8dff33f2bf4c2",
+      "modelBytes": 82440,
+      "pose": {
+        "x": -0.35220583848014164,
+        "y": 0.12161728251388025,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": 1.371546098638847,
+        "pitch": 1,
+        "zoom": 948.5964377583286
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M1",
+      "districtId": "esil",
+      "path": "khanate/M1-esil.webp",
+      "bytes": 3494,
+      "sha256": "f874b416354fcf8983910ad149eedda8440d8a70ddaedc80ba0b2b297f35ea80",
+      "modelBytes": 393240,
+      "pose": {
+        "x": -0.0455625013501813,
+        "y": -0.11325328162253831,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 484.172991326633
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M1",
+      "districtId": "almaty",
+      "path": "khanate/M1-almaty.webp",
+      "bytes": 3758,
+      "sha256": "076fab4c4f5a33aca7e81822495492ecd018277a700e88ee5d709acd3d99af27",
+      "modelBytes": 392760,
+      "pose": {
+        "x": 0.1331667726276059,
+        "y": -0.05203308193135085,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 484.17299132663317
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M1",
+      "districtId": "saryarka",
+      "path": "khanate/M1-saryarka.webp",
+      "bytes": 5248,
+      "sha256": "34d759854ca1b0a255ac8754c3420bd70e4e33dfd915389d434d6c8f60273e55",
+      "modelBytes": 393000,
+      "pose": {
+        "x": -0.07337166044176471,
+        "y": 0.08540430065440627,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 484.17299132663294
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M1",
+      "districtId": "baikonur",
+      "path": "khanate/M1-baikonur.webp",
+      "bytes": 3610,
+      "sha256": "396fb6b88032e7a69f983b9fd47d85ad82e97b2fbe8c5fb54aada8c461fbb60a",
+      "modelBytes": 392760,
+      "pose": {
+        "x": 0.07412833955823529,
+        "y": 0.11640430065440628,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 484.17299132663294
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M1",
+      "districtId": "nura",
+      "path": "khanate/M1-nura.webp",
+      "bytes": 3706,
+      "sha256": "781933bc7cc4c0ed914fc8d445f6f1d1bf790f7412ad06a69d0453b1475f4295",
+      "modelBytes": 393000,
+      "pose": {
+        "x": -0.17550487787488797,
+        "y": -0.0716655319981564,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 484.17299132663317
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M2",
+      "districtId": "esil",
+      "path": "khanate/M2-esil.webp",
+      "bytes": 4088,
+      "sha256": "38aee8cbab595a436d955f55fb70e1478e0b79adab0faceefbc1d6ecd66da94a",
+      "modelBytes": 663240,
+      "pose": {
+        "x": -0.04194931236780331,
+        "y": -0.09258852485612423,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 469.69742531378444
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M2",
+      "districtId": "almaty",
+      "path": "khanate/M2-almaty.webp",
+      "bytes": 4138,
+      "sha256": "8cf96644da0201978a585fe0bb238150932ed0235b6d794f45224f303991606b",
+      "modelBytes": 663240,
+      "pose": {
+        "x": 0.12877559538666541,
+        "y": -0.06811599091100039,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 469.697425313784
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M2",
+      "districtId": "saryarka",
+      "path": "khanate/M2-saryarka.webp",
+      "bytes": 4200,
+      "sha256": "fe7e758a0314946627cc159cd63e6479afc3f03989a4ec636b0333f1249f00e3",
+      "modelBytes": 663240,
+      "pose": {
+        "x": -0.0589415079882064,
+        "y": 0.07192051426442543,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 469.69742531378444
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M2",
+      "districtId": "baikonur",
+      "path": "khanate/M2-baikonur.webp",
+      "bytes": 4162,
+      "sha256": "3c3b8426169e4a887532abbc06f73b6138faf8bd701e7723838a2e1537b45570",
+      "modelBytes": 663240,
+      "pose": {
+        "x": 0.07260447246173016,
+        "y": 0.10298109081861913,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 469.69742531378427
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M2",
+      "districtId": "nura",
+      "path": "khanate/M2-nura.webp",
+      "bytes": 3968,
+      "sha256": "34835d2c63fe427da59cf715f4ffd9770855882d2773d7818399f662084ec3b9",
+      "modelBytes": 663240,
+      "pose": {
+        "x": -0.19479327424788453,
+        "y": -0.07605643746451295,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 469.697425313784
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M3",
+      "districtId": "esil",
+      "path": "khanate/M3-esil.webp",
+      "bytes": 4318,
+      "sha256": "dc60dc515f8a3dabd154129b89aa9456cacf4e1347e9de7fdbafc5a8b7cc75fb",
+      "modelBytes": 1456740,
+      "pose": {
+        "x": -0.04688531772032703,
+        "y": -0.09836929347446148,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 361.438159369269
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M3",
+      "districtId": "almaty",
+      "path": "khanate/M3-almaty.webp",
+      "bytes": 4542,
+      "sha256": "97feb24c72ecd5918b7a64ad536cbee48ce243d43c286eb900fbcd99e5fd2ef4",
+      "modelBytes": 1507500,
+      "pose": {
+        "x": 0.12856062976412833,
+        "y": -0.046604203893382615,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 361.4381593692693
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M3",
+      "districtId": "saryarka",
+      "path": "khanate/M3-saryarka.webp",
+      "bytes": 4624,
+      "sha256": "a02c77da4e7bb2f6b11fefa723585b4aa1899a0022248cf5e6a31ebcd293044b",
+      "modelBytes": 1507500,
+      "pose": {
+        "x": -0.07446214469198506,
+        "y": 0.08554867551378754,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 361.438159369269
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M3",
+      "districtId": "baikonur",
+      "path": "khanate/M3-baikonur.webp",
+      "bytes": 4730,
+      "sha256": "fbd03cf32d3c1024eecb07efa6239e940ec93c064a06cf83da36fff2c705f60e",
+      "modelBytes": 1507620,
+      "pose": {
+        "x": 0.07465942912193935,
+        "y": 0.1089691530684454,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 361.438159369269
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M3",
+      "districtId": "nura",
+      "path": "khanate/M3-nura.webp",
+      "bytes": 6422,
+      "sha256": "1c940550703231cbc3ee8b0b544ffa98887b73b7b97e257d7a3a1591d13405bc",
+      "modelBytes": 1456500,
+      "pose": {
+        "x": -0.17440591578967865,
+        "y": -0.07161775820542066,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 361.4381593692693
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M4",
+      "districtId": "esil",
+      "path": "khanate/M4-esil.webp",
+      "bytes": 5278,
+      "sha256": "60c605c3a62865111856c34caba9a83f915282c87f989916a94e3aabd6f22e94",
+      "modelBytes": 3534240,
+      "pose": {
+        "x": -0.020333080281251543,
+        "y": -0.07302757343796377,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 464.55277668090673
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M4",
+      "districtId": "almaty",
+      "path": "khanate/M4-almaty.webp",
+      "bytes": 5566,
+      "sha256": "f507a4fad0661a0c5d34d09bc3ba5a603c429bc915de71fcc48e5af5f6473aa6",
+      "modelBytes": 3684480,
+      "pose": {
+        "x": 0.13966691971874845,
+        "y": 0.024972426562036222,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 232.56782653494454
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M4",
+      "districtId": "saryarka",
+      "path": "khanate/M4-saryarka.webp",
+      "bytes": 5602,
+      "sha256": "da69e398ab1b55117df0c09b007aefa6ee54b8fd40ab1f7b842c829508ffa628",
+      "modelBytes": 3684480,
+      "pose": {
+        "x": -0.11133308028125155,
+        "y": 0.11697242656203621,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 232.56782653494446
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M4",
+      "districtId": "baikonur",
+      "path": "khanate/M4-baikonur.webp",
+      "bytes": 5580,
+      "sha256": "44e0dac52118894c3604a355f1bc03d63e7d0ea67aae06d4b08a2f693c1c73cc",
+      "modelBytes": 3684600,
+      "pose": {
+        "x": 0.11966691971874845,
+        "y": 0.14397242656203624,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 232.56782653494446
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M4",
+      "districtId": "nura",
+      "path": "khanate/M4-nura.webp",
+      "bytes": 5806,
+      "sha256": "bc84b85ed03b58766b92ed101221021576ddd2ef7ccadbd7699f4cc6c0a79eef",
+      "modelBytes": 3684360,
+      "pose": {
+        "x": -0.15933308028125154,
+        "y": -0.06502757343796378,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 232.56782653494454
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M5",
+      "districtId": "esil",
+      "path": "khanate/M5-esil.webp",
+      "bytes": 3016,
+      "sha256": "9a48b944e8bd96494318b81bdc12da1ae83403a1887bd4d460af36281e131f05",
+      "modelBytes": 158880,
+      "pose": {
+        "x": -0.03753090388990247,
+        "y": -0.1071542340315337,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 745.053772452303
+      },
+      "context": {
+        "kind": "native-household-instance",
+        "sources": [
+          "existing-household:esil:0:0"
+        ],
+        "homeId": "esil:0:0",
+        "variant": 0,
+        "transform": [
+          -0.037197823608650926,
+          -0.10812666059356991,
+          0.00006,
+          0.0000576,
+          -1.3707963267948966,
+          1,
+          1,
+          1
+        ],
+        "renderTransform": [
+          -0.03719782456755638,
+          -0.10812666267156601,
+          0.00005999999848427251,
+          0.00005759999839938246,
+          -1.3707963228225708,
+          1,
+          1,
+          1
+        ],
+        "templateSha256": "a5f5b780cf7cc337cfa4380389b45756d9ad9a570f9e62e60c5237171be35130",
+        "method": "Shipped yurt template and bootstrap household instance; positions and normals follow the native instance shader.",
+        "bytes": 157320,
+        "sha256": "982579a54f203ab9c1e11c56c85e20825ebc0ee0515871491bde4bea4e4fe249"
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M5",
+      "districtId": "almaty",
+      "path": "khanate/M5-almaty.webp",
+      "bytes": 2996,
+      "sha256": "fd27544d3a3e28834fb91b26d6af45a7733d74a228ec7e845767fbccab08228a",
+      "modelBytes": 158880,
+      "pose": {
+        "x": 0.1299163502659192,
+        "y": -0.05408654852256482,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 745.0537724523056
+      },
+      "context": {
+        "kind": "native-household-instance",
+        "sources": [
+          "existing-household:almaty:0:0"
+        ],
+        "homeId": "almaty:0:0",
+        "variant": 1,
+        "transform": [
+          0.13024943054717072,
+          -0.055058975084601045,
+          0.00006,
+          0.0000576,
+          -0.7707963267948965,
+          1,
+          1,
+          1
+        ],
+        "renderTransform": [
+          0.13024942576885223,
+          -0.05505897477269173,
+          0.00005999999848427251,
+          0.00005759999839938246,
+          -0.7707962989807129,
+          1,
+          1,
+          1
+        ],
+        "templateSha256": "0196bc9e65992227ab40b8ab7847b31d265a2ccd099f73a2e9133c46a2c57c0f",
+        "method": "Shipped yurt template and bootstrap household instance; positions and normals follow the native instance shader.",
+        "bytes": 157320,
+        "sha256": "a7ff4e8fb667b1050c67c1c41e91981be43ff1b77bd9566c908e0b9b701413dd"
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M5",
+      "districtId": "saryarka",
+      "path": "khanate/M5-saryarka.webp",
+      "bytes": 2990,
+      "sha256": "fb4734e247dcb42db83e001f62843048b738e55be0044bb26f52ec0cf0be18a4",
+      "modelBytes": 158880,
+      "pose": {
+        "x": -0.06395151849709733,
+        "y": 0.08485863974110182,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 745.0537724523024
+      },
+      "context": {
+        "kind": "native-household-instance",
+        "sources": [
+          "existing-household:saryarka:0:0"
+        ],
+        "homeId": "saryarka:0:0",
+        "variant": 2,
+        "transform": [
+          -0.06361843821584579,
+          0.0838862131790656,
+          0.00006,
+          0.0000576,
+          -1.3707963267948966,
+          1,
+          1,
+          1
+        ],
+        "renderTransform": [
+          -0.06361843645572662,
+          0.08388621360063553,
+          0.00005999999848427251,
+          0.00005759999839938246,
+          -1.3707963228225708,
+          1,
+          1,
+          1
+        ],
+        "templateSha256": "0318c552ac06522008b518b1abe0a4e121692da0a01429475c59e0c0f0c3a0a6",
+        "method": "Shipped yurt template and bootstrap household instance; positions and normals follow the native instance shader.",
+        "bytes": 157320,
+        "sha256": "9a7dbfba13ffc35a933ec47895b37fefa11582a7d12a5c3990864c34ae91e7c3"
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M5",
+      "districtId": "baikonur",
+      "path": "khanate/M5-baikonur.webp",
+      "bytes": 2950,
+      "sha256": "098e04d37defeb4470f273976d4364dc4d8932fc8f7c0a53d43c12550c621444",
+      "modelBytes": 158880,
+      "pose": {
+        "x": 0.08358477984037406,
+        "y": 0.11566650272399766,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 745.0537724523022
+      },
+      "context": {
+        "kind": "native-household-instance",
+        "sources": [
+          "existing-household:baikonur:0:0"
+        ],
+        "homeId": "baikonur:0:0",
+        "variant": 0,
+        "transform": [
+          0.08391786012162561,
+          0.11469407616196144,
+          0.00006,
+          0.0000576,
+          -1.4707963267948965,
+          1,
+          1,
+          1
+        ],
+        "renderTransform": [
+          0.08391786366701126,
+          0.11469407379627228,
+          0.00005999999848427251,
+          0.00005759999839938246,
+          -1.4707963466644287,
+          1,
+          1,
+          1
+        ],
+        "templateSha256": "a5f5b780cf7cc337cfa4380389b45756d9ad9a570f9e62e60c5237171be35130",
+        "method": "Shipped yurt template and bootstrap household instance; positions and normals follow the native instance shader.",
+        "bytes": 157320,
+        "sha256": "d3b5f1df47b77317c621a25c899fe99acb8cde7332158badd37b575d872de72f"
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M5",
+      "districtId": "nura",
+      "path": "khanate/M5-nura.webp",
+      "bytes": 2822,
+      "sha256": "615b8e2e34dc7ada2574caf5a9936a8a7325f7a2aa015d43e2701d36567ee57f",
+      "modelBytes": 158880,
+      "pose": {
+        "x": -0.18084884266068219,
+        "y": -0.07101820109469976,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 745.0537724523037
+      },
+      "context": {
+        "kind": "native-household-instance",
+        "sources": [
+          "existing-household:nura:0:0"
+        ],
+        "homeId": "nura:0:0",
+        "variant": 1,
+        "transform": [
+          -0.18051576237943065,
+          -0.07199062765673599,
+          0.00006,
+          0.0000576,
+          -1.1707963267948966,
+          1,
+          1,
+          1
+        ],
+        "renderTransform": [
+          -0.18051576614379883,
+          -0.07199062407016754,
+          0.00005999999848427251,
+          0.00005759999839938246,
+          -1.170796275138855,
+          1,
+          1,
+          1
+        ],
+        "templateSha256": "0196bc9e65992227ab40b8ab7847b31d265a2ccd099f73a2e9133c46a2c57c0f",
+        "method": "Shipped yurt template and bootstrap household instance; positions and normals follow the native instance shader.",
+        "bytes": 157320,
+        "sha256": "37972c1a4f2f7524f5a0ba50a4e8d99b64c21e11882a47f0740fee7956b5cf57"
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M6",
+      "districtId": "esil",
+      "path": "khanate/M6-esil.webp",
+      "bytes": 4616,
+      "sha256": "19e165d5c040efc78a7e4c5a50c6d5d3c165f3ee8d8183f06ea9b1bd825a87ee",
+      "modelBytes": 2891520,
+      "pose": {
+        "x": 0.05361817668671173,
+        "y": -0.15360812472330362,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 251.23925832296788
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M6",
+      "districtId": "almaty",
+      "path": "khanate/M6-almaty.webp",
+      "bytes": 4930,
+      "sha256": "97f2b467be5ba57771530ad6b0f882708621a61911d73c3ac6cb12b470399b3d",
+      "modelBytes": 2891640,
+      "pose": {
+        "x": 0.20127559002500972,
+        "y": -0.11103653347341905,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 251.23925832296788
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M6",
+      "districtId": "saryarka",
+      "path": "khanate/M6-saryarka.webp",
+      "bytes": 4720,
+      "sha256": "8fdcae756345ef91ac5e5377d6ab446da5b2ceb9e9fe1614bc5d9ee8e5bdca51",
+      "modelBytes": 2891520,
+      "pose": {
+        "x": -0.19427820131743154,
+        "y": 0.0007068115897556442,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 251.23925832296783
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M6",
+      "districtId": "baikonur",
+      "path": "khanate/M6-baikonur.webp",
+      "bytes": 4292,
+      "sha256": "5310056db8d15790e54ecbd1362f47d5680e2b287096c185cd61e1939db0ca4f",
+      "modelBytes": 2891520,
+      "pose": {
+        "x": 0.2140829279197159,
+        "y": 0.15776266363818303,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 251.23925832296788
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M6",
+      "districtId": "nura",
+      "path": "khanate/M6-nura.webp",
+      "bytes": 4438,
+      "sha256": "952136a5c45f72ca45e0176ed7182b58db9cf143f41254f7e0919d8ab461d21b",
+      "modelBytes": 2891520,
+      "pose": {
+        "x": -0.2211369278570502,
+        "y": -0.023474379145057053,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 251.23925832296788
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M7",
+      "districtId": "esil",
+      "path": "khanate/M7-esil.webp",
+      "bytes": 6666,
+      "sha256": "60fa4b17088e71a18b535645acf2f43e64c201cd643d19b591295d77236508fb",
+      "modelBytes": 1558920,
+      "pose": {
+        "x": -0.02020063609852012,
+        "y": -0.07370615207690365,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 519.7180435979765
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M7",
+      "districtId": "almaty",
+      "path": "khanate/M7-almaty.webp",
+      "bytes": 6526,
+      "sha256": "514ec06917397dca468bc30afd08a7464483c1cf34fca114ae79b5897de227a1",
+      "modelBytes": 1558920,
+      "pose": {
+        "x": 0.13979936218784633,
+        "y": 0.024293848154064344,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 519.7180836324073
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M7",
+      "districtId": "saryarka",
+      "path": "khanate/M7-saryarka.webp",
+      "bytes": 6636,
+      "sha256": "c596b5eb98c48fe08c7f3d0d207721f932be7912c911e62dca4715e447e839fc",
+      "modelBytes": 1559040,
+      "pose": {
+        "x": -0.11120063611342128,
+        "y": 0.11629384926420086,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 519.7186041188673
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M7",
+      "districtId": "baikonur",
+      "path": "khanate/M7-baikonur.webp",
+      "bytes": 6662,
+      "sha256": "8bbb53f677193a9ff656ef479686c70d955a6f3a4e8a4b1efeeb4bd7a9f1b363",
+      "modelBytes": 1559040,
+      "pose": {
+        "x": 0.11979936263488118,
+        "y": 0.14329384437662,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 519.7186041188673
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M7",
+      "districtId": "nura",
+      "path": "khanate/M7-nura.webp",
+      "bytes": 6698,
+      "sha256": "5c2b450053bf6201f9d49431fc122c8467ec1164b2bbcf5415f4e044662c3f8d",
+      "modelBytes": 1558920,
+      "pose": {
+        "x": -0.1592006328053635,
+        "y": -0.06570615076560146,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 519.7179635214732
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M8",
+      "districtId": "esil",
+      "path": "khanate/M8-esil.webp",
+      "bytes": 5204,
+      "sha256": "4a357fc5b31db8669bf56075ecd2789041b082e53ef5a57ce679da4e46a23289",
+      "modelBytes": 1464600,
+      "pose": {
+        "x": 0.021860599773803183,
+        "y": -0.0563101041098533,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 719.6961723715378
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M8",
+      "districtId": "almaty",
+      "path": "khanate/M8-almaty.webp",
+      "bytes": 5268,
+      "sha256": "2153887e7e6abc8d794ce186c74d38796433b9970b0e136ab8fa0820ecfcce66",
+      "modelBytes": 1464600,
+      "pose": {
+        "x": 0.1818605989914922,
+        "y": 0.04168989705243727,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 719.6967212661598
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M8",
+      "districtId": "saryarka",
+      "path": "khanate/M8-saryarka.webp",
+      "bytes": 5150,
+      "sha256": "4508e4238bb79bf6344e9da0bc7f95d7a3a0326f4d95220c4be1ced1087c1496",
+      "modelBytes": 1464480,
+      "pose": {
+        "x": -0.0691394030350657,
+        "y": 0.13368989164331577,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 719.696552583684
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M8",
+      "districtId": "baikonur",
+      "path": "khanate/M8-baikonur.webp",
+      "bytes": 5244,
+      "sha256": "c61a88ce3ba9e34415d04aae3d08f8da8814ef7e8d1965d3a688212a2fac7865",
+      "modelBytes": 1464480,
+      "pose": {
+        "x": 0.16186059571323674,
+        "y": 0.1606899016568961,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 719.6965525836832
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M8",
+      "districtId": "nura",
+      "path": "khanate/M8-nura.webp",
+      "bytes": 5402,
+      "sha256": "0bb9bd73397c681ee5513b399f94523f6ea0056c7a8049fc48b1b8c49c20170e",
+      "modelBytes": 1464480,
+      "pose": {
+        "x": -0.11713940345229822,
+        "y": -0.048310102798551115,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 719.6960939580883
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M9",
+      "districtId": "esil",
+      "path": "khanate/M9-esil.webp",
+      "bytes": 5178,
+      "sha256": "15feaa4e9b66c177b8cc04b8451d230e9a2d7953d0c304a0af3549f70d8682e9",
+      "modelBytes": 322320,
+      "pose": {
+        "x": -0.008121120248198473,
+        "y": -0.11264638837769729,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 813.0758248846539
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M9",
+      "districtId": "almaty",
+      "path": "khanate/M9-almaty.webp",
+      "bytes": 5108,
+      "sha256": "097b96ecb815119806877c9cb767ef4d54b337c94071f207c6d6df01e5892902",
+      "modelBytes": 322320,
+      "pose": {
+        "x": 0.15187887501136962,
+        "y": -0.014646390940697014,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 813.0753589405736
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M9",
+      "districtId": "saryarka",
+      "path": "khanate/M9-saryarka.webp",
+      "bytes": 4966,
+      "sha256": "a01d263584f362a2c13a81eb63fdf2b4cc742e6f6f2cf2a72480a4b593ce3a8e",
+      "modelBytes": 322320,
+      "pose": {
+        "x": -0.0991211195646077,
+        "y": 0.07735360923811692,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 813.075948407175
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M9",
+      "districtId": "baikonur",
+      "path": "khanate/M9-baikonur.webp",
+      "bytes": 5096,
+      "sha256": "ae763039eee76f7a77b9cb0b3eff086e11d3107384e728c96d2fa77609e33b64",
+      "modelBytes": 322200,
+      "pose": {
+        "x": 0.13187887918369476,
+        "y": 0.10435360807582635,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 813.074769474823
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M9",
+      "districtId": "nura",
+      "path": "khanate/M9-nura.webp",
+      "bytes": 4960,
+      "sha256": "ea189988523163c1832266ddfc641e6fbd230a253f6da585e3942d902de9f562",
+      "modelBytes": 322440,
+      "pose": {
+        "x": -0.14712111998184021,
+        "y": -0.1046463907916854,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 813.074769474823
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M10",
+      "districtId": "esil",
+      "path": "khanate/M10-esil.webp",
+      "bytes": 3992,
+      "sha256": "2ba073ff1a0f8701e68aadfb4b2de9cf85868e50d0913668c2c7e1c5132cb5d5",
+      "modelBytes": 307920,
+      "pose": {
+        "x": -0.034790514790179805,
+        "y": -0.0977681482956637,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 572.2012544388593
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M10",
+      "districtId": "almaty",
+      "path": "khanate/M10-almaty.webp",
+      "bytes": 3944,
+      "sha256": "a977ba3b999b02cabf9d9ffd68f311206c5ac06bb279fc5440789f80ac5327e7",
+      "modelBytes": 307920,
+      "pose": {
+        "x": 0.13108294339283763,
+        "y": -0.041807891102292646,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 572.2012544388588
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M10",
+      "districtId": "saryarka",
+      "path": "khanate/M10-saryarka.webp",
+      "bytes": 3430,
+      "sha256": "84f2763068cef18ec2cd03d705a8bcd697e290f73d77cb662dd0783d63c51379",
+      "modelBytes": 307920,
+      "pose": {
+        "x": -0.06600989559294579,
+        "y": 0.0917973511829464,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 572.2012544388596
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M10",
+      "districtId": "baikonur",
+      "path": "khanate/M10-baikonur.webp",
+      "bytes": 3650,
+      "sha256": "6554e89a5142fd7c158d29bbaf685b17cd3d513387d116e62f6c1ea38e10c742",
+      "modelBytes": 307920,
+      "pose": {
+        "x": 0.06805815648594855,
+        "y": 0.11185022743631255,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 572.2012544388596
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M10",
+      "districtId": "nura",
+      "path": "khanate/M10-nura.webp",
+      "bytes": 3516,
+      "sha256": "b5ac058cb957bc482f1de86a66b8fcac180bd97791aefcb3b184204a8bfd6beb",
+      "modelBytes": 307800,
+      "pose": {
+        "x": -0.176339303348146,
+        "y": -0.06513350678174695,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 572.2012544388598
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M11",
+      "districtId": "esil",
+      "path": "khanate/M11-esil.webp",
+      "bytes": 4246,
+      "sha256": "cd462750a5cbce1af0dcd09b87b0e37719cc0c2ff068df031d4d332d2b832f6d",
+      "modelBytes": 590160,
+      "pose": {
+        "x": -0.05190802940667153,
+        "y": -0.0947811021382524,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 469.69742531378444
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M11",
+      "districtId": "almaty",
+      "path": "khanate/M11-almaty.webp",
+      "bytes": 4352,
+      "sha256": "4a8e699a595125b0111fe6fc5c1930526cf8aba2a751521291ea8a8b5c451fc5",
+      "modelBytes": 590040,
+      "pose": {
+        "x": 0.1362710612208537,
+        "y": -0.04577441624789897,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 469.697425313784
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M11",
+      "districtId": "saryarka",
+      "path": "khanate/M11-saryarka.webp",
+      "bytes": 4258,
+      "sha256": "475f92ee3e4370d4141a216aeac4de5bebe9c0f4496a0b682c031daf9c262fdb",
+      "modelBytes": 590040,
+      "pose": {
+        "x": -0.07962195199644775,
+        "y": 0.09196460009512808,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 469.69742531378427
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M11",
+      "districtId": "baikonur",
+      "path": "khanate/M11-baikonur.webp",
+      "bytes": 4248,
+      "sha256": "8bd73ddb3b29e4b8d7498966a53bb795d81aa24a675a38dda852c95ffc5af1c7",
+      "modelBytes": 590040,
+      "pose": {
+        "x": 0.07384742300258622,
+        "y": 0.1291663839184906,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 469.6974253137828
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M11",
+      "districtId": "nura",
+      "path": "khanate/M11-nura.webp",
+      "bytes": 4248,
+      "sha256": "1d6b31a1a896efcc87bdcd83dffde1269315558cbd3cfb63b3fe7dc74c54904a",
+      "modelBytes": 590400,
+      "pose": {
+        "x": -0.19313798064789697,
+        "y": -0.08232830333639198,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 469.697425313784
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M12",
+      "districtId": "esil",
+      "path": "khanate/M12-esil.webp",
+      "bytes": 4692,
+      "sha256": "faeeae5d8c29f6de66e66ad76e8a8e657f5b1807624c7518ccfd43f076c26977",
+      "modelBytes": 638280,
+      "pose": {
+        "x": 0.006752093661557471,
+        "y": -0.08784441054050089,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 1031.194288915967
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M12",
+      "districtId": "almaty",
+      "path": "khanate/M12-almaty.webp",
+      "bytes": 4430,
+      "sha256": "00c0a53523c4dc779c60e160a73987478dd5be6e043d0d1513e1595ec564db0c",
+      "modelBytes": 638400,
+      "pose": {
+        "x": 0.1667520928792465,
+        "y": 0.010155587827821956,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 1031.1946087292952
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M12",
+      "districtId": "saryarka",
+      "path": "khanate/M12-saryarka.webp",
+      "bytes": 4710,
+      "sha256": "5cff5d93db15e835654ba88f8bd9a2f85903a0e42e53c66f477999dfa9629e56",
+      "modelBytes": 638280,
+      "pose": {
+        "x": -0.08424790542202111,
+        "y": 0.10215558707531332,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 1031.1939691028344
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M12",
+      "districtId": "baikonur",
+      "path": "khanate/M12-baikonur.webp",
+      "bytes": 4496,
+      "sha256": "228b8ec59d097fafabd223e4af7f223ae9a5d512eaa7c9d35d2a6178c23a2c2f",
+      "modelBytes": 638400,
+      "pose": {
+        "x": 0.14675209705157163,
+        "y": 0.12915558591302273,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 1031.1927357894467
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M12",
+      "districtId": "nura",
+      "path": "khanate/M12-nura.webp",
+      "bytes": 4622,
+      "sha256": "7cd7b5b59e1dbf245a64c7f4b25a27287b3e4f1f53cc5ff68a9115fd5a1601cd",
+      "modelBytes": 638400,
+      "pose": {
+        "x": -0.13224790211396334,
+        "y": -0.0798444092291987,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 1031.1946087292952
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M13",
+      "districtId": "esil",
+      "path": "khanate/M13-esil.webp",
+      "bytes": 5994,
+      "sha256": "339672fc61f0506f041f95511783c8b3b7f2d4f842e93034d6c60ca0752792e3",
+      "modelBytes": 380880,
+      "pose": {
+        "x": 0.02188937268518293,
+        "y": -0.11071056042547596,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 745.8274689643544
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M13",
+      "districtId": "almaty",
+      "path": "khanate/M13-almaty.webp",
+      "bytes": 5988,
+      "sha256": "ba54736d16337e0e2fbdf9845249953df24f142493fa319e8f3c571117e394e8",
+      "modelBytes": 381000,
+      "pose": {
+        "x": 0.18188937190287197,
+        "y": -0.012710562057153112,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 745.8270504877605
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M13",
+      "districtId": "saryarka",
+      "path": "khanate/M13-saryarka.webp",
+      "bytes": 6032,
+      "sha256": "893bbe3caaf7de761e4d2a5dcdfcc4004e6326a851cdcadb7984fadc82602ba9",
+      "modelBytes": 380880,
+      "pose": {
+        "x": -0.06911063012368596,
+        "y": 0.07928943719033825,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 745.8272261758085
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M13",
+      "districtId": "baikonur",
+      "path": "khanate/M13-baikonur.webp",
+      "bytes": 5888,
+      "sha256": "c52016b998cfbd350ac341d11c3e6a16259e8e6ae7d99ca06490dcf14f56df48",
+      "modelBytes": 381120,
+      "pose": {
+        "x": 0.1618893760751971,
+        "y": 0.10628943975333797,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 745.8272261758085
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M13",
+      "districtId": "nura",
+      "path": "khanate/M13-nura.webp",
+      "bytes": 6064,
+      "sha256": "eb0389d007c2027d3cc1f9508a1531ad02f53aad96a6dff371e40c62c4f43825",
+      "modelBytes": 381000,
+      "pose": {
+        "x": -0.11711063054091847,
+        "y": -0.10271056283946407,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 745.826874799746
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M14",
+      "districtId": "esil",
+      "path": "khanate/M14-esil.webp",
+      "bytes": 4378,
+      "sha256": "42de6a18bf527850344ca73324613b021148eadb60acf1a705d754db6fa111f1",
+      "modelBytes": 648000,
+      "pose": {
+        "x": -0.048013631958257925,
+        "y": -0.11817463305886886,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 793.9035400868383
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M14",
+      "districtId": "almaty",
+      "path": "khanate/M14-almaty.webp",
+      "bytes": 4362,
+      "sha256": "8d046479fb10e0f09d768d50d1c4365ccd45c8160d173eb436b19b0fa6b84bcc",
+      "modelBytes": 647880,
+      "pose": {
+        "x": 0.1119863681907537,
+        "y": -0.020174632827900864,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 793.9036388033556
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M14",
+      "districtId": "saryarka",
+      "path": "khanate/M14-saryarka.webp",
+      "bytes": 4372,
+      "sha256": "761d002dca4e4e212a06158b1fcb747463730b3cb07f208108ca6ac2fea20703",
+      "modelBytes": 647880,
+      "pose": {
+        "x": -0.13901363011051393,
+        "y": 0.07182536455694535,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 793.9035400868386
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M14",
+      "districtId": "baikonur",
+      "path": "khanate/M14-baikonur.webp",
+      "bytes": 4374,
+      "sha256": "ed13d3158ceaf34c5b14482de334de9909bd220b19801df54be37fa40d14b476",
+      "modelBytes": 647760,
+      "pose": {
+        "x": 0.09198636863778853,
+        "y": 0.09882536711994508,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 793.9035400868386
+      }
+    },
+    {
+      "mode": "khanate",
+      "initiativeId": "M14",
+      "districtId": "nura",
+      "path": "khanate/M14-nura.webp",
+      "bytes": 4320,
+      "sha256": "c6c3fc088b65b8b8ef4adf8b908dce44fb97abd3836aaf6ee69d6d70361d7e73",
+      "modelBytes": 647760,
+      "pose": {
+        "x": -0.18701363052774644,
+        "y": -0.11017463174756667,
+        "centerZ": 0,
+        "previewSeconds": 4,
+        "yaw": -0.33,
+        "pitch": 1,
+        "zoom": 793.9042815213197
+      }
+    }
+  ],
+  "browser": {
+    "version": "155.0.8059.40"
+  }
+}

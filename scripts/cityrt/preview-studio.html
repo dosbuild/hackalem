@@ -1,0 +1,129 @@
+<!doctype html><html><meta charset="utf-8"><title>Alem own-model preview export</title><style>html,body{margin:0;overflow:hidden;background:#eadcc1}canvas{width:480px;height:288px}</style><canvas></canvas><script type="module">
+import {createRenderer} from '/src/world/city-gl.js';
+import {cameraFrame} from '/src/world/projection.js';
+import {Mesh} from '/src/world/mesh-kit.js';
+import {routeAt} from '/src/world/placement-geometry.js';
+import {programStatic} from '/src/world/astana-programs.js';
+import * as astana from '/src/world/project-objects.js';
+import * as khanate from '/src/world/khanate/projects.js';
+
+const canvas=document.querySelector('canvas'),metadata={tiles:[],groundCount:0,buildingFeatures:0,projection:'planar'};
+const ground=new Mesh();ground.kind=21;ground.box(0,0,-.00008,4,4,.00006,'#eadcc1');
+const renderer=createRenderer(canvas,ground.pack(),metadata,{shadowSize:512,territoryScale:0,palette:{land:'#e8d9ba',skyTop:'#efdfc0',skyBottom:'#eadcc1'}});
+const previewZoomLimit=3200;
+function closeFocus(center,span,bottom,top,orientation){
+ const c=Math.cos(orientation),s=Math.sin(orientation),points=[bottom,top].flatMap(z=>[-1,1].flatMap(x=>[-1,1].map(y=>[center[0]+x*span[0]/2*c-y*span[1]/2*s,center[1]+x*span[0]/2*s+y*span[1]/2*c,z])));
+ return {crop:{center,span,orientation},points};
+}
+function geometryKey(bytes,at){
+ let key='';for(let vertex=0;vertex<3;vertex++){const start=at+vertex*20;for(let i=0;i<20;i++)if(i<15||i>17)key+=String.fromCharCode(bytes[start+i]);}return key;
+}
+// Select complete source triangles of the primary authored part. The candidate
+// identifies geometry only; final bytes, including colors, come from the actual
+// full builder. This also avoids inventing an index-dependent camera on a lamp.
+function ownedPart(full,candidate,complete=false){
+ const source=new Uint8Array(full),wanted=new Set(),selected=[];
+ for(let at=0,bytes=new Uint8Array(candidate);at<bytes.length;at+=60)wanted.add(geometryKey(bytes,at));
+ for(let at=0;at<source.length;at+=60){const key=geometryKey(source,at);if(wanted.delete(key))selected.push(source.subarray(at,at+60));}
+ if(!selected.length)throw Error('Primary preview geometry must belong to the actual model');
+ if(complete&&wanted.size)throw Error('Every selected household triangle must belong to the unchanged final native model');
+ const result=new Uint8Array(selected.length*60);selected.forEach((triangle,index)=>result.set(triangle,index*60));return result.buffer;
+}
+window.exportPreview=async(mode,id,district,context)=>{
+ const projects=mode==='khanate'?khanate:astana,site=projects.placements[`${id}:${district}`],citywide=['M2','M6','M12','M14'].includes(id);
+ const o=projects.projectObjects({commitments:[{initiativeId:id,scope:citywide?'citywide':'district',...(!citywide?{districtId:district}:{})}],candidate:null,result:null,comparisonPosition:1,scenarioRevision:0},[{id:district}])[0];
+ // Actual authored frontage and native source-building context share one camera/material pass.
+ const historicalView=mode==='khanate'?(khanate.projectPreviewFrame(o)||o.view):null;
+ let crop=mode==='astana'?astana.projectPreviewFrame(o):{center:historicalView.center,span:historicalView.extent.slice(0,2),orientation:o.orientation||0},points=projects.projectFocusBounds(o),roofAltitude=0,previewSeconds=4,primary,selectedPlace;
+ const refinement=mode==='astana'&&['M10','M11','M13'].includes(id);
+ if(refinement){
+  if(!context?.focus)throw Error('Measured native neighborhood focus is required');
+  ({crop,points}=closeFocus(context.focus.center,context.focus.span,context.focus.bottom,context.focus.top,context.focus.orientation));
+  selectedPlace=id==='M10'?o:projects.programSites(o).find(place=>place.key===context.siteId);
+  if(!selectedPlace)throw Error('Preview must visit an existing native program place');
+ }
+ if(mode==='astana'&&id==='M5'){
+  if(!crop.contextSources?.length)throw Error('Principal source building is required');
+  o.roofs=o.roofs.filter(roof=>crop.contextSources.includes(roof.source));
+  if(o.roofs.length!==crop.contextSources.length)throw Error('Every preview unit requires its native source roof');
+ }
+ if(mode==='khanate'&&!o.program&&(id==='M1'||id==='M3')){
+  const q=routeAt(site.route,.52),top=id==='M1'?.00052:.00105;
+  ({crop,points}=closeFocus([...q.point,(.00006+top)/2],id==='M1'?[.0024,.0019]:[.0034,.0028],.00006,top,site.orientation||0));
+  // This existing cart-motion sample places the cart at the existing .52 stop.
+  if(id==='M1')previewSeconds=49.536;
+ }
+ if(mode==='khanate'&&!o.program&&id==='M11')({crop,points}=closeFocus([site.origin[0]-.0071,site.origin[1],site.origin[2]+.00012],[.0015,.0013],site.origin[2],site.origin[2]+.00030,site.orientation||0));
+ if(mode==='astana'&&id==='M14'){
+  const q=o.furniture.find(q=>q.point[0]===crop.center[0]&&q.point[1]===crop.center[1]);
+  if(!q)throw Error('Primary preview fixture must be an existing drawn site fixture');
+  primary=projects.projectMesh([{...o,furniture:[q]}],false,{zoom:14,schoolTime:30,seconds:4,preview:true,activities:{}});
+ }
+ const full=projects.projectMesh([o],false,{zoom:180,schoolTime:30,seconds:previewSeconds,preview:true,activities:{}});
+ if(mode==='astana'&&id==='M13'){
+  if(selectedPlace.kind!=='household-service'||context.selection!=='authored-household-service')throw Error('A real authored household utility connection is required');
+  const candidate=new Mesh();candidate.kind=8;
+  programStatic(candidate,{...o,program:{...o.program,sites:[selectedPlace]}},{zoom:180});primary=candidate.pack();
+ }
+ const mesh=primary?ownedPart(full,primary,mode==='astana'&&id==='M13'):full;
+ let expectedSources=crop.contextSources,expectedKind=expectedSources?'native-source-building':null;
+ if(mode==='astana'&&['M4','M2'].includes(id)){
+  const place=projects.programSites(o)[0];expectedSources=[...new Set(place.sources??[place.source])];expectedKind='native-surface-focus';
+  if(context?.siteId!==place.key)throw Error('Native surfaces must belong to the actual focused program place');
+ }
+ if(refinement){
+  expectedSources=id==='M13'?[selectedPlace.householdSource,...selectedPlace.connection.sources]:[selectedPlace.source];expectedKind='native-surface-focus';
+  if(context.siteId!==selectedPlace.key)throw Error('Native context must belong to the focused existing program place');
+ }
+ if(mode==='khanate'&&id==='M5'){
+  const host=projects.programSites(o).find(place=>place.hostHomeId);expectedSources=[host.source];expectedKind='native-household-instance';
+  if(context?.homeId!==host.hostHomeId||context?.variant!==host.home.variant||JSON.stringify(context?.transform)!==JSON.stringify([...host.home.origin,host.home.scale,host.home.orientation,1,1,1]))throw Error('Exact existing native host-household variant and transform are required');
+ }
+ const buffers=[];
+ if(expectedSources){
+  if(!context||context.kind!==expectedKind||JSON.stringify(context.sources)!==JSON.stringify(expectedSources))throw Error('Exact native preview context is required');
+  const native=Uint8Array.from(atob(context.data),c=>c.charCodeAt(0));if(native.byteLength!==context.bytes||native.byteLength%60)throw Error('Native context triangles are incomplete');buffers.push(native);
+ }else if(context)throw Error('This preview does not require additional native context');
+ buffers.push(new Uint8Array(mesh));
+ // These are the actual moving project bytes, sampled at the native clock 4.
+ // They remain a separate provenance layer; modelBytes still describes the
+ // unchanged native architecture used by the previous preview contract.
+ const activity=mode==='astana'&&id==='M2'?projects.projectDynamicMesh([o],false,{zoom:180,schoolTime:30,seconds:4,activities:{}}):null;
+ if(activity)buffers.push(new Uint8Array(activity));
+ const combined=new Uint8Array(buffers.reduce((sum,data)=>sum+data.byteLength,0));let offset=0;for(const data of buffers){combined.set(data,offset);offset+=data.byteLength;}renderer.replaceProjects(combined.buffer);
+ const yaw=refinement&&Number.isFinite(context.focus.cameraYaw)?context.focus.cameraYaw:-crop.orientation-.45,pitch=1.0,[x,y,z]=crop.center;
+ if(!points?.length)throw Error('Measured project focus bounds required');
+ const localHeight=z-roofAltitude,pose={x:x+Math.sin(yaw)*Math.tan(pitch)*localHeight,y:y+Math.cos(yaw)*Math.tan(pitch)*localHeight,centerZ:roofAltitude,previewSeconds,yaw,pitch,zoom:Math.min(previewZoomLimit,Math.max(18,1.2/Math.max(...crop.span)))};
+ // Fit physical bounds with the same perspective used by the game, then center
+ // the projected object. Long routes retain their deliberately selected stop crop.
+ for(let step=0;step<6;step++){
+  const fitted=cameraFrame(pose,480,288,1),projected=points.map(p=>fitted.world([p[0],p[1],p[2]-roofAltitude]));
+  const box={left:Math.min(...projected.map(p=>p.x)),right:Math.max(...projected.map(p=>p.x)),top:Math.min(...projected.map(p=>p.y)),bottom:Math.max(...projected.map(p=>p.y))};
+  const ratio=Math.min(416/(box.right-box.left),240/(box.bottom-box.top));
+  pose.zoom=Math.max(1,Math.min(previewZoomLimit,pose.zoom*Math.min(1.3,ratio)));
+  const centered=cameraFrame(pose,480,288,1),under=centered.inverseWorld(240,144,localHeight);
+  if(under){pose.x+=x-under[0];pose.y+=y-under[1];}
+ }
+ const frame=cameraFrame(pose,480,288,1);
+ const illumination=refinement&&id==='M10'?context.illumination:null;
+ if(illumination&&(illumination.kind!=='native-project-lamps'||illumination.time!==.63||illumination.lamps.length!==2||!illumination.lamps.every(lamp=>projects.lampPositions(o).some(native=>JSON.stringify(native)===JSON.stringify(lamp)))))throw Error('Night route illumination must use actual native project lamps');
+ renderer.draw({rotation:frame.matrix,zoom:frame.rendererZoom,perspective:frame.perspective,center:[pose.x,pose.y,roofAltitude],width:480,height:288,time:illumination?.time??.20,lamps:illumination?.lamps??[],tick:0,focusPoint:[pose.x,pose.y,roofAltitude]});
+ renderer.prepared();
+ const digest=async data=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',data)),byte=>byte.toString(16).padStart(2,'0')).join('');
+ const activityHash=activity?await digest(activity):null;
+ let presentation;
+ if(refinement){
+  const projected=points.map(frame.world),box={left:Math.min(...projected.map(p=>p.x)),right:Math.max(...projected.map(p=>p.x)),top:Math.min(...projected.map(p=>p.y)),bottom:Math.max(...projected.map(p=>p.y))};
+  if(!projected.every(p=>p.visible)||box.left<0||box.right>480||box.top<0||box.bottom>288)throw Error('Native physical neighborhood focus must fit the actual preview');
+  presentation={kind:'native-physical-neighborhood',siteId:context.siteId,focus:context.focus,exposure:box,...(illumination?{illumination}:{}),model:{kind:id==='M13'?'exact-final-program-site':'full-native-project',bytes:mesh.byteLength,sha256:await digest(mesh),fullBytes:full.byteLength,fullSha256:await digest(full)}};
+  if(id==='M13'){
+   const view=new DataView(mesh),above=[];for(let at=0;at<mesh.byteLength;at+=20){const p=[0,4,8].map(offset=>view.getFloat32(at+offset,true));if(p[2]>=context.focus.bottom-1e-7)above.push(frame.world(p));}
+   const visibleModel={left:Math.min(...above.map(p=>p.x)),right:Math.max(...above.map(p=>p.x)),top:Math.min(...above.map(p=>p.y)),bottom:Math.max(...above.map(p=>p.y))};
+   if(visibleModel.right-visibleModel.left<40||visibleModel.bottom-visibleModel.top<24)throw Error('The final native household connection must remain readable in the catalogue crop');
+   presentation.modelExposure=visibleModel;
+  }
+ }
+ return {data:canvas.toDataURL('image/webp',.88),bytes:mesh.byteLength,pose,...(presentation?{presentation}:{}),...(activity?{activity:{kind:'native-project-dynamic',seconds:4,bytes:activity.byteLength,sha256:activityHash,siteId:projects.programSites(o)[0].key}}:{})};
+};
+document.body.dataset.ready='true';
+</script></html>

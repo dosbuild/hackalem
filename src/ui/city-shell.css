@@ -1,0 +1,505 @@
+/* One map, one context surface. Shared paper material stays in the atlas palette. */
+.city-application.play-application{
+ --shell-top:100px;--shell-bottom:88px;--shell-side:20px;--context-width:380px;
+ font-size:15px;line-height:1.55;
+}
+.city-application.play-application :is(button,select,input,textarea){font-family:var(--font-ui);font-size:14px}
+.city-application.play-application :is(button,select){min-height:44px}
+.city-application.play-application button:has(>.control-icon){display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.city-application.play-application .control-icon{flex:none;vertical-align:middle}
+.city-application.play-application :focus-visible{outline:3px solid var(--paper-focus);outline-offset:3px}
+.city-application.play-application .icon-control{width:44px;min-width:44px;height:44px;min-height:44px;padding:10px;flex:none}
+.city-application.play-application .eyebrow,.city-application.play-application .paper-label{font-size:11px;line-height:1.45;letter-spacing:.075em}
+.city-application.play-application .small,.city-application.play-application .muted{font-size:13px!important}
+.city-application.play-application .city-hud{left:20px;right:20px;top:max(16px,env(safe-area-inset-top));display:flex;gap:10px;min-height:58px;padding:0;flex-wrap:nowrap}
+.city-application.play-application .hud-brand{gap:9px;margin-right:10px;flex:none;align-items:center}
+.city-application.play-application .hud-brand h1{font-size:29px;letter-spacing:-1px}
+.city-application.play-application .hud-brand>div>span{display:none}
+.city-application.play-application .brand-mark{width:40px;height:40px}
+.city-application.play-application .mode-control{display:flex;gap:3px;padding:3px;flex:none}
+.city-application.play-application .mode-control button{display:flex;align-items:center;gap:6px;font-size:13px;min-height:44px;padding:8px 12px}
+.city-application.play-application .hud-plan{display:grid;gap:0;margin-left:auto;min-width:68px;text-align:center;line-height:1.35;font-size:12px;text-shadow:none;color:var(--paper-muted)}
+.city-application.play-application .hud-plan b{font-size:17px;color:var(--paper-ink);white-space:nowrap}
+.city-application.play-application .treasury-toggle{display:flex;align-items:center;gap:8px;min-width:142px;padding:7px 12px;min-height:54px;text-align:left;white-space:nowrap;color:var(--paper-ink)}
+.city-application.play-application .treasury-toggle>span{display:grid;gap:0;font-size:12px;line-height:1.35}
+.city-application.play-application .treasury-toggle b{font:600 21px/1.3 var(--font-ui)}
+.city-application.play-application .treasury-toggle small{font-size:12px;font-weight:400;color:var(--paper-muted)}
+.city-application.play-application .city-hud .project-action{display:flex;align-items:center;gap:8px;background:var(--paper-action);color:var(--paper-card);border-color:var(--paper-action);min-height:54px;padding:12px 17px;font-size:15px}
+.city-application.play-application .city-hud .project-action:hover{background:var(--paper-action-hover)}
+.city-application.play-application .city-hud .hud-guide{display:flex;position:static;min-height:44px;min-width:44px;width:44px;height:44px;padding:10px;font-family:var(--font-ui)}
+.city-application.play-application .primary-navigation.paper-tabs{left:20px;bottom:max(16px,env(safe-area-inset-bottom));transform:none;width:auto;max-width:none;gap:4px;padding:4px}
+.city-application.play-application .primary-navigation.paper-tabs>button{display:flex;flex-direction:row;align-items:center;gap:8px;min-width:110px;min-height:48px;padding:10px 14px;font-size:14px;line-height:1.4}
+.city-application.play-application .primary-navigation.paper-tabs .control-icon{width:21px;height:21px}
+.city-application.play-application .alem-world .geographic-districts{display:none}
+.city-application.play-application .district-wayfinding{top:88px;left:calc(var(--context-width) + 40px);font-size:13px}
+.city-application.play-application[data-context=city] .district-wayfinding{left:20px}
+.city-application.play-application .alem-world .city-navigation{right:20px!important;top:auto;bottom:90px;display:flex;gap:6px;z-index:30}
+.city-application.play-application .city-navigation>.camera-main{display:flex;flex-direction:row;gap:5px}
+.city-application.play-application .alem-world .city-navigation button{width:44px;height:44px;min-width:44px;min-height:44px;padding:9px;border-color:var(--paper-line)}
+.city-application.play-application .alem-world .city-navigation .camera-orbit{width:44px;padding:9px}
+.city-application.play-application .camera-orbit>span{display:none}
+.city-application.play-application .city-navigation .camera-home{display:flex}
+.city-application.play-application .city-navigation .camera-mobile-zoom{display:none}
+.city-application.play-application .city-navigation>.camera-extras{position:absolute;right:0;bottom:50px;top:auto;gap:5px;width:auto;padding:5px}
+.city-application.play-application .alem-time{left:auto;right:20px;bottom:150px;max-width:260px;padding:9px 12px}
+.city-application.play-application .alem-time strong{font-size:13px}
+.city-application.play-application .alem-time small{font-size:12px}
+.city-application.play-application .landmark-atlas{left:auto;right:20px;top:88px;max-width:250px}
+.city-application.play-application .landmark-atlas summary{min-height:44px;font-size:13px;padding:9px 12px}
+.city-application.play-application .map-time-switch.paper-tabs{top:88px;left:auto;right:288px;gap:3px;padding:3px}
+.city-application.play-application .map-time-switch button{font-size:13px;min-height:44px;padding:8px 12px}
+.city-application.play-application .map-time-switch .comparison-resume{width:44px;padding:8px;display:grid;place-items:center}
+.city-application.play-application :is(.context-panel,.planning-drawer,.decision-deck,.consequence-card,.context-encounter,.alternative-overlay){position:absolute;left:var(--shell-side);right:auto;top:var(--shell-top);bottom:var(--shell-bottom);width:var(--context-width);max-width:calc(100vw - 40px);max-height:calc(100dvh - var(--shell-top) - var(--shell-bottom));height:fit-content;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scroll-padding:8px;padding:20px;margin:0;transform:none;z-index:36;visibility:visible}
+.city-application.play-application .context-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin:0 0 14px}
+.city-application.play-application .context-heading>div{min-width:0;flex:1}
+.city-application.play-application .context-heading h2{font:550 27px/1.23 var(--font-hand);margin:5px 0 0;overflow-wrap:anywhere}
+.city-application.play-application .context-heading h2:focus{outline:none}
+.city-application.play-application .context-heading button{margin:-6px -6px 0 0}
+.city-application.play-application .sheet-dismiss{position:absolute;right:12px;top:12px}
+.city-application.play-application .outcome-heading>h2,.city-application.play-application .outcome-heading>.eyebrow{padding-right:40px}
+/* Keep the proposal origin and its height on the same shell boundaries. */
+.city-application.play-application .planning-drawer.context-sheet{top:var(--shell-top);bottom:var(--shell-bottom);height:calc(100dvh - var(--shell-top) - var(--shell-bottom));max-height:calc(100dvh - var(--shell-top) - var(--shell-bottom));padding:20px}
+.city-application.play-application .planning-drawer:has(.compact-proposal)>.drawer-heading{right:14px;top:14px}
+.city-application.play-application .planning-drawer:has(.compact-proposal)>.drawer-heading>button{width:44px;height:44px;padding:10px}
+.city-application.play-application .catalogue-sheet.context-sheet{width:420px;top:var(--shell-top);bottom:var(--shell-bottom);padding:20px}
+.city-application.play-application .catalogue-sheet .project-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.city-application.play-application .catalogue-sheet .drawer-heading{position:static;align-items:flex-start;gap:8px;margin-bottom:16px}
+.city-application.play-application .catalogue-sheet .drawer-heading h2{font-size:27px;line-height:1.2;margin:5px 0}
+.city-application.play-application .catalogue-sheet .drawer-heading>button{min-width:44px;padding:10px}
+.city-application.play-application .catalogue-sheet .catalogue-heading{display:grid;gap:8px}
+.city-application.play-application .catalogue-heading select{width:100%;max-width:none;font-size:14px}
+.city-application.play-application .catalogue-sheet .project-choice{padding:10px;gap:8px}
+.city-application.play-application .catalogue-sheet .catalogue-project-name{flex-wrap:wrap}
+.city-application.play-application .catalogue-project-name strong{font-size:14px;min-width:85px}
+.city-application.play-application .catalogue-project-name>b{display:flex;gap:4px;align-items:baseline;font-size:20px;padding:3px 6px;margin-left:auto}
+.city-application.play-application .catalogue-sheet .project-choice-benefit,.city-application.play-application .catalogue-status{font-size:13px;line-height:1.5}
+.city-application.play-application .candidate>.field{display:flex!important;align-items:center;justify-content:space-between;gap:10px;margin:14px 0;font-size:14px;order:3}
+.city-application.play-application .candidate>.field select{font-size:14px;min-height:44px;width:170px;max-width:65%;padding:8px}
+.city-application.play-application .candidate>.proposal-citywide{display:block!important;font-size:14px;margin:12px 0;color:var(--paper-ink);order:3}
+.city-application.play-application .proposal-person{padding-right:40px}
+.city-application.play-application .proposal-person strong{font-size:14px}
+.city-application.play-application .proposal-person>div>span{font-size:12px;line-height:1.5}
+.city-application.play-application .proposal-person .resident-portrait{width:40px;height:44px}
+.city-application.play-application .proposal-person .proposal-price{margin-right:0;font-size:24px;padding:9px}
+.city-application.play-application .proposal-price small{font-size:12px}
+.city-application.play-application .candidate .proposal-project-title h3{font-size:27px;line-height:1.25}
+.city-application.play-application .candidate>.project-benefit{font-size:15px;line-height:1.6;margin:9px 0}
+.city-application.play-application .candidate>.compact-tradeoff{font-size:14px;line-height:1.5;margin:9px 0}
+.city-application.play-application .proposal-context-actions{gap:8px;margin:14px 0}
+.city-application.play-application .proposal-context-actions button{font-size:13px;min-height:44px;padding:8px}
+.city-application.play-application .proposal-context-actions button:last-child{min-width:0;flex:1}
+.city-application.play-application .proposal-confirmation{bottom:-20px;margin-top:14px;padding:14px 0 12px;box-shadow:0 4px 0 4px var(--paper-sheet);background:var(--paper-sheet)}
+.city-application.play-application .proposal-confirmation>span{font-size:14px;line-height:1.5;margin-bottom:10px}
+.city-application.play-application .proposal-confirmation .button-row{margin-inline:4px;align-items:stretch;gap:8px}
+.city-application.play-application .proposal-confirmation .button-row .primary{font-size:14px;min-height:48px;padding:10px 12px;line-height:1.45}
+.city-application.play-application .candidate .proposal-back{font-size:14px;min-height:48px;padding:10px}
+.city-application.play-application .proposal-catalogue-link{font-size:14px}
+.city-application.play-application .secondary-details,.city-application.play-application .proposal-details{font-size:14px;line-height:1.6;border-top:1px solid var(--paper-rule);margin:14px 0 0}
+.city-application.play-application .secondary-details>summary{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14px;min-height:44px;padding:10px 0;cursor:pointer;list-style:none;color:var(--paper-ink)}
+.city-application.play-application .secondary-details>summary::-webkit-details-marker{display:none}
+.city-application.play-application .secondary-details[open]>summary>.control-icon{transform:rotate(180deg)}
+.city-application.play-application .secondary-details>p{font-size:14px;line-height:1.6;margin:8px 0 14px}
+.city-application.play-application .secondary-details .effects-table{font-size:13px}
+.city-application.play-application .secondary-details .effects-table thead th{font-size:12px}
+.city-application.play-application .proposal-details .impact-chips{display:flex;gap:6px}
+.city-application.play-application .proposal-details .impact-chips>span{font-size:13px;padding:7px 9px}
+.city-application.play-application .treasury-balance{display:grid;gap:4px;padding:18px;border:1px solid var(--paper-rule);background:var(--paper-tint)}
+.city-application.play-application .treasury-balance>span{font-size:14px;color:var(--paper-muted)}
+.city-application.play-application .treasury-balance strong{font:600 44px/1.2 var(--font-hand);font-variant-numeric:tabular-nums}
+.city-application.play-application .treasury-balance small{font:400 14px var(--font-ui);color:var(--paper-muted)}
+.city-application.play-application .treasury-ledger{margin:14px 0;display:grid;gap:7px}
+.city-application.play-application .treasury-ledger>div{display:flex;justify-content:space-between;gap:12px;font-size:14px}
+.city-application.play-application .treasury-ledger b{font-variant-numeric:tabular-nums}
+.city-application.play-application .treasury-note{font-size:13px;color:var(--paper-muted);margin:10px 0 20px}
+.city-application.play-application .section-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.city-application.play-application .section-heading h3{font-size:16px;margin:8px 0}
+.city-application.play-application .section-heading>span{font-size:14px;color:var(--paper-muted)}
+.city-application.play-application :is(.treasury-plan,.program-locations ul){list-style:none;padding:0;margin:10px 0;display:grid;gap:8px}
+.city-application.play-application :is(.treasury-plan,.program-locations) li>button{display:flex;align-items:center;text-align:left;width:100%;gap:10px;padding:11px;background:var(--paper-card);border-color:var(--paper-rule);font-size:14px}
+.city-application.play-application :is(.treasury-plan,.program-locations) li>button>span{flex:1;min-width:0;display:grid;gap:4px;line-height:1.4}
+.city-application.play-application :is(.treasury-plan,.program-locations) li strong{font-size:14px;font-weight:600;overflow-wrap:anywhere}
+.city-application.play-application :is(.treasury-plan,.program-locations) li small{display:block;font-size:12px;font-weight:400;color:var(--paper-muted)}
+.city-application.play-application .treasury-plan li b{font-size:18px;line-height:1.4;white-space:nowrap}
+.city-application.play-application .empty-plan{font-size:15px;color:var(--paper-muted);line-height:1.6}
+.city-application.play-application .sheet-primary-action{position:sticky;bottom:-20px;padding:12px 0;background:var(--paper-sheet);margin-top:12px}
+.city-application.play-application .sheet-primary-action>button{width:100%;min-height:48px;font-size:15px}
+.city-application.play-application .inspection-meta{display:flex;align-items:flex-start;gap:12px;justify-content:space-between;font-size:13px;color:var(--paper-muted)}
+.city-application.play-application .inspection-meta>span{display:flex;align-items:flex-start;gap:6px;min-width:0;line-height:1.5}
+.city-application.play-application .inspection-meta b{white-space:nowrap;color:var(--paper-ink);font-weight:500}
+.city-application.play-application .program-inspection>p{font-size:15px;line-height:1.6;margin:14px 0}
+.city-application.play-application .program-locations button.all-locations{width:100%;justify-content:flex-start;min-height:44px;font-size:14px}
+.city-application.play-application .consequence-actions{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:8px;position:static}
+.city-application.play-application .consequence-actions button{font-size:14px;min-height:44px;padding:10px;line-height:1.4}
+.city-application.play-application .consequence-actions button:first-child{grid-column:1/-1;min-width:0}
+.city-application.play-application .result-invitation{position:absolute;left:20px;bottom:88px;z-index:36;display:flex;align-items:center;gap:2px;width:380px;max-width:calc(100vw - 40px);padding:6px}
+.city-application.play-application .result-invitation-open{display:flex;align-items:center;gap:10px;flex:1;min-width:0;text-align:left;border:0;box-shadow:none;background:none;padding:8px}
+.city-application.play-application .result-invitation-open>span{flex:1;display:grid;gap:3px;min-width:0}
+.city-application.play-application .result-invitation-open strong{font-size:15px;font-weight:600}
+.city-application.play-application .result-invitation-open small{font-size:13px;color:var(--paper-muted);line-height:1.4}
+.city-application.play-application .decision-deck .choice-cards{gap:10px;margin-top:14px}
+.city-application.play-application .decision-deck .need-person strong{font-size:15px}
+.city-application.play-application .decision-deck .need-person small{font-size:13px}
+.city-application.play-application .decision-deck .need-quote{font-size:15px;line-height:1.6}
+.city-application.play-application .decision-deck .need-project{font-size:14px;min-height:44px}
+.city-application.play-application .decision-deck>footer button{font-size:14px;min-height:44px}
+.city-application.play-application .context-encounter{padding:0}
+.city-application.play-application .context-encounter .resident-encounter{padding:20px}
+.city-application.play-application .context-encounter :is(.resident-speech,.resident-question-answer,.resident-limit,.conversation-context){font-size:14px;line-height:1.6}
+.city-application.play-application .context-encounter :is(.resident-questions button,.conversation-place button){font-size:14px;min-height:44px}
+.city-application.play-application .outcome-sheet{height:calc(100dvh - var(--shell-top) - var(--shell-bottom));padding:20px}
+.city-application.play-application .outcome-sheet :is(.outcome-actions button,.outcome-primary-action>.primary){font-size:14px;min-height:44px}
+.city-application.play-application .outcome-person small,.city-application.play-application .result-score>span{font-size:13px}
+.city-application.play-application .alternative-overlay{height:calc(100dvh - var(--shell-top) - var(--shell-bottom));padding:0;background:none;border:0}
+.city-application.play-application .aya-assistant{right:20px;bottom:16px;top:auto}
+.city-application.play-application .aya-assistant.is-open{left:20px;right:auto;top:var(--shell-top);bottom:var(--shell-bottom);width:var(--context-width)}
+.city-application.play-application .aya-assistant.is-open .aya-entry{display:none}
+.city-application.play-application .aya-dialogue{width:100%;max-width:none;height:100%;min-height:0;margin:0;animation:none}
+.city-application.play-application .aya-entry{min-height:52px;min-width:100px;padding:4px 12px 4px 5px;gap:7px}
+.city-application.play-application .aya-entry .aya-cloud{width:40px;height:40px}
+.city-application.play-application .aya-entry-label strong{font-size:15px}
+.city-application.play-application .aya-entry-label small{font-size:12px}
+.city-application.play-application .aya-dialogue-header{padding:12px;gap:8px}
+.city-application.play-application .aya-dialogue-header .aya-cloud{width:44px;height:44px}
+.city-application.play-application .aya-assistant :is(.aya-icon-button,.aya-clear-context){width:44px;height:44px;min-width:44px;min-height:44px;padding:10px}
+.city-application.play-application .aya-dialogue-header p{font-size:13px}
+.city-application.play-application .aya-context-card{padding:12px;max-height:110px;overflow:auto}
+.city-application.play-application .aya-context-card>span,.city-application.play-application .aya-message-author{font-size:11px}
+.city-application.play-application .aya-context-card :is(strong,p){font-size:13px}
+.city-application.play-application .aya-message{font-size:14px;line-height:1.6;padding:12px;margin-right:0}
+.city-application.play-application .aya-suggestions button,.city-application.play-application .aya-districts button{font-size:13px;min-height:44px;padding:8px 10px}
+.city-application.play-application .aya-control-row{min-height:44px;gap:8px;padding:0 12px 5px}
+.city-application.play-application .aya-control-row :is(button,span){font-size:12px}
+.city-application.play-application .aya-control-row button{min-height:44px}
+.city-application.play-application .aya-composer textarea{font-size:15px}
+.city-application.play-application .aya-composer button{width:44px;height:44px;min-width:44px;min-height:44px;padding:10px}
+.city-application.play-application .aya-chat-note{font-size:12px;line-height:1.45;padding:8px 12px;margin:0}
+.city-application.play-application .product-space{top:var(--shell-top);bottom:var(--shell-bottom);left:20px;right:20px;border:1px solid var(--paper-line);border-radius:var(--paper-edge);background:var(--paper-sheet)}
+.city-application.play-application .dash-shell{font-size:15px;padding:24px}
+.city-application.play-application .dash-shell :is(p,.dash-actions button,.dash-tabs button,.dash-stats span,.dash-district,.dash-plan-list article,.dash-amendments label,.dash-speech,.dash-registry-list article){font-size:14px;line-height:1.6}
+.city-application.play-application .dash-shell :is(.dash-eyebrow,.dash-topline,.dash-impact-chips span,.dash-members article>span,.dash-speech-meta,.dash-registry-list small){font-size:12px;line-height:1.5}
+.city-application.play-application .dash-shell button,.city-application.play-application .dash-tabs button{min-height:44px}
+.city-application.play-application .dash-full-details>summary{font-size:15px;min-height:48px}
+.city-application.play-application .dash-full-details>summary>span{font-size:12px}
+.city-application.play-application .residents-space :is(p,button,.living-appeal-row,.street-words,.street-effect,.living-reader-meta){font-size:14px;line-height:1.6}
+.city-application.play-application .residents-space :is(small,.street-person-role,.street-person-place){font-size:12px;line-height:1.5}
+.city-application.play-application .residents-space button{min-height:44px}
+.city-application.play-application .game-dialog :is(p,.game-guide-steps strong,.game-guide-steps p,.game-guide-formula,.game-guide-formula summary){font-size:14px;line-height:1.6}
+.city-application.play-application .game-dialog .game-guide-note{font-size:13px}
+.city-application.play-application .game-dialog header button{width:44px;min-width:44px;height:44px;min-height:44px;padding:10px}
+.city-application.play-application .game-dialog footer button{font-size:14px;min-height:48px}
+.city-application.play-application .city-notice{left:auto;right:20px;bottom:230px;width:350px;max-width:calc(100vw - 40px);font-size:14px;line-height:1.5}
+.city-application.play-application .city-notice>button{flex:none;width:44px;min-width:44px;min-height:44px;padding:10px}
+.city-application.play-application .map-loading{font-size:14px;padding:12px 16px;max-width:calc(100vw - 40px)}
+.city-application.play-application .world-failure{inset:var(--shell-top) 20px var(--shell-bottom);margin:0 0 0 420px;max-width:none;max-height:none;padding:18px}
+.city-application.play-application[data-context=city] .world-failure{margin-left:0}
+.city-application.play-application .world-failure>.notice{font-size:14px;line-height:1.6;margin:0 0 16px;padding:0}
+.city-application.play-application .retry-world{left:auto;right:20px;top:88px;font-size:14px;max-width:calc(100vw - 40px)}
+@media(max-width:1000px) and (min-width:801px){
+ .city-application.play-application .hud-brand .brand-mark{display:none}
+ .city-application.play-application .mode-control button{padding-inline:9px}
+ .city-application.play-application .city-hud{gap:7px}
+ .city-application.play-application .hud-brand{margin-right:0}
+ .city-application.play-application .treasury-toggle{min-width:122px}
+ .city-application.play-application .city-hud .project-action{padding-inline:12px}
+}
+@media(max-width:800px){
+ .city-application.play-application{--shell-top:126px;--shell-bottom:78px;--shell-side:10px;--context-width:calc(100vw - 20px)}
+ .city-application.play-application .city-hud{top:max(10px,env(safe-area-inset-top));left:10px;right:10px;display:grid;grid-template-columns:1fr auto auto;grid-template-rows:44px 48px;gap:6px;align-items:stretch;padding:0;min-height:0}
+ .city-application.play-application .hud-brand{grid-column:1;grid-row:1;margin:0;gap:7px;min-width:0}
+ .city-application.play-application .hud-brand h1{font-size:26px}
+ .city-application.play-application .brand-mark{width:32px;height:32px}
+ .city-application.play-application .mode-control{grid-column:2 / 4;grid-row:1;justify-self:end;padding:0;gap:3px;align-self:center;margin:0}
+ .city-application.play-application .mode-control button{min-height:44px;padding:7px 9px;font-size:12px;gap:4px}
+ .city-application.play-application .mode-control button>.control-icon{width:17px;height:17px}
+ .city-application.play-application .hud-plan{display:grid!important;grid-column:1;grid-row:2;margin:0;justify-content:start;align-content:center;gap:0;min-width:0;text-align:left;padding-left:3px;font-size:12px}
+ .city-application.play-application .hud-plan b{font-size:17px}
+ .city-application.play-application .treasury-toggle{grid-column:2;grid-row:2;position:static;width:auto;min-width:116px;max-width:none;min-height:48px;padding:5px 10px;gap:6px;border-radius:var(--paper-edge)}
+ .city-application.play-application .treasury-toggle>span{font-size:11px}
+ .city-application.play-application .treasury-toggle b{font-size:19px}
+ .city-application.play-application .treasury-toggle small{display:inline;font-size:11px}
+ .city-application.play-application .city-hud .project-action{grid-column:3;grid-row:2;min-height:48px;padding:8px 10px;gap:6px;font-size:13px}
+ .city-application.play-application .project-action>.control-icon{width:19px;height:19px}
+ .city-application.play-application .city-hud .hud-guide{position:fixed;right:10px;top:122px;z-index:45}
+ .city-application.play-application .primary-navigation.paper-tabs{left:10px;right:auto;bottom:max(10px,env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:calc(100vw - 86px);max-width:none;padding:3px;gap:2px}
+ .city-application.play-application .primary-navigation.paper-tabs>button{min-width:0;min-height:48px;padding:5px 3px;display:flex;flex-direction:column;gap:2px;font-size:12px;line-height:1.4;white-space:nowrap}
+ .city-application.play-application .primary-navigation.paper-tabs .control-icon{width:19px;height:19px}
+ .city-application.play-application .alem-world .city-navigation{top:174px;bottom:auto;right:10px!important;gap:4px;z-index:30}
+ .city-application.play-application .city-navigation>.camera-main{flex-direction:column;gap:4px}
+ .city-application.play-application .city-navigation .camera-primary-zoom{display:none}
+ .city-application.play-application .city-navigation .camera-mobile-zoom{display:flex}
+ .city-application.play-application .city-navigation>.camera-extras{right:50px;top:0;bottom:auto;width:96px;display:grid;grid-template-columns:44px 44px;gap:4px}
+ .city-application.play-application .city-navigation>.camera-extras[hidden]{display:none}
+ .city-application.play-application .alem-time{display:none}
+ .city-application.play-application .landmark-atlas{left:10px;right:auto;top:122px;max-width:210px}
+ .city-application.play-application .map-time-switch.paper-tabs{top:170px;left:10px;right:auto}
+ .city-application.play-application .map-time-switch button{font-size:12px;padding:7px 9px;min-height:44px}
+ .city-application.play-application .district-wayfinding,.city-application.play-application[data-context=city] .district-wayfinding{left:10px;top:170px;right:64px;transform:none;max-width:calc(100vw - 74px);font-size:13px}
+ .city-application.play-application:has(.map-time-switch) .district-wayfinding{top:220px}
+ .city-application.play-application :is(.context-panel,.planning-drawer,.decision-deck,.consequence-card,.context-encounter,.alternative-overlay){left:10px;right:10px;top:auto;bottom:78px;width:calc(100vw - 20px);max-width:none;height:auto;max-height:min(53dvh,calc(100dvh - 252px));padding:16px;border-radius:var(--paper-edge);overflow:auto;scroll-padding:8px}
+ .city-application.play-application .context-panel,.city-application.play-application .planning-drawer.context-sheet.catalogue-sheet,.city-application.play-application .outcome-sheet,.city-application.play-application .alternative-overlay{max-height:calc(100dvh - 220px)}
+ .city-application.play-application .planning-drawer.context-sheet.catalogue-sheet{padding:16px;width:calc(100vw - 20px);height:calc(100dvh - 220px)}
+ .city-application.play-application .planning-drawer.context-sheet:has(.compact-proposal){display:flex;flex-direction:column;height:min(58dvh,calc(100dvh - 228px));max-height:min(58dvh,calc(100dvh - 228px));padding:12px 16px 0;overflow:hidden}
+ .city-application.play-application .planning-drawer.context-sheet.sheet-expanded:has(.compact-proposal){height:calc(100dvh - 218px);max-height:calc(100dvh - 218px)}
+ .city-application.play-application .sheet-toggle{display:block;min-height:32px;font-size:12px;padding:3px 6px;margin:0 32px 4px;align-self:center;flex-shrink:0}
+ .city-application.play-application .sheet-toggle::before{height:3px;width:32px;margin-bottom:5px}
+ .city-application.play-application .planning-drawer:has(.compact-proposal)>.drawer-heading{right:8px;top:6px}
+ .city-application.play-application .planning-drawer:has(.compact-proposal) .project-dock{min-height:0;flex:1;display:flex;flex-direction:column}
+ .city-application.play-application .planning-drawer:has(.compact-proposal) .candidate{min-height:0;flex:1;display:flex;flex-direction:column;overflow:auto;padding:2px 3px 0;scroll-padding:8px}
+ .city-application.play-application .planning-drawer.context-sheet:not(.sheet-expanded) .candidate>*{order:6;flex-shrink:0}
+ .city-application.play-application .planning-drawer.context-sheet:not(.sheet-expanded) .proposal-person{order:0;display:none}
+ .city-application.play-application .planning-drawer.context-sheet:not(.sheet-expanded) .proposal-project-title{order:1;margin:3px 0 7px}
+ .city-application.play-application .planning-drawer.context-sheet:not(.sheet-expanded) .proposal-project-title h3{font-size:23px;line-height:1.25}
+ .city-application.play-application .planning-drawer.context-sheet:not(.sheet-expanded) .project-benefit{order:2;font-size:14px;line-height:1.5;margin:4px 0}
+ .city-application.play-application .planning-drawer.context-sheet:not(.sheet-expanded) .compact-tradeoff{order:3;font-size:13px;line-height:1.5;margin:5px 0}
+ .city-application.play-application .planning-drawer.context-sheet:not(.sheet-expanded) :is(.field,.proposal-citywide){order:4;font-size:13px;margin:7px 0}
+ .city-application.play-application .planning-drawer.context-sheet:not(.sheet-expanded) .proposal-context-actions{order:7;display:none}
+ .city-application.play-application .planning-drawer.context-sheet:not(.sheet-expanded) .proposal-confirmation{order:5;position:sticky;bottom:0;margin-top:8px;padding:8px 0 12px;background:var(--paper-sheet)}
+ .city-application.play-application .planning-drawer.context-sheet:not(.sheet-expanded) .proposal-details{display:none}
+ .city-application.play-application .proposal-confirmation>span{font-size:13px;margin-bottom:7px}
+ .city-application.play-application .proposal-confirmation .button-row{gap:7px;margin-inline:4px}
+ .city-application.play-application .proposal-confirmation .button-row .primary{font-size:13px;line-height:1.4;min-height:48px;padding:9px}
+ .city-application.play-application .candidate .proposal-back{font-size:13px;min-width:54px;min-height:48px;padding:9px}
+ .city-application.play-application .proposal-confirmation{bottom:0}
+ .city-application.play-application .proposal-person{padding-right:26px;margin:5px 0 8px}
+ .city-application.play-application .proposal-person strong{font-size:14px}
+ .city-application.play-application .proposal-person .proposal-price{font-size:22px}
+ .city-application.play-application .context-heading h2{font-size:25px}
+ .city-application.play-application .context-heading{margin-bottom:12px}
+ .city-application.play-application .context-heading button{margin:-6px -6px 0 0}
+ .city-application.play-application .decision-deck .choice-cards{display:flex;overflow:auto;gap:10px;scroll-snap-type:x mandatory;margin:12px 0 0;padding-bottom:4px}
+ .city-application.play-application .decision-deck .need-card{flex:0 0 94%;padding:12px 12px 0}
+ .city-application.play-application .decision-deck .need-quote{font-size:14px;margin:8px 0}
+ .city-application.play-application .decision-deck .need-project{margin:0 -12px;padding:8px 12px}
+ .city-application.play-application .decision-deck>footer{display:flex;gap:6px;flex-wrap:wrap}
+ .city-application.play-application .decision-deck>footer button{font-size:13px;min-height:44px;padding:8px 4px}
+ .city-application.play-application .context-encounter{padding:0}
+ .city-application.play-application .context-encounter .resident-encounter{padding:16px}
+ .city-application.play-application .program-inspection{max-height:min(52dvh,calc(100dvh - 238px))}
+ .city-application.play-application .program-inspection .consequence-actions{position:sticky;bottom:-16px;padding:10px 0 16px;margin-bottom:-16px;background:var(--paper-sheet);z-index:3}
+ .city-application.play-application .consequence-actions button{font-size:13px;padding:9px}
+ .city-application.play-application .sheet-primary-action{bottom:-16px;padding:10px 0 16px}
+ .city-application.play-application .treasury-sheet{height:calc(100dvh - 218px);max-height:calc(100dvh - 218px)}
+ .city-application.play-application .treasury-balance{padding:14px}
+ .city-application.play-application .treasury-balance strong{font-size:36px}
+ .city-application.play-application .result-invitation{left:10px;bottom:78px;width:calc(100vw - 20px);max-width:none;padding:4px}
+ .city-application.play-application .result-invitation-open{padding:8px;gap:8px}
+ .city-application.play-application .result-invitation-open strong{font-size:14px}
+ .city-application.play-application .result-invitation-open small{font-size:12px}
+ .city-application.play-application .aya-assistant,.city-application.play-application:not([data-demo=off]) .aya-assistant:not(.is-open){right:10px;left:auto;bottom:max(10px,env(safe-area-inset-bottom));top:auto}
+ .city-application.play-application .aya-entry{width:60px;min-width:60px;height:56px;min-height:56px;padding:3px;justify-content:center}
+ .city-application.play-application .aya-entry .aya-cloud{width:42px;height:42px}
+ .city-application.play-application .aya-entry-label{display:none}
+ .city-application.play-application .aya-assistant.is-open{left:10px;right:10px;top:auto;bottom:78px;width:calc(100vw - 20px);height:calc(100dvh - 218px)}
+ .city-application.play-application .aya-assistant.is-open .aya-dialogue{height:100%;margin:0}
+ .city-application.play-application .aya-chat-log{padding:12px;min-height:60px}
+ .city-application.play-application .aya-context-card{max-height:88px;padding:9px 12px}
+ .city-application.play-application .aya-dialogue-header{padding:9px 12px}
+ .city-application.play-application .aya-dialogue-header .aya-cloud{width:36px;height:36px}
+ .city-application.play-application .aya-control-row>span{display:none}
+ .city-application.play-application .aya-chat-note{font-size:11px;padding:5px 12px}
+ .city-application.play-application .product-space{top:126px;left:10px;right:10px;bottom:78px;border-radius:var(--paper-edge)}
+ .city-application.play-application .dash-shell{padding:16px}
+ .city-application.play-application .dash-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+ .city-application.play-application .dash-tabs button{min-height:44px;font-size:13px;padding:8px}
+ .city-application.play-application .dash-actions button{font-size:13px;min-height:44px;padding:9px}
+ .city-application.play-application .dash-hero h2{font-size:28px}
+ .city-application.play-application .dash-panel{padding:16px}
+ .city-application.play-application .residents-space{overflow:auto}
+ .city-application.play-application .street-conversation{max-height:none;padding:16px}
+ .city-application.play-application .street-primary{min-height:48px}
+ .city-application.play-application .game-dialog-content{padding:20px 16px}
+ .city-application.play-application .game-dialog header h2{font-size:25px}
+ .city-application.play-application .world-failure{inset:170px 10px 78px;margin:0;padding:14px;max-width:none}
+ .city-application.play-application .world-failure>.notice{margin:0 0 12px;padding:0;font-size:14px}
+ .city-application.play-application .retry-world{left:10px;right:auto;top:120px;width:calc(100vw - 74px);max-width:none}
+ .city-application.play-application:has(.world-failure) :is(.planning-drawer.context-sheet,.context-encounter,.decision-deck,.consequence-card,.alternative-overlay){max-height:calc(100dvh - 270px)}
+ .city-application.play-application:has(.world-failure) .planning-drawer.context-sheet:has(.compact-proposal){height:calc(100dvh - 270px);max-height:calc(100dvh - 270px)}
+ .city-application.play-application:has(.world-failure) .planning-drawer.context-sheet.sheet-expanded:has(.compact-proposal){height:calc(100dvh - 240px);max-height:calc(100dvh - 240px)}
+ .city-application.play-application .city-notice{right:10px;left:10px;bottom:78px;width:auto;max-width:none;font-size:13px}
+}
+@media(max-width:380px){
+ .city-application.play-application .mode-control button{padding:7px 7px;font-size:11px}
+ .city-application.play-application .mode-control button>.control-icon{display:none}
+ .city-application.play-application .city-hud{grid-template-columns:minmax(62px,1fr) auto auto;gap:5px}
+ .city-application.play-application .treasury-toggle{min-width:108px;padding-inline:8px}
+ .city-application.play-application .city-hud .project-action{padding-inline:8px;font-size:12px}
+ .city-application.play-application .catalogue-sheet .project-list{grid-template-columns:1fr}
+ .city-application.play-application .catalogue-sheet .project-choice{display:grid;grid-template-columns:100px 1fr;padding:10px;gap:10px}
+ .city-application.play-application .catalogue-sheet .catalogue-preview{width:100px;grid-row:1/4;align-self:center}
+ .city-application.play-application .catalogue-sheet .catalogue-project-name{grid-column:2;gap:5px}
+ .city-application.play-application .catalogue-sheet .catalogue-project-name>.project-glyph{display:none}
+ .city-application.play-application .catalogue-sheet .project-choice-benefit,.city-application.play-application .catalogue-sheet .catalogue-status{grid-column:2}
+}
+@media(max-height:500px) and (max-width:900px){
+ .city-application.play-application{--shell-top:64px;--shell-bottom:68px;--context-width:min(350px,calc(100vw - 160px))}
+ .city-application.play-application .city-hud{display:flex;gap:6px;top:8px;left:10px;right:10px;height:50px;min-height:50px}
+ .city-application.play-application .hud-brand{margin:0}.city-application.play-application .brand-mark{display:none}
+ .city-application.play-application .hud-brand h1{font-size:24px}
+ .city-application.play-application .mode-control{margin-right:auto}
+ .city-application.play-application .mode-control button{padding-inline:7px;font-size:11px}
+ .city-application.play-application .mode-control button>.control-icon{display:none}
+ .city-application.play-application .hud-plan{display:none!important}
+ .city-application.play-application .treasury-toggle{min-width:96px;min-height:44px;padding:4px 8px}
+ .city-application.play-application .treasury-toggle .control-icon{display:none}
+ .city-application.play-application .city-hud .project-action{min-height:44px;font-size:12px;padding:7px 8px}
+ .city-application.play-application .city-hud .hud-guide{display:none}
+ .city-application.play-application :is(.context-panel,.planning-drawer,.decision-deck,.consequence-card,.context-encounter,.alternative-overlay){left:10px;top:var(--shell-top);right:auto;bottom:var(--shell-bottom);width:var(--context-width);height:calc(100dvh - var(--shell-top) - var(--shell-bottom));max-height:calc(100dvh - var(--shell-top) - var(--shell-bottom));padding:14px}
+ .city-application.play-application .planning-drawer.context-sheet:has(.compact-proposal),.city-application.play-application .planning-drawer.context-sheet.sheet-expanded:has(.compact-proposal){height:calc(100dvh - var(--shell-top) - var(--shell-bottom));max-height:calc(100dvh - var(--shell-top) - var(--shell-bottom));padding:10px 14px 0}
+ .city-application.play-application .context-encounter{padding:0}
+ .city-application.play-application .catalogue-sheet.context-sheet{width:var(--context-width);height:calc(100dvh - 148px);max-height:calc(100dvh - 148px)}
+ .city-application.play-application .catalogue-sheet .project-list{grid-template-columns:1fr}
+ .city-application.play-application .aya-assistant.is-open{left:10px;right:auto;top:76px;bottom:72px;width:var(--context-width);height:calc(100dvh - 148px)}
+ .city-application.play-application .aya-context-card,.city-application.play-application .aya-chat-note{display:none}
+ .city-application.play-application .aya-dialogue-header{padding:5px 9px}
+ .city-application.play-application .aya-dialogue-header .aya-cloud{display:none}
+ .city-application.play-application .aya-suggestions{padding-bottom:4px}
+ .city-application.play-application .aya-control-row{padding-bottom:0}
+ .city-application.play-application .aya-composer{margin-bottom:8px}
+ .city-application.play-application .primary-navigation.paper-tabs{width:350px;max-width:calc(100vw - 100px);left:10px}
+ .city-application.play-application .primary-navigation.paper-tabs>button{flex-direction:row;gap:7px;font-size:12px;min-height:44px}
+ .city-application.play-application .alem-world .city-navigation{top:76px;right:10px!important;bottom:auto}
+ .city-application.play-application .landmark-atlas{left:auto;right:66px;top:76px}
+ .city-application.play-application .map-time-switch.paper-tabs{top:126px;left:auto;right:66px}
+ .city-application.play-application .district-wayfinding{left:calc(var(--context-width) + 25px);right:64px;top:176px;font-size:12px}
+ .city-application.play-application .result-invitation{left:10px;bottom:72px;width:350px;max-width:calc(100vw - 150px)}
+ .city-application.play-application .product-space{top:70px;bottom:72px;left:10px;right:10px}
+ .city-application.play-application .world-failure{top:122px;bottom:72px}
+ .city-application.play-application .retry-world{top:70px;left:auto;right:66px;width:250px}
+ .city-application.play-application:has(.world-failure) :is(.planning-drawer.context-sheet,.context-encounter,.decision-deck,.consequence-card,.alternative-overlay),.city-application.play-application:has(.world-failure) .planning-drawer.context-sheet:has(.compact-proposal){height:calc(100dvh - 148px);max-height:calc(100dvh - 148px)}
+}
+
+@media(max-width:800px){
+ .city-application.play-application:not([data-context=city]) .city-hud .hud-guide{display:none}
+ .city-application.play-application:is([data-context=treasury],[data-context=catalogue],[data-context=proposal],[data-context=aya],[data-context=result]) :is(.landmark-atlas,.map-time-switch){display:none}
+}
+
+.city-application.play-application .hud-budget-amount{display:flex;align-items:baseline;gap:3px}
+.city-application.play-application .proposal-project-title>div{min-width:0;flex:1}
+.city-application.play-application .proposal-fixed-price{display:grid;gap:3px;align-self:flex-start;padding:8px 9px;margin-top:5px;font:600 25px/1.2 var(--font-ui);white-space:nowrap}
+.city-application.play-application .proposal-fixed-price small{font-size:12px;font-weight:400;text-align:center}
+.city-application.play-application .catalogue-sheet .project-choice-benefit{display:block}
+@media(max-width:800px){
+ .city-application.play-application .planning-drawer.context-sheet:not(.sheet-expanded) .replacement-summary{order:4;margin:6px 0;font-size:13px}
+ .city-application.play-application .planning-drawer.context-sheet:not(.sheet-expanded) :is(.proposal-catalogue-link,.remove-commitment,.try-future){display:none}
+ .city-application.play-application .planning-drawer.context-sheet:not(.sheet-expanded) .proposal-project-title{padding-right:0}
+ .city-application.play-application .proposal-fixed-price{font-size:22px;padding:6px 8px}
+}
+
+@media(max-width:800px) and (min-height:501px){
+ .city-application.play-application:not([data-context=city]) .alem-world .city-navigation{top:122px}
+ .city-application.play-application:not([data-context=city]) .city-navigation>.camera-main{flex-direction:row}
+ .city-application.play-application:is([data-context=treasury],[data-context=catalogue],[data-context=aya],[data-context=result],[data-context=book],[data-context=comparison]) .city-navigation{display:none}
+}
+@media(max-width:800px) and (min-height:501px) and (max-height:690px){
+ /* Keep the inspected place clear below the HUD; compare above the result invitation. */
+ .city-application.play-application[data-context=city] .map-time-switch.paper-tabs{top:auto;bottom:calc(var(--shell-bottom) + 86px);left:10px;right:auto}
+}
+@media(max-height:500px) and (max-width:900px){
+ .city-application.play-application .planning-drawer.context-sheet:has(.compact-proposal),
+ .city-application.play-application .planning-drawer.context-sheet.sheet-expanded:has(.compact-proposal){left:10px;right:auto;width:var(--context-width);max-width:var(--context-width)}
+ .city-application.play-application .planning-drawer.context-sheet:not(.sheet-expanded) .proposal-project-title h3{font-size:20px;line-height:1.2}
+ .city-application.play-application .planning-drawer.context-sheet:not(.sheet-expanded) .sheet-toggle{min-height:28px;padding:0 5px;margin-bottom:2px}
+ .city-application.play-application .proposal-fixed-price{font-size:20px;padding:4px 6px;margin-top:0}
+}
+/* The resident book is a conversation in the map, with its picker in the same sheet. */
+.city-application.play-application .product-space.residents-space{inset:0;border:0;border-radius:0;background:transparent;overflow:hidden;pointer-events:none}
+.city-application.play-application .residents-space .street-conversation{left:20px;right:auto;top:100px;bottom:88px;width:380px;height:fit-content;max-height:calc(100dvh - 188px);padding:20px}
+.city-application.play-application .street-conversation .street-topline{position:static;display:flex;align-items:center;flex-wrap:wrap;gap:8px;max-width:none;color:var(--paper-ink);text-shadow:none;margin-bottom:14px}
+.city-application.play-application .street-topline .eyebrow{display:none}
+.city-application.play-application .street-topline h2{font-size:20px;margin:0;flex:1}
+.city-application.play-application .street-topline button{font-size:13px;min-height:44px;color:var(--paper-action);padding:7px}
+.city-application.play-application .street-conversation .street-roster{position:static;display:flex;align-items:center;gap:6px;width:auto;margin:14px 0;padding:8px 0;border:0;border-top:1px solid var(--paper-rule);border-bottom:1px solid var(--paper-rule);background:none;box-shadow:none;backdrop-filter:none}
+.city-application.play-application .street-roster>header{order:2;padding:0;margin-left:auto}
+.city-application.play-application .street-roster>header>span{display:none}
+.city-application.play-application .street-roster>header>button{width:44px;min-width:44px;min-height:44px;padding:9px}
+.city-application.play-application .street-roster>div{display:flex;gap:6px;flex:1;justify-content:space-between}
+.city-application.play-application .street-roster>div>button{min-width:44px;min-height:48px;padding:4px}
+.city-application.play-application .street-roster button>span{display:none}
+.city-application.play-application .street-roster .resident-portrait{width:36px;height:40px}
+.city-application.play-application .street-tabs button{font-size:13px;min-height:44px;padding:8px 5px}
+.city-application.play-application .street-details>summary{font-size:14px;min-height:44px}
+.city-application.play-application .street-primary{position:sticky;bottom:-20px;padding:11px;min-height:48px;font-size:14px;box-shadow:0 4px 0 4px var(--paper-sheet);z-index:3}
+.city-application.play-application .street-primary>b{font-size:13px}
+@media(max-width:800px){
+ .city-application.play-application .residents-space .street-conversation{left:10px;right:10px;top:auto;bottom:78px;width:auto;max-height:min(56dvh,calc(100dvh - 234px));padding:16px}
+ .city-application.play-application .street-primary{bottom:0}
+ .city-application.play-application .street-conversation>header>div>span{display:block;font-size:12px}
+ .city-application.play-application .street-conversation>header small{font-size:12px}
+ .city-application.play-application .street-topline h2{font-size:18px}
+ .city-application.play-application .street-topline button{font-size:12px}
+}
+@media(max-height:500px) and (max-width:900px){
+ .city-application.play-application .residents-space .street-conversation{left:10px;right:auto;top:76px;bottom:72px;width:var(--context-width);height:calc(100dvh - 148px);max-height:calc(100dvh - 148px);padding:14px}
+ .city-application.play-application .street-primary{position:static}
+}
+
+/* Inspection keeps its title and actions outside the scrolling location body. */
+.city-application.play-application .program-inspection{display:flex;flex-direction:column;overflow:hidden}
+.city-application.play-application .program-inspection>.context-heading{flex-shrink:0}
+.city-application.play-application .program-inspection>.inspection-body{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scroll-padding:8px;padding:0 2px}
+.city-application.play-application .program-inspection .inspection-body>p{font-size:15px;line-height:1.6;margin:14px 0}
+.city-application.play-application .program-inspection>.consequence-actions{position:static;flex-shrink:0;padding:12px 0 0;margin:12px 0 0;border-top:1px solid var(--paper-rule);background:var(--paper-sheet)}
+@media(max-width:800px) and (min-height:501px){
+ .city-application.play-application .program-inspection.context-panel{max-height:min(44dvh,calc(100dvh - 238px));padding:12px 14px}
+ .city-application.play-application .program-inspection>.context-heading{margin-bottom:8px}
+ .city-application.play-application .program-inspection>.context-heading h2{font-size:22px;line-height:1.25}
+ .city-application.play-application .program-inspection>.consequence-actions{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding-top:8px;margin-top:8px}
+ .city-application.play-application .program-inspection>.consequence-actions>button:first-child{grid-column:auto}
+ .city-application.play-application .program-inspection>.consequence-actions>button{min-width:0;min-height:44px;padding:6px 4px;font-size:13px;line-height:1.3}
+ .city-application.play-application .program-inspection>.consequence-actions>button>.control-icon{display:none}
+}
+@media(max-height:500px) and (max-width:900px){
+ .city-application.play-application .program-inspection>.consequence-actions{grid-template-columns:1fr 1fr 1fr;gap:6px;padding-top:8px;margin-top:8px}
+ .city-application.play-application .program-inspection>.consequence-actions>button:first-child{grid-column:auto}
+ .city-application.play-application .program-inspection>.consequence-actions>button{padding:7px 5px;font-size:12px}
+}
+
+/* Reading and actions have separate space, including in a short landscape view. */
+.city-application.play-application .outcome-sheet{display:flex;flex-direction:column;overflow:hidden}
+.city-application.play-application .outcome-heading{position:relative;flex:none;padding-right:0}
+.city-application.play-application .outcome-heading .sheet-dismiss{right:-6px;top:-6px}
+.city-application.play-application .outcome-body{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scroll-padding:8px;padding:0 2px}
+.city-application.play-application .outcome-body>.result-score{margin:10px 0}
+.city-application.play-application .outcome-body>.text-button{display:flex;justify-content:center;width:100%;text-align:center}
+.city-application.play-application .outcome-sheet .outcome-primary-action{position:static;flex:none;margin:12px 0 0;padding:10px 0 0;box-shadow:none;border-top:1px solid var(--paper-rule);background:var(--paper-sheet)}
+.city-application.play-application .outcome-sheet .outcome-primary-action>button{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-height:44px;margin:0;padding:10px;line-height:1.4}
+@media(max-height:500px) and (max-width:900px){
+ .city-application.play-application :is(.program-inspection,.outcome-sheet),
+ .city-application.play-application .planning-drawer.context-sheet.catalogue-sheet{left:10px;right:auto;top:var(--shell-top);bottom:var(--shell-bottom);width:var(--context-width);height:calc(100dvh - var(--shell-top) - var(--shell-bottom));max-height:calc(100dvh - var(--shell-top) - var(--shell-bottom));padding:10px}
+ .city-application.play-application .context-heading{align-items:center;min-height:44px;margin:0 0 6px}
+ .city-application.play-application .context-heading .eyebrow,
+ .city-application.play-application .catalogue-sheet .drawer-heading .eyebrow,
+ .city-application.play-application .outcome-heading>.eyebrow{display:none}
+ .city-application.play-application .context-heading h2{font-size:20px;line-height:1.2;margin:0}
+ .city-application.play-application .context-heading button{margin:0}
+ .city-application.play-application .program-inspection .inspection-body>p{font-size:14px;line-height:1.5;margin:8px 0}
+ .city-application.play-application .program-inspection .secondary-details{margin-top:8px}
+ .city-application.play-application .program-inspection>.consequence-actions{padding-top:6px;margin-top:6px}
+ .city-application.play-application .program-inspection>.consequence-actions>button{min-height:44px}
+ .city-application.play-application .catalogue-sheet .drawer-heading{align-items:center;min-height:44px;margin:0 0 8px}
+ .city-application.play-application .catalogue-sheet .drawer-heading h2{font-size:20px;line-height:1.2;margin:0}
+ .city-application.play-application .catalogue-sheet .project-catalogue{margin-top:0}
+ .city-application.play-application .catalogue-sheet .catalogue-heading{margin-bottom:8px}
+ .city-application.play-application .catalogue-sheet .catalogue-preview{display:none}
+ .city-application.play-application .catalogue-sheet .project-choice{padding:8px;gap:5px}
+ .city-application.play-application .catalogue-sheet .catalogue-project-name{display:flex;flex-wrap:nowrap;gap:8px}
+ .city-application.play-application .catalogue-sheet .catalogue-project-name>strong{flex:1;min-width:0;font-size:14px}
+ .city-application.play-application .catalogue-sheet .catalogue-project-name>.project-glyph{display:none}
+ .city-application.play-application .catalogue-sheet .project-choice-benefit{font-size:13px;line-height:1.4}
+ .city-application.play-application .catalogue-sheet .catalogue-status{margin:0;font-size:12px}
+ .city-application.play-application .outcome-heading>h2{font-size:20px;line-height:1.2;min-height:44px;display:flex;align-items:center;margin:0 0 6px}
+ .city-application.play-application .outcome-heading .sheet-dismiss{right:0;top:0}
+ .city-application.play-application .outcome-body .result-score{margin:4px 0 12px;gap:12px}
+ .city-application.play-application .outcome-body .result-score>strong{font-size:42px;line-height:1.15}
+ .city-application.play-application .outcome-sheet .outcome-primary-action{margin-top:6px;padding-top:6px}
+}
+
+.city-application.play-application .notice-compact{display:none}
+@media(max-height:500px) and (max-width:900px){
+ /* A brief status replaces the branding until dismissed; core game actions stay exposed. */
+ .city-application.play-application:has(.city-notice) .city-hud :is(.hud-brand,.mode-control){display:none}
+ .city-application.play-application:has(.city-notice) .city-hud .treasury-toggle{margin-left:auto}
+ .city-application.play-application[data-space] .city-notice{left:10px;right:auto;top:8px;bottom:auto;width:calc(100vw - 244px);max-width:none;height:50px;padding:2px 6px;gap:6px;align-items:center;font-size:12px;line-height:1.4}
+ .city-application.play-application .notice-full{display:none}
+ .city-application.play-application .notice-compact{display:block;flex:1;min-width:0}
+}

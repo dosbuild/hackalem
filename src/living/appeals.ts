@@ -1,0 +1,114 @@
+import type {ModeDefinition} from '../modes/types';
+import type { AppState } from '../app/state';
+import { isCurrentResult } from '../domain/identity';
+import { DISTRICTS, INITIATIVES } from '../domain/scenario';
+import { DISTRICT_IDS } from '../domain/types';
+import type { DistrictId, IndicatorId, InitiativeId, PolicyArea } from '../domain/types';
+import { RESIDENTS } from '../residents/population';
+import type { Visual, Prop } from '../residents/types';
+import { STORY_SEEDS } from './data/stories';
+import { STORY_VOICES } from './data/voices';
+import { READING_SEEDS } from './data/reading';
+
+export const PROVENANCE = 'Сценарные обращения по открытым материалам о тематике и работе eOtinish';
+export const SOURCES = {
+  eotinish:{title:'eOtinish: темы и подача обращений',url:'https://eotinish.kz/ru',note:'Открытые категории обращений и назначение официальной системы.'},
+  process:{title:'Государственный материал о работе eOtinish',url:'https://www.gov.kz/memleket/entities/pavlodar-transport/press/news/details/942252?lang=ru',note:'Официальное описание подачи обращения, указания органа и сути вопроса.'},
+  development:{title:'План развития Астаны на 2021–2025 годы',url:'https://www.gov.kz/memleket/entities/astana/documents/details/574960?lang=ru',note:'Исторический публичный документ: образование, медицина, транспорт, ЖКХ, безопасность и окружающая среда. Тематический источник, не доказательство текущего состояния отдельного места.'},
+  school:{title:'Публичные планы расширения школьной сети Астаны',url:'https://www.gov.kz/memleket/entities/astana/press/news/details/675700?lang=ru',note:'Материал акимата о потребности в учебных местах; числа из публикации не перенесены в сценарии.'},
+  clinic:{title:'Развитие первичной медицинской помощи в Астане',url:'https://www.gov.kz/memleket/entities/astana/press/news/details/1136763?lang=ru',note:'Материал акимата о медицинской инфраструктуре и доступности приёма.'},
+  fuel:{title:'Программа газификации столицы',url:'https://www.gov.kz/memleket/entities/astana/press/news/details/922284?lang=ru',note:'Публичная тема перехода на другое топливо; адреса, тарифы и фактические заявители не заимствованы.'},
+  green:{title:'Озеленение и содержание посадок в столице',url:'https://www.gov.kz/memleket/entities/astana/press/news/details/879062?lang=ru',note:'Открытый материал о посадках и системах полива.'},
+} as const;
+export type SourceId = keyof typeof SOURCES;
+export type LivingPlace = 'stop'|'school'|'clinic'|'garden'|'court'|'crossing'|'service';
+export interface Appeal {
+  id:string; districtId:DistrictId; title:string; topic:PolicyArea; addressee:string;
+  applicant:string; circumstances:string; request:string; initiativeIds:readonly InitiativeId[];
+  storyId:string|null; sourceIds:readonly SourceId[]; provenance:string;
+  limitation:string;
+}
+export interface LivingStory {
+  id:string; appealId:string; districtId:DistrictId; name:string; role:string;
+  initiativeId:InitiativeId; visual:Visual; place:LivingPlace; opening:string;
+}
+const sourcesFor=(id:InitiativeId):SourceId[]=>['eotinish','process',...(['M7'].includes(id)?['school' as const]:['M8'].includes(id)?['clinic' as const]:id==='M5'?['fuel' as const]:['M4','M6'].includes(id)?['green' as const]:['development' as const])];
+const districtName=(id:DistrictId)=>DISTRICTS.find(d=>d.id===id)!.name;
+export const TOPICS:Record<PolicyArea,string>={transport:'Транспорт',environment:'Среда и озеленение',social:'Образование и здоровье',safety:'Безопасность',municipal:'Городские службы'};
+const PLACE:Record<InitiativeId,LivingPlace>={M1:'stop',M2:'crossing',M3:'stop',M4:'garden',M5:'service',M6:'garden',M7:'school',M8:'clinic',M9:'court',M10:'crossing',M11:'crossing',M12:'service',M13:'service',M14:'service'};
+const PROPS:Record<InitiativeId,Prop>={M1:'satchel',M2:'thermos',M3:'headphones',M4:'watering-can',M5:'tote',M6:'plant',M7:'book',M8:'folder',M9:'ball',M10:'camera',M11:'stroller',M12:'clipboard',M13:'toolbox',M14:'headphones'};
+function visualFor(name:string,i:number,id:InitiativeId):Visual {
+  const existing=RESIDENTS.find(r=>r.name===name);
+  if(existing)return {...existing.visual,prop:PROPS[id]};
+  return {coat:['#455d75','#756389','#8b7054','#557c6c','#a56152'][i%5]!,accent:['#e4bc75','#cbdac4','#c58555','#d2adbe'][i%4]!,skin:['#d29c77','#e1b48e','#bd8666'][i%3]!,hair:['#302d32','#aba297','#534338'][i%3]!,cut:i%2?'long':'jacket',head:i%2?'cap':'bob',build:'regular',mobility:'walk',prop:PROPS[id]};
+}
+const appeals:Appeal[]=[],stories:LivingStory[]=[];
+for(const districtId of DISTRICT_IDS) {
+  for(const [index,seed] of STORY_SEEDS[districtId].entries()) {
+    const [initiativeId,name,role,title,circumstances,request]=seed;
+    const id=`ALEM-${districtId.toUpperCase()}-${String(index+1).padStart(3,'0')}`,storyId=`story-${districtId}-${initiativeId}`;
+    appeals.push({id,districtId,title,topic:INITIATIVES[initiativeId].area,addressee:`Акиму района «${districtName(districtId)}» города Астаны`,applicant:name,circumstances,request,initiativeIds:[initiativeId],storyId,sourceIds:sourcesFor(initiativeId),provenance:PROVENANCE,limitation:'Образовательный сценарий: заявитель и обстоятельства вымышлены. Выбор проекта не означает официального рассмотрения или решения обращения.'});
+    stories.push({id:storyId,appealId:id,districtId,name,role,initiativeId,place:PLACE[initiativeId],visual:visualFor(name,stories.length,initiativeId),opening:STORY_VOICES[districtId][initiativeId]});
+  }
+  for(const [index,seed] of READING_SEEDS[districtId].entries()) {
+    const [title,applicant,circumstances,request,initiativeIds]=seed;
+    appeals.push({id:`ALEM-${districtId.toUpperCase()}-${String(index+15).padStart(3,'0')}`,districtId,title,topic:INITIATIVES[initiativeIds[0]!].area,addressee:`Акиму района «${districtName(districtId)}» города Астаны`,applicant,circumstances,request,initiativeIds,storyId:null,sourceIds:sourcesFor(initiativeIds[0]!),provenance:PROVENANCE,limitation:'Авторский сценарий для чтения. Связанные программы могут поддержать направление, но не заменяют обследование и конкретные работы по этому запросу. Отдельная встреча с заявителем не предусмотрена.'});
+  }
+}
+export const APPEALS:readonly Appeal[]=appeals;
+export const STORIES:readonly LivingStory[]=stories;
+export const APPEAL_BY_ID:Readonly<Record<string,Appeal>>=Object.fromEntries(APPEALS.map(a=>[a.id,a]));
+export const STORY_BY_ID:Readonly<Record<string,LivingStory>>=Object.fromEntries(STORIES.map(s=>[s.id,s]));
+export function getAppealContext(id:string|null|undefined):Appeal|null {return id?APPEAL_BY_ID[id]??null:null;}
+
+const REACTIONS:Record<InitiativeId,{indicator:IndicatorId;metric:string;benefit:string;unresolved:string;tradeoff:string}>={
+  M1:{indicator:'T2',metric:'доступность общественного транспорта',benefit:'Автобус получает приоритет в потоке. Дорога становится более предсказуемой.',unresolved:'Полоса сама по себе не меняет расписание и не делает каждый подход к остановке безопасным.',tradeoff:'Потребуется перераспределить пространство дороги. В одном плане автобусные полосы и LRT несовместимы.'},
+  M2:{indicator:'T1',metric:'свобода от пробок',benefit:'Сигналы смогут учитывать поток на перекрёстках во всех пяти районах.',unresolved:'Настройка светофоров не создаёт новый маршрут и не заменяет доступные съезды.',tradeoff:'Это общегородская мера. Её пользу нужно сравнить с локальной транспортной потребностью.'},
+  M3:{indicator:'T2',metric:'доступность общественного транспорта',benefit:'У района появляется более устойчивая рельсовая связь с другими частями города.',unresolved:'До станции всё равно нужно добраться; последний участок пути и пересадки требуют отдельного внимания.',tradeoff:'LRT стоит 30 единиц и имеет задержку эффекта 4 квартала. В одном плане его нельзя совместить с автобусными полосами.'},
+  M4:{indicator:'E1',metric:'доступность зелёных пространств',benefit:'Появляется место для короткой прогулки, отдыха и соседской встречи.',unresolved:'Сквер не добавляет школьных мест и не устраняет выбросы отопления.',tradeoff:'В одном районе парк и модульная школа конкурируют за площадку: в модели совместить их нельзя.'},
+  M5:{indicator:'E2',metric:'качество окружающей среды',benefit:'Переход на чистое топливо уменьшает нагрузку от отопления частных домов.',unresolved:'Другие источники загрязнения сохраняются. Переход требует подготовки домов и поддержки семей.',tradeoff:'В том же районе эта программа несовместима с модернизацией тепловых и водопроводных сетей.'},
+  M6:{indicator:'E1',metric:'доступность зелёных пространств',benefit:'Ветрозащитные посадки соединяют открытые участки во всех районах.',unresolved:'Деревья растут постепенно и нуждаются в уходе. Посадки не заменяют переход домов на чистое топливо.',tradeoff:'Общегородская программа действует с задержкой 4 квартала. Молодая посадка не становится взрослым лесом в день выбора.'},
+  M7:{indicator:'S1',metric:'доступность образования',benefit:'Модульная школа и детский сад добавляют образовательную инфраструктуру рядом с семьями.',unresolved:'Школьный путь остаётся отдельной задачей. Новое здание не означает, что каждый ребёнок уже получил место.',tradeoff:'Школа стоит 24 единицы. В том же районе нельзя одновременно выбрать парк; эффект школы имеет задержку 3 квартала.'},
+  M8:{indicator:'S2',metric:'доступность здравоохранения',benefit:'Семейная поликлиника приближает первичную медицинскую помощь к жителям.',unresolved:'Нужны специалисты, доступные подходы и организация приёма. Здание само по себе не устраняет все очереди.',tradeoff:'На поликлинику нужно 20 единиц. В модели её эффект имеет задержку 3 квартала.'},
+  M9:{indicator:'S2',metric:'доступность здравоохранения и активной жизни',benefit:'У соседей появляется отдельное место для регулярной дворовой активности.',unresolved:'Площадка поддерживает активность, но не заменяет школу или поликлинику.',tradeoff:'Спортивная площадка доступнее крупного учреждения, однако её вклад в социальные показатели заметно меньше.'},
+  M10:{indicator:'B1',metric:'общественная безопасность',benefit:'Освещение делает маршрут обозримее; камеры поддерживают безопасность в обоснованных местах.',unresolved:'Камеры не исправляют опасную геометрию перехода. Свет и оборудование нужно обслуживать.',tradeoff:'Нужны разумные границы обзора и защита частной жизни. Камера не является доказательством исчезновения происшествий.'},
+  M11:{indicator:'B2',metric:'безопасность дорожного движения',benefit:'Пешеходный путь получает безопасные переходы и школьные зоны.',unresolved:'Безопасный переход не увеличивает число учебных мест и не заменяет общественный транспорт.',tradeoff:'Повышение безопасности замедляет автомобильное движение: у M11 есть отрицательный вклад в T1.'},
+  M12:{indicator:'C2',metric:'качество работы городских служб',benefit:'Жителям понятнее, кто рассматривает запрос и на каком этапе он находится.',unresolved:'Быстрый ответ не равен отремонтированной трубе. По каждому обращению всё равно нужны проверка и исполнение.',tradeoff:'Платформа действует во всех пяти районах, но сама не выполняет физические работы.'},
+  M13:{indicator:'C1',metric:'надёжность коммунальных сетей',benefit:'Обследованные участки тепловых и водопроводных сетей получают модернизацию.',unresolved:'Ремонт сети не закрывает все внутридомовые вопросы. После работ важно проверить восстановление услуги и покрытия.',tradeoff:'Это 28 единиц и задержка 4 квартала. В одном районе нельзя совместить с программой чистого топлива.'},
+  M14:{indicator:'C1',metric:'надёжность коммунальных услуг',benefit:'Бригады и раннее предупреждение улучшают готовность всех районов к неполадкам.',unresolved:'Быстрый выезд не заменяет плановую модернизацию изношенной сети.',tradeoff:'Готовность служб помогает реагировать, но не даёт гарантии отсутствия аварий.'},
+};
+export type RelationKind='draft'|'considering'|'committed'|'calculated'|'partial'|'unresolved';
+export interface AppealRelation {kind:RelationKind;label:string;description:string;indicator:IndicatorId;before:number|null;after:number|null;resultId:string|null;}
+export function getAppealRelation(appeal:Appeal,state:AppState,mode?:ModeDefinition):AppealRelation {
+  const primary=appeal.initiativeIds[0]!,reaction=mode?{...REACTIONS[primary],metric:mode.indicators[REACTIONS[primary].indicator],unresolved:mode.projects[primary].limitation}:REACTIONS[primary];
+  const seasons=mode?.terms.seasons??'кварталов',name=mode?.projects[primary].name??INITIATIVES[primary].name;
+  const applies=(d:{initiativeId:InitiativeId;scope:string;districtId?:DistrictId|null},ids:readonly InitiativeId[])=>ids.includes(d.initiativeId)&&(d.scope==='citywide'||d.districtId===appeal.districtId);
+  const committed=state.plan.some(d=>applies(d,[primary]));
+  const related=state.plan.some(d=>applies(d,appeal.initiativeIds));
+  const considering=!!state.candidate&&applies(state.candidate.decision,appeal.initiativeIds);
+  const current=isCurrentResult(state.plan,state.revision,state.result)?state.result!.value:null;
+  const before=current?.baseline[appeal.districtId][reaction.indicator]??null,after=current?.indicators[appeal.districtId][reaction.indicator]??null;
+  let kind:RelationKind='draft',label='Ждёт решения',description='В текущем плане пока нет связанного решения.';
+  if(current){
+    if(committed&&after!>before!){kind='calculated';label='Есть расчётный эффект';description=`Через 8 ${seasons}: ${reaction.metric} ${number(before!)} → ${number(after!)}. Это показатель модели, а не подтверждение выполнения обращения.`;}
+    else if((after!>before!)||related){kind='partial';label='Частичная поддержка';description=`План затрагивает эту потребность: ${reaction.metric} ${number(before!)} → ${number(after!)}. Сам запрос требует отдельной проверки и действий.`;}
+    else {kind='unresolved';label='Вопрос остаётся';description=`В расчёте потребность остаётся: ${reaction.metric} ${number(before!)} → ${number(after!)}. ${reaction.unresolved}`;}
+  }else if(committed){kind='committed';label='Программа в плане';description=`«${name}» включено в план. Строительная сцена показывает выбор; результат оценивается на горизонте 8 ${seasons}.`;}
+  else if(considering){kind='considering';label='Рассматриваем';description='Связанный проект выбран для рассмотрения. Решение ещё не принято, бюджет не потрачен.';}
+  else if(related){kind='partial';label='Смежная программа в плане';description='Выбранная программа связана с темой. Для конкретного запроса нужны обследование и отдельные действия.';}
+  return {kind,label,description,indicator:reaction.indicator,before,after,resultId:current?.resultId??null};
+}
+const number=(n:number)=>n.toLocaleString('ru-RU',{maximumFractionDigits:2});
+export function getStoryConversation(story:LivingStory,state:AppState,answer:'opening'|'effect'|'remaining'='opening') {
+  const appeal=APPEAL_BY_ID[story.appealId]!,relation=getAppealRelation(appeal,state),r=REACTIONS[story.initiativeId],item=INITIATIVES[story.initiativeId];
+  const scoped=item.scope==='citywide'?'во всех пяти районах':`в районе ${districtName(story.districtId)}`;
+  let text=story.opening;
+  if(relation.kind==='considering')text=`Вы рассматриваете «${item.name}» ${scoped}. ${r.benefit} Пока это предложение — наш запрос остаётся открытым.`;
+  if(relation.kind==='committed')text=`Наш вопрос появился в плане: «${item.name}» ${scoped}. ${r.benefit} Теперь важно дождаться расчёта и проверить, чего это решение не охватывает.`;
+  if(relation.kind==='calculated')text=`Я вижу изменение в расчёте нашего района. ${relation.description} ${r.unresolved}`;
+  if(relation.kind==='partial')text=`В плане есть частичная поддержка нашей потребности. ${relation.description} ${r.unresolved}`;
+  if(relation.kind==='unresolved')text=`Наше обращение «${appeal.title}» остаётся актуальным. ${relation.description}`;
+  if(answer==='effect')text=`${r.benefit} Стоимость — ${item.cost} единиц, действие ${scoped}. Задержка эффекта — ${item.lag} ${item.lag===1?'квартал':item.lag<5?'квартала':'кварталов'}. ${r.tradeoff}${relation.resultId?' '+relation.description:''}`;
+  if(answer==='remaining')text=r.unresolved+' '+r.tradeoff+' Официального обращения отсюда не отправляется: это сценарий для обсуждения городского плана.';
+  return {text,relation,benefit:r.benefit,unresolved:r.unresolved};
+}

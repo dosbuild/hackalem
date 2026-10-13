@@ -1,0 +1,24 @@
+{
+  "application": "alem",
+  "status": "passed",
+  "deployed": false,
+  "date": "2026-10-13",
+  "cleanSourceInstall": "npm ci --include=dev --ignore-scripts",
+  "verification": {
+    "testFiles": 74,
+    "tests": 631,
+    "typecheck": "passed",
+    "fontsPreviewsModelsGeometry": "passed",
+    "productionBuild": "passed",
+    "isolatedRuntime": "passed"
+  },
+  "dependencyAudit": {
+    "source-map-js": "1.2.2",
+    "vulnerabilities": 0
+  },
+  "limitations": [
+    "Local macOS validation; Linux CI not run in this cleanup pass",
+    "No physical phone, live AI-provider or deployed-service check"
+  ],
+  "linuxCI": "Pending verification of platform-safe placement comparisons and exact byte comparison fixes"
+}

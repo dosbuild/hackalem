@@ -1,0 +1,74 @@
+/* Tactile atlas surfaces. Animation belongs to small UI elements, never map anchors. */
+.city-application.play-application {
+  --paper-edge:18px;
+  --paper-shadow:0 2px 5px #283c4010,0 12px 32px #283c4020;
+  --radius-control:10px;
+  --radius-card:12px;
+  --radius-panel:18px;
+}
+.city-application.play-application :is(.city-hud,.primary-navigation,.mode-control,.map-time-switch) {border-radius:14px}
+.city-application.play-application .city-hud {padding:4px 6px 4px 12px}
+.city-application.play-application :is(.city-hud button,.paper-tabs button,.mode-control button,.city-navigation button,.landmark-atlas summary,.landmark-atlas-list button,.landmark-actions button) {border-radius:10px}
+.city-application.play-application :is(.need-card,.project-choice,.outcome-stories article,.living-appeal-row,.dash-panel,.paper-preview) {border-radius:12px}
+.city-application.play-application :is(.candidate button,.consequence-card button,.street-primary,.street-details button,.living-reader-actions button,.resident-questions button,.dash-actions button,.dash-primary,.paper-button) {border-radius:10px}
+.city-application.play-application :is(.coin-price,.proposal-fixed-price,.proposal-price,.catalogue-project-name>b) {border-radius:9px;font-variant-numeric:tabular-nums}
+.city-application.play-application :is(.need-card,.project-choice) {box-shadow:0 1px 2px #283c4008}
+.city-application.play-application .need-project {padding-top:9px;border-top:1px solid var(--paper-rule)}
+.city-application.play-application .candidate .proposal-catalogue-link {display:flex;align-items:center;justify-content:center;gap:8px;background:transparent;border:0;box-shadow:none;text-decoration:none;color:var(--paper-action)}
+.city-application.play-application .candidate .proposal-catalogue-link:hover {background:var(--paper-tint)}
+.city-application.play-application :is(.icon-control,.sheet-dismiss,.aya-icon-button,.aya-clear-context) {border-radius:50%}
+.city-application.play-application .alem-time {border:1px solid #d2ded799;border-radius:12px;background:#f5f5edeb;backdrop-filter:none;padding:9px 12px}
+.city-application.play-application .aya-entry {border-radius:28px;box-shadow:0 3px 12px #283c401a}
+.city-application.play-application .aya-dialogue {border-radius:22px;border-color:#b7c8be;box-shadow:var(--paper-shadow)}
+.city-application.play-application .aya-dialogue-header {padding:16px;background:linear-gradient(120deg,#e7eee7,#f5f5ed);border-bottom:1px solid var(--paper-rule)}
+.city-application.play-application .aya-dialogue-header h2 {font-size:27px;margin-bottom:5px}
+.city-application.play-application .aya-message.from-assistant {border-radius:14px 14px 14px 5px;border-color:var(--paper-rule);box-shadow:none}
+.city-application.play-application .aya-message.from-user {border-radius:14px 14px 5px 14px}
+.city-application.play-application .aya-context-card {background:var(--paper-tint)}
+.city-application.play-application .aya-suggestions {flex-wrap:wrap;gap:6px;padding:4px 14px 10px;overflow:visible}
+.city-application.play-application .aya-dialogue:has(.aya-context-card) .aya-suggestions {flex-wrap:nowrap;overflow-x:auto}
+.city-application.play-application :is(.aya-suggestions button,.aya-districts button,.aya-message-action,.aya-repair button) {border-radius:12px}
+.city-application.play-application .aya-composer {border-radius:16px;padding:8px 9px 8px 13px;border-color:#a9bcb1;transition:border-color .16s,box-shadow .16s}
+.city-application.play-application .aya-composer:focus-within {border-color:var(--paper-action);box-shadow:0 0 0 3px #27675f24}
+.city-application.play-application .aya-composer textarea:focus-visible {outline:none}
+.city-application.play-application .aya-composer button {background:var(--paper-action);border-radius:50%}
+.city-application.play-application .aya-chat-note {padding:10px 16px 13px}
+.city-application.play-application :is(.context-panel,.planning-drawer,.decision-deck,.consequence-card,.context-encounter,.alternative-overlay,.aya-chat-log) {scrollbar-color:#b0c2b7 transparent}
+
+@media(hover:hover) and (prefers-reduced-motion:no-preference) {
+  .city-application.play-application :is(.need-card,.project-choice,.city-hud button,.paper-tabs button,.aya-suggestions button,.aya-entry,.candidate .primary,.consequence-actions button) {transition:background-color .16s,border-color .16s,box-shadow .16s,transform .16s}
+  .city-application.play-application :is(.need-card,.project-choice):hover:not(:disabled) {transform:translateY(-2px);border-color:#8ba99b;box-shadow:0 5px 12px #283c4012}
+  .city-application.play-application .need-card:hover .need-project>.control-icon {transform:translateX(3px)}
+  .city-application.play-application .need-project>.control-icon {transition:transform .16s}
+  .city-application.play-application .aya-entry:hover {transform:translateY(-2px)}
+  .city-application.play-application .aya-entry:hover .aya-cloud {transform:rotate(-5deg)}
+  .city-application.play-application :is(.city-hud button,.paper-tabs button,.aya-suggestions button,.candidate .primary,.consequence-actions button):active:not(:disabled) {transform:translateY(1px)}
+}
+@media(prefers-reduced-motion:no-preference) {
+  .city-application.play-application :is(.decision-deck,.planning-drawer.context-sheet,.program-inspection,.outcome-sheet,.aya-dialogue) {animation:atlas-reveal .2s ease-out}
+  .city-application.play-application .aya-message:last-of-type {animation:atlas-reply .18s ease-out}
+}
+@keyframes atlas-reveal {from {opacity:0} to {opacity:1}}
+@keyframes atlas-reply {from {opacity:0;transform:translateY(4px)} to {opacity:1;transform:none}}
+@media(min-width:801px) and (min-height:501px) {
+  .city-application.play-application .aya-dialogue {height:min(640px,100%)}
+}
+@media(max-width:800px) {
+  .city-application.play-application .city-hud {padding:0;border-radius:0}
+  .city-application.play-application .district-wayfinding,
+  .city-application.play-application[data-context=city] .district-wayfinding {right:auto;width:max-content;border-radius:8px}
+  .city-application.play-application .aya-entry {border-radius:50%}
+  .city-application.play-application .aya-dialogue-header {padding:10px 12px}
+  .city-application.play-application .aya-dialogue-header h2 {font-size:24px}
+  .city-application.play-application .aya-composer textarea {font-size:16px}
+  .city-application.play-application .aya-chat-note {padding:6px 14px 9px}
+  .city-application.play-application .planning-drawer.context-sheet:not(.sheet-expanded) .proposal-catalogue-link {display:none}
+}
+@media(max-height:690px) and (max-width:800px), (max-height:500px) {
+  .city-application.play-application .aya-suggestions {flex-wrap:nowrap;overflow-x:auto;padding-bottom:8px}
+  .city-application.play-application .aya-dialogue-header {padding:5px 10px}
+}
+@media(max-width:800px) and (min-height:501px) {
+  .city-application.play-application:is([data-context=city],[data-context=landmark]) .alem-world:has(.city-canvas[data-scale=place]) .district-wayfinding {top:174px;left:10px}
+  .city-application.play-application[data-context=city]:has(.map-time-switch) .alem-world:has(.city-canvas[data-scale=place]) .district-wayfinding {top:220px}
+}

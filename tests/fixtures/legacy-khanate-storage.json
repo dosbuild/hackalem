@@ -1,0 +1,30 @@
+{
+  "cookies": [],
+  "origins": [
+    {
+      "origin": "http://127.0.0.1:4186",
+      "localStorage": [
+        {
+          "name": "alem:khanate:alem:context",
+          "value": "{\"space\":\"map\",\"appeal\":\"KHAN-NURA-008\",\"district\":\"nura\"}"
+        },
+        {
+          "name": "alem:last-world:v1",
+          "value": "khanate"
+        },
+        {
+          "name": "alem:khanate:akim:synthetic-residents:v1",
+          "value": "{\"version\":1,\"bookmarks\":[],\"branches\":{}}"
+        },
+        {
+          "name": "alem:khanate:akim:draft",
+          "value": "{\"schemaVersion\":1,\"scenarioVersion\":\"astana-education-1\",\"plan\":[{\"initiativeId\":\"M7\",\"scope\":\"district\",\"districtId\":\"esil\"},{\"initiativeId\":\"M4\",\"scope\":\"district\",\"districtId\":\"saryarka\"},{\"initiativeId\":\"M10\",\"scope\":\"district\",\"districtId\":\"saryarka\"},{\"initiativeId\":\"M12\",\"scope\":\"citywide\"},{\"initiativeId\":\"M1\",\"scope\":\"district\",\"districtId\":\"saryarka\"}],\"construction\":[{\"key\":\"M7:esil\",\"startedAt\":1791533040001,\"durationMs\":12000},{\"key\":\"M4:saryarka\",\"startedAt\":1791533053299,\"durationMs\":12000},{\"key\":\"M10:saryarka\",\"startedAt\":1791533053442,\"durationMs\":12000},{\"key\":\"M12:city\",\"startedAt\":1791533053590,\"durationMs\":12000},{\"key\":\"M1:saryarka\",\"startedAt\":1791533053737,\"durationMs\":12000}],\"preferences\":{\"welcomeDismissed\":true}}"
+        },
+        {
+          "name": "alem:khanate:akim:first-walk:v1",
+          "value": "{\"introduced\":true,\"guidance\":\"guided\",\"encountered\":[\"khanate-story-esil-M7\"],\"returnId\":\"khanate-story-esil-M7\",\"moments\":[]}"
+        }
+      ]
+    }
+  ]
+}

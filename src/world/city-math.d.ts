@@ -1,0 +1,17 @@
+export const CENTER:number[];
+export const MAX_ZOOM:number;
+export function clamp(v:number,a:number,b:number):number;
+export function mix(a:number,b:number,t:number):number;
+export function mapXY(p:number[]):number[];
+export function surfacePoint(x:number,y:number,h?:number):number[];
+export function geoPoint(p:number[],h?:number):number[];
+export function normalize(v:number[]):number[];
+export function cross(a:number[],b:number[]):number[];
+export function rotation(yaw:number,pitch:number):number[];
+export function transform(m:number[],p:number[]):number[];
+export function anchorPose(p:number[]):{x:number;y:number};
+export function boundedPose(v:{x:number;y:number;yaw:number;pitch:number;zoom:number},maxZoom?:number):{x:number;y:number;yaw:number;pitch:number;zoom:number};
+export function inversePoint(x:number,y:number,m:number[],center?:number[]):number[]|null;
+export function insideRing(p:number[],ring:number[][]):boolean;
+export function contains(geometry:{type:string;coordinates:number[][][]|number[][][][]},p:number[]):boolean;
+export function confinePose(v:{x:number;y:number;yaw:number;pitch:number;zoom:number},districts:{geometry:{type:string;coordinates:number[][][]|number[][][][]}}[],maxZoom?:number):{x:number;y:number;yaw:number;pitch:number;zoom:number};

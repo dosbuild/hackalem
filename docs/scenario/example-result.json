@@ -1,0 +1,1099 @@
+{
+  "scenarioVersion": "astana-education-1",
+  "resultId": "astana-education-1/M10@nura|M12@city|M5@saryarka|M7@nura|M8@nura",
+  "planFingerprint": "M10@nura|M12@city|M5@saryarka|M7@nura|M8@nura",
+  "plan": [
+    {
+      "initiativeId": "M5",
+      "scope": "district",
+      "districtId": "saryarka"
+    },
+    {
+      "initiativeId": "M7",
+      "scope": "district",
+      "districtId": "nura"
+    },
+    {
+      "initiativeId": "M8",
+      "scope": "district",
+      "districtId": "nura"
+    },
+    {
+      "initiativeId": "M10",
+      "scope": "district",
+      "districtId": "nura"
+    },
+    {
+      "initiativeId": "M12",
+      "scope": "citywide"
+    }
+  ],
+  "summary": {
+    "spent": 95,
+    "remaining": 5,
+    "count": 5,
+    "areaCounts": {
+      "transport": 0,
+      "environment": 1,
+      "social": 2,
+      "safety": 1,
+      "municipal": 1
+    },
+    "canEvaluate": true
+  },
+  "baseline": {
+    "esil": {
+      "T1": 45,
+      "T2": 62,
+      "E1": 68,
+      "E2": 72,
+      "S1": 48,
+      "S2": 55,
+      "B1": 78,
+      "B2": 60,
+      "C1": 75,
+      "C2": 70
+    },
+    "almaty": {
+      "T1": 40,
+      "T2": 75,
+      "E1": 50,
+      "E2": 55,
+      "S1": 60,
+      "S2": 65,
+      "B1": 62,
+      "B2": 52,
+      "C1": 50,
+      "C2": 60
+    },
+    "saryarka": {
+      "T1": 50,
+      "T2": 70,
+      "E1": 42,
+      "E2": 40,
+      "S1": 62,
+      "S2": 68,
+      "B1": 58,
+      "B2": 55,
+      "C1": 45,
+      "C2": 55
+    },
+    "baikonur": {
+      "T1": 52,
+      "T2": 68,
+      "E1": 55,
+      "E2": 50,
+      "S1": 58,
+      "S2": 60,
+      "B1": 52,
+      "B2": 58,
+      "C1": 55,
+      "C2": 58
+    },
+    "nura": {
+      "T1": 55,
+      "T2": 40,
+      "E1": 45,
+      "E2": 65,
+      "S1": 38,
+      "S2": 35,
+      "B1": 55,
+      "B2": 50,
+      "C1": 60,
+      "C2": 50
+    }
+  },
+  "baselineAssessment": {
+    "districtScores": {
+      "esil": 62.99,
+      "almaty": 57.059999999999995,
+      "saryarka": 54.650000000000006,
+      "baikonur": 56.629999999999995,
+      "nura": 49.18000000000001
+    },
+    "cityAverage": 56.8624,
+    "weakestDistricts": [
+      "nura"
+    ],
+    "weakestValue": 49.18000000000001,
+    "criticalPairs": [
+      {
+        "districtId": "nura",
+        "indicatorId": "S1",
+        "value": 38
+      },
+      {
+        "districtId": "nura",
+        "indicatorId": "S2",
+        "value": 35
+      }
+    ],
+    "components": {
+      "city": 39.80368,
+      "weakest": 14.754000000000001,
+      "critical": -2
+    },
+    "finalScore": 52.557680000000005
+  },
+  "indicators": {
+    "esil": {
+      "T1": 45,
+      "T2": 62,
+      "E1": 68,
+      "E2": 72,
+      "S1": 48,
+      "S2": 55,
+      "B1": 78,
+      "B2": 60,
+      "C1": 75,
+      "C2": 74.375
+    },
+    "almaty": {
+      "T1": 40,
+      "T2": 75,
+      "E1": 50,
+      "E2": 55,
+      "S1": 60,
+      "S2": 65,
+      "B1": 62,
+      "B2": 52,
+      "C1": 50,
+      "C2": 64.375
+    },
+    "saryarka": {
+      "T1": 50,
+      "T2": 70,
+      "E1": 42,
+      "E2": 48.75,
+      "S1": 62,
+      "S2": 68,
+      "B1": 58,
+      "B2": 55,
+      "C1": 47.5,
+      "C2": 59.375
+    },
+    "baikonur": {
+      "T1": 52,
+      "T2": 68,
+      "E1": 55,
+      "E2": 50,
+      "S1": 58,
+      "S2": 60,
+      "B1": 52,
+      "B2": 58,
+      "C1": 55,
+      "C2": 62.375
+    },
+    "nura": {
+      "T1": 55,
+      "T2": 40,
+      "E1": 45,
+      "E2": 65,
+      "S1": 48,
+      "S2": 43.75,
+      "B1": 67.5,
+      "B2": 51.75,
+      "C1": 60,
+      "C2": 54.375
+    }
+  },
+  "changes": {
+    "esil": {
+      "T1": 0,
+      "T2": 0,
+      "E1": 0,
+      "E2": 0,
+      "S1": 0,
+      "S2": 0,
+      "B1": 0,
+      "B2": 0,
+      "C1": 0,
+      "C2": 4.375
+    },
+    "almaty": {
+      "T1": 0,
+      "T2": 0,
+      "E1": 0,
+      "E2": 0,
+      "S1": 0,
+      "S2": 0,
+      "B1": 0,
+      "B2": 0,
+      "C1": 0,
+      "C2": 4.375
+    },
+    "saryarka": {
+      "T1": 0,
+      "T2": 0,
+      "E1": 0,
+      "E2": 8.75,
+      "S1": 0,
+      "S2": 0,
+      "B1": 0,
+      "B2": 0,
+      "C1": 2.5,
+      "C2": 4.375
+    },
+    "baikonur": {
+      "T1": 0,
+      "T2": 0,
+      "E1": 0,
+      "E2": 0,
+      "S1": 0,
+      "S2": 0,
+      "B1": 0,
+      "B2": 0,
+      "C1": 0,
+      "C2": 4.375
+    },
+    "nura": {
+      "T1": 0,
+      "T2": 0,
+      "E1": 0,
+      "E2": 0,
+      "S1": 10,
+      "S2": 8.75,
+      "B1": 12.5,
+      "B2": 1.75,
+      "C1": 0,
+      "C2": 4.375
+    }
+  },
+  "measureContributions": [
+    {
+      "districtId": "saryarka",
+      "indicatorId": "E2",
+      "amount": 8.75,
+      "initiativeIds": [
+        "M5"
+      ]
+    },
+    {
+      "districtId": "saryarka",
+      "indicatorId": "C1",
+      "amount": 2.5,
+      "initiativeIds": [
+        "M5"
+      ]
+    },
+    {
+      "districtId": "nura",
+      "indicatorId": "S1",
+      "amount": 10,
+      "initiativeIds": [
+        "M7"
+      ]
+    },
+    {
+      "districtId": "nura",
+      "indicatorId": "S2",
+      "amount": 8.75,
+      "initiativeIds": [
+        "M8"
+      ]
+    },
+    {
+      "districtId": "nura",
+      "indicatorId": "B1",
+      "amount": 10.5,
+      "initiativeIds": [
+        "M10"
+      ]
+    },
+    {
+      "districtId": "nura",
+      "indicatorId": "B2",
+      "amount": 1.75,
+      "initiativeIds": [
+        "M10"
+      ]
+    },
+    {
+      "districtId": "esil",
+      "indicatorId": "C2",
+      "amount": 4.375,
+      "initiativeIds": [
+        "M12"
+      ]
+    },
+    {
+      "districtId": "almaty",
+      "indicatorId": "C2",
+      "amount": 4.375,
+      "initiativeIds": [
+        "M12"
+      ]
+    },
+    {
+      "districtId": "saryarka",
+      "indicatorId": "C2",
+      "amount": 4.375,
+      "initiativeIds": [
+        "M12"
+      ]
+    },
+    {
+      "districtId": "baikonur",
+      "indicatorId": "C2",
+      "amount": 4.375,
+      "initiativeIds": [
+        "M12"
+      ]
+    },
+    {
+      "districtId": "nura",
+      "indicatorId": "C2",
+      "amount": 4.375,
+      "initiativeIds": [
+        "M12"
+      ]
+    }
+  ],
+  "synergyContributions": [
+    {
+      "districtId": "nura",
+      "indicatorId": "B1",
+      "amount": 2,
+      "initiativeIds": [
+        "M10",
+        "M12"
+      ]
+    }
+  ],
+  "indicatorEvidence": [
+    {
+      "ref": "indicator:esil:T1",
+      "districtId": "esil",
+      "indicatorId": "T1",
+      "baseline": 45,
+      "beforeClipping": 45,
+      "updated": 45,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:esil:T2",
+      "districtId": "esil",
+      "indicatorId": "T2",
+      "baseline": 62,
+      "beforeClipping": 62,
+      "updated": 62,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:esil:E1",
+      "districtId": "esil",
+      "indicatorId": "E1",
+      "baseline": 68,
+      "beforeClipping": 68,
+      "updated": 68,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:esil:E2",
+      "districtId": "esil",
+      "indicatorId": "E2",
+      "baseline": 72,
+      "beforeClipping": 72,
+      "updated": 72,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:esil:S1",
+      "districtId": "esil",
+      "indicatorId": "S1",
+      "baseline": 48,
+      "beforeClipping": 48,
+      "updated": 48,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:esil:S2",
+      "districtId": "esil",
+      "indicatorId": "S2",
+      "baseline": 55,
+      "beforeClipping": 55,
+      "updated": 55,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:esil:B1",
+      "districtId": "esil",
+      "indicatorId": "B1",
+      "baseline": 78,
+      "beforeClipping": 78,
+      "updated": 78,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:esil:B2",
+      "districtId": "esil",
+      "indicatorId": "B2",
+      "baseline": 60,
+      "beforeClipping": 60,
+      "updated": 60,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:esil:C1",
+      "districtId": "esil",
+      "indicatorId": "C1",
+      "baseline": 75,
+      "beforeClipping": 75,
+      "updated": 75,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:esil:C2",
+      "districtId": "esil",
+      "indicatorId": "C2",
+      "baseline": 70,
+      "beforeClipping": 74.375,
+      "updated": 74.375,
+      "change": 4.375,
+      "clipping": 0,
+      "measureEffects": [
+        {
+          "districtId": "esil",
+          "indicatorId": "C2",
+          "amount": 4.375,
+          "initiativeIds": [
+            "M12"
+          ]
+        }
+      ],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:almaty:T1",
+      "districtId": "almaty",
+      "indicatorId": "T1",
+      "baseline": 40,
+      "beforeClipping": 40,
+      "updated": 40,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:almaty:T2",
+      "districtId": "almaty",
+      "indicatorId": "T2",
+      "baseline": 75,
+      "beforeClipping": 75,
+      "updated": 75,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:almaty:E1",
+      "districtId": "almaty",
+      "indicatorId": "E1",
+      "baseline": 50,
+      "beforeClipping": 50,
+      "updated": 50,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:almaty:E2",
+      "districtId": "almaty",
+      "indicatorId": "E2",
+      "baseline": 55,
+      "beforeClipping": 55,
+      "updated": 55,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:almaty:S1",
+      "districtId": "almaty",
+      "indicatorId": "S1",
+      "baseline": 60,
+      "beforeClipping": 60,
+      "updated": 60,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:almaty:S2",
+      "districtId": "almaty",
+      "indicatorId": "S2",
+      "baseline": 65,
+      "beforeClipping": 65,
+      "updated": 65,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:almaty:B1",
+      "districtId": "almaty",
+      "indicatorId": "B1",
+      "baseline": 62,
+      "beforeClipping": 62,
+      "updated": 62,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:almaty:B2",
+      "districtId": "almaty",
+      "indicatorId": "B2",
+      "baseline": 52,
+      "beforeClipping": 52,
+      "updated": 52,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:almaty:C1",
+      "districtId": "almaty",
+      "indicatorId": "C1",
+      "baseline": 50,
+      "beforeClipping": 50,
+      "updated": 50,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:almaty:C2",
+      "districtId": "almaty",
+      "indicatorId": "C2",
+      "baseline": 60,
+      "beforeClipping": 64.375,
+      "updated": 64.375,
+      "change": 4.375,
+      "clipping": 0,
+      "measureEffects": [
+        {
+          "districtId": "almaty",
+          "indicatorId": "C2",
+          "amount": 4.375,
+          "initiativeIds": [
+            "M12"
+          ]
+        }
+      ],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:saryarka:T1",
+      "districtId": "saryarka",
+      "indicatorId": "T1",
+      "baseline": 50,
+      "beforeClipping": 50,
+      "updated": 50,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:saryarka:T2",
+      "districtId": "saryarka",
+      "indicatorId": "T2",
+      "baseline": 70,
+      "beforeClipping": 70,
+      "updated": 70,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:saryarka:E1",
+      "districtId": "saryarka",
+      "indicatorId": "E1",
+      "baseline": 42,
+      "beforeClipping": 42,
+      "updated": 42,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:saryarka:E2",
+      "districtId": "saryarka",
+      "indicatorId": "E2",
+      "baseline": 40,
+      "beforeClipping": 48.75,
+      "updated": 48.75,
+      "change": 8.75,
+      "clipping": 0,
+      "measureEffects": [
+        {
+          "districtId": "saryarka",
+          "indicatorId": "E2",
+          "amount": 8.75,
+          "initiativeIds": [
+            "M5"
+          ]
+        }
+      ],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:saryarka:S1",
+      "districtId": "saryarka",
+      "indicatorId": "S1",
+      "baseline": 62,
+      "beforeClipping": 62,
+      "updated": 62,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:saryarka:S2",
+      "districtId": "saryarka",
+      "indicatorId": "S2",
+      "baseline": 68,
+      "beforeClipping": 68,
+      "updated": 68,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:saryarka:B1",
+      "districtId": "saryarka",
+      "indicatorId": "B1",
+      "baseline": 58,
+      "beforeClipping": 58,
+      "updated": 58,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:saryarka:B2",
+      "districtId": "saryarka",
+      "indicatorId": "B2",
+      "baseline": 55,
+      "beforeClipping": 55,
+      "updated": 55,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:saryarka:C1",
+      "districtId": "saryarka",
+      "indicatorId": "C1",
+      "baseline": 45,
+      "beforeClipping": 47.5,
+      "updated": 47.5,
+      "change": 2.5,
+      "clipping": 0,
+      "measureEffects": [
+        {
+          "districtId": "saryarka",
+          "indicatorId": "C1",
+          "amount": 2.5,
+          "initiativeIds": [
+            "M5"
+          ]
+        }
+      ],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:saryarka:C2",
+      "districtId": "saryarka",
+      "indicatorId": "C2",
+      "baseline": 55,
+      "beforeClipping": 59.375,
+      "updated": 59.375,
+      "change": 4.375,
+      "clipping": 0,
+      "measureEffects": [
+        {
+          "districtId": "saryarka",
+          "indicatorId": "C2",
+          "amount": 4.375,
+          "initiativeIds": [
+            "M12"
+          ]
+        }
+      ],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:baikonur:T1",
+      "districtId": "baikonur",
+      "indicatorId": "T1",
+      "baseline": 52,
+      "beforeClipping": 52,
+      "updated": 52,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:baikonur:T2",
+      "districtId": "baikonur",
+      "indicatorId": "T2",
+      "baseline": 68,
+      "beforeClipping": 68,
+      "updated": 68,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:baikonur:E1",
+      "districtId": "baikonur",
+      "indicatorId": "E1",
+      "baseline": 55,
+      "beforeClipping": 55,
+      "updated": 55,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:baikonur:E2",
+      "districtId": "baikonur",
+      "indicatorId": "E2",
+      "baseline": 50,
+      "beforeClipping": 50,
+      "updated": 50,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:baikonur:S1",
+      "districtId": "baikonur",
+      "indicatorId": "S1",
+      "baseline": 58,
+      "beforeClipping": 58,
+      "updated": 58,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:baikonur:S2",
+      "districtId": "baikonur",
+      "indicatorId": "S2",
+      "baseline": 60,
+      "beforeClipping": 60,
+      "updated": 60,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:baikonur:B1",
+      "districtId": "baikonur",
+      "indicatorId": "B1",
+      "baseline": 52,
+      "beforeClipping": 52,
+      "updated": 52,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:baikonur:B2",
+      "districtId": "baikonur",
+      "indicatorId": "B2",
+      "baseline": 58,
+      "beforeClipping": 58,
+      "updated": 58,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:baikonur:C1",
+      "districtId": "baikonur",
+      "indicatorId": "C1",
+      "baseline": 55,
+      "beforeClipping": 55,
+      "updated": 55,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:baikonur:C2",
+      "districtId": "baikonur",
+      "indicatorId": "C2",
+      "baseline": 58,
+      "beforeClipping": 62.375,
+      "updated": 62.375,
+      "change": 4.375,
+      "clipping": 0,
+      "measureEffects": [
+        {
+          "districtId": "baikonur",
+          "indicatorId": "C2",
+          "amount": 4.375,
+          "initiativeIds": [
+            "M12"
+          ]
+        }
+      ],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:nura:T1",
+      "districtId": "nura",
+      "indicatorId": "T1",
+      "baseline": 55,
+      "beforeClipping": 55,
+      "updated": 55,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:nura:T2",
+      "districtId": "nura",
+      "indicatorId": "T2",
+      "baseline": 40,
+      "beforeClipping": 40,
+      "updated": 40,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:nura:E1",
+      "districtId": "nura",
+      "indicatorId": "E1",
+      "baseline": 45,
+      "beforeClipping": 45,
+      "updated": 45,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:nura:E2",
+      "districtId": "nura",
+      "indicatorId": "E2",
+      "baseline": 65,
+      "beforeClipping": 65,
+      "updated": 65,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:nura:S1",
+      "districtId": "nura",
+      "indicatorId": "S1",
+      "baseline": 38,
+      "beforeClipping": 48,
+      "updated": 48,
+      "change": 10,
+      "clipping": 0,
+      "measureEffects": [
+        {
+          "districtId": "nura",
+          "indicatorId": "S1",
+          "amount": 10,
+          "initiativeIds": [
+            "M7"
+          ]
+        }
+      ],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:nura:S2",
+      "districtId": "nura",
+      "indicatorId": "S2",
+      "baseline": 35,
+      "beforeClipping": 43.75,
+      "updated": 43.75,
+      "change": 8.75,
+      "clipping": 0,
+      "measureEffects": [
+        {
+          "districtId": "nura",
+          "indicatorId": "S2",
+          "amount": 8.75,
+          "initiativeIds": [
+            "M8"
+          ]
+        }
+      ],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:nura:B1",
+      "districtId": "nura",
+      "indicatorId": "B1",
+      "baseline": 55,
+      "beforeClipping": 67.5,
+      "updated": 67.5,
+      "change": 12.5,
+      "clipping": 0,
+      "measureEffects": [
+        {
+          "districtId": "nura",
+          "indicatorId": "B1",
+          "amount": 10.5,
+          "initiativeIds": [
+            "M10"
+          ]
+        }
+      ],
+      "synergies": [
+        {
+          "districtId": "nura",
+          "indicatorId": "B1",
+          "amount": 2,
+          "initiativeIds": [
+            "M10",
+            "M12"
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "indicator:nura:B2",
+      "districtId": "nura",
+      "indicatorId": "B2",
+      "baseline": 50,
+      "beforeClipping": 51.75,
+      "updated": 51.75,
+      "change": 1.75,
+      "clipping": 0,
+      "measureEffects": [
+        {
+          "districtId": "nura",
+          "indicatorId": "B2",
+          "amount": 1.75,
+          "initiativeIds": [
+            "M10"
+          ]
+        }
+      ],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:nura:C1",
+      "districtId": "nura",
+      "indicatorId": "C1",
+      "baseline": 60,
+      "beforeClipping": 60,
+      "updated": 60,
+      "change": 0,
+      "clipping": 0,
+      "measureEffects": [],
+      "synergies": []
+    },
+    {
+      "ref": "indicator:nura:C2",
+      "districtId": "nura",
+      "indicatorId": "C2",
+      "baseline": 50,
+      "beforeClipping": 54.375,
+      "updated": 54.375,
+      "change": 4.375,
+      "clipping": 0,
+      "measureEffects": [
+        {
+          "districtId": "nura",
+          "indicatorId": "C2",
+          "amount": 4.375,
+          "initiativeIds": [
+            "M12"
+          ]
+        }
+      ],
+      "synergies": []
+    }
+  ],
+  "districtScores": {
+    "esil": 63.4275,
+    "almaty": 57.497499999999995,
+    "saryarka": 56.3,
+    "baikonur": 57.067499999999995,
+    "nura": 52.962500000000006
+  },
+  "cityAverage": 58.07759999999999,
+  "weakestDistricts": [
+    "nura"
+  ],
+  "weakestValue": 52.962500000000006,
+  "criticalPairs": [],
+  "components": {
+    "city": 40.65431999999999,
+    "weakest": 15.888750000000002,
+    "critical": 0
+  },
+  "finalScore": 56.54306999999999,
+  "scoreChange": 3.985389999999988,
+  "changeComponents": {
+    "city": 0.8506399999999914,
+    "weakest": 1.1347500000000004,
+    "critical": 2
+  }
+}

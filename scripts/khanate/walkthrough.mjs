@@ -1,0 +1,26 @@
+/** Capture the real production flow for the separate visual review. */
+import {chromium} from 'playwright';
+import {mkdir,writeFile} from 'node:fs/promises';
+import {executablePath,browserArgs} from '../release/browser-options.mjs';
+import {chooseProject,confirmProject} from '../integration/ui.mjs';
+const origin=process.env.APP_URL||'http://127.0.0.1:4198',out='artifacts/khanate/walkthrough';await mkdir(out,{recursive:true});
+const browser=await chromium.launch({executablePath,headless:true,args:browserArgs}),context=await browser.newContext({viewport:{width:1440,height:900}}),page=await context.newPage();page.setDefaultTimeout(45000);
+const captures=[],shot=async(name,caption)=>{await page.screenshot({path:`${out}/${name}.png`});captures.push({name,caption});};
+const ready=()=>page.locator('[data-ready=true]').waitFor(),idle=()=>page.waitForFunction(()=>document.querySelector('[data-testid=city-map]')?.dataset.choreography==='idle');
+try{
+ await page.goto(`${origin}/?mode=astana`);await ready();await shot('01-modern','Астана · минеральная палитра, мягкий свет и приглашение в другую эпоху.');
+ await page.locator('.invitation-enter').click();await page.locator('.river-passage').waitFor();await shot('02-crossing','Река соединяет две эпохи.');await ready();await page.waitForTimeout(1200);await shot('03-khanate','Хандық · три человеческих просьбы, сто монет и открытый город.');
+ await page.locator('.need-card[data-choice=M7]').click();await page.waitForTimeout(1800);await shot('04-proposal','До печати: место, цена, польза и незавершённая задача.');await confirmProject(page);
+ await page.waitForFunction(()=>{const d=document.querySelector('[data-testid=city-map]')?.dataset;return d?.choreography==='build'&&+d.construction>.2;});await shot('05-frame','Сначала раскрывается деревянный каркас.');
+ await page.waitForFunction(()=>+document.querySelector('[data-testid=city-map]')?.dataset.construction>.7);await shot('06-felt','Шанырак, войлок, дверь и тканые подстилки собираются в одно место.');await idle();await shot('07-children','Дети приходят в учебный двор. Указ становится частью жизни.');
+ await page.getByRole('button',{name:'Следующее решение →',exact:true}).click();
+ for(const [id,district]of [['M4','saryarka'],['M10','saryarka'],['M12',null],['M1','saryarka']]){await chooseProject(page,id);if(district)await page.locator('.candidate select').selectOption(district);await confirmProject(page);if(id!=='M1')await page.getByRole('button',{name:'Следующее решение →',exact:true}).click();}
+ await idle();await page.getByRole('button',{name:'Повторить переход времени',exact:true}).click();await page.waitForFunction(()=>{const t=+document.querySelector('[data-testid=city-map]')?.dataset.time%1;return t>.56&&t<.74;});await shot('08-dusk','Время проходит через тот же город.');
+ await page.getByRole('button',{name:'Посмотреть итог →',exact:true}).click();await page.locator('.dash-score-orbit').waitFor();await shot('09-chronicle','Летопись связывает пять указов с человеком, которому стало лучше, и заботой, которая осталась.');
+ await page.getByRole('navigation',{name:'Пространства Алем'}).getByRole('button',{name:'Город',exact:true}).click();await ready();await page.locator('.landmark-atlas summary').click();await page.locator('.landmark-atlas-list [data-landmark-id=akorda]').click();await page.waitForTimeout(1800);await shot('10-orda','Ханская орда · белая юрта, рабочий двор и люди рядом.');
+ const phone=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true});await phone.goto(`${origin}/?mode=khanate`);await phone.locator('[data-ready=true]').waitFor();await phone.locator('.need-card[data-choice=M7]').click();await phone.waitForTimeout(1800);await phone.screenshot({path:`${out}/11-phone.png`});captures.push({name:'11-phone',caption:'На телефоне место остаётся над листом решения. Подтверждение видно сразу.'});await phone.close();
+ await writeFile(`${out}/captions.json`,JSON.stringify(captures,null,2));
+ const cards=captures.map(({name,caption})=>`<figure class="${name==='11-phone'?'phone':''}"><img src="${name}.png" alt="${caption}" loading="lazy"><figcaption>${caption}</figcaption></figure>`).join('');
+ await writeFile(`${out}/index.html`,`<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Әлем · два мира</title><style>body{margin:0;background:#f2eadb;color:#303b38;font:16px/1.6 system-ui}main{max-width:1120px;margin:auto;padding:52px 24px}h1{font:500 clamp(32px,6vw,64px)/1.1 Georgia}p{max-width:640px;color:#68746b}a{color:#365e53}figure{margin:48px 0;background:#faf6ed;border:1px solid #d7d4c3;border-radius:20px;overflow:hidden}img{width:100%;display:block}figcaption{padding:18px 24px}.phone{max-width:390px;margin-inline:auto}header{padding-bottom:12px}small{letter-spacing:.16em}</style><main><header><small>ӘЛЕМ · АСТАНА / ХАНДЫҚ</small><h1>Город запомнит ваши решения.</h1><p>Один точный игровой мир — и другая эпоха, в которую можно войти. Это кадры настоящей браузерной сборки.</p><a href="${origin}/?mode=astana">Открыть игру →</a></header>${cards}</main></html>`);
+ console.log(`Visual walkthrough: ${out}/index.html`);
+}finally{await browser.close();}

@@ -1,0 +1,11 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {generateKhanateProgramData} from '../../src/world/khanate/programs.js';
+import {auditKhanateProgramMeshes} from '../../src/world/khanate/program-audit.js';
+import {assertProgramPlacements} from './compare-programs.mjs';
+const path=new URL('../../src/world/khanate/program-sites.json',import.meta.url),hash=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
+const stored=JSON.parse(await readFile(path,'utf8')),generated=generateKhanateProgramData();
+if(process.argv.includes('--write'))await writeFile(path,JSON.stringify(generated)+'\n');
+else assertProgramPlacements(stored,generated);
+const report=auditKhanateProgramMeshes();console.log(JSON.stringify({...report,placementHash:hash(generated)},null,2));
+if(!report.ok)process.exitCode=1;

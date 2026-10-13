@@ -1,0 +1,31 @@
+import {ControlIcon} from '../ui/ControlIcon';
+import {useContent} from '../modes/content';
+import {useDecisionLabel} from './useFormat';
+import {DISTRICT_COLORS} from '../world/district-colors.js';
+import {BASELINE_ASSESSMENT} from '../domain/evaluate';
+import {BASELINE} from '../domain/scenario';
+import {summarizePlan} from '../domain/plan';
+import type { DistrictId, IndicatorId, InitiativeId, Plan, ScenarioResult } from '../domain/types';
+import {INDICATOR_IDS} from '../domain/types';
+import {number, signed} from './format';
+import type { PlanReview } from './types';
+import {ImpactSummary} from './ImpactSummary';
+export function Overview({plan,result,review,district,onDistrict,onNavigate,onAskAya,onReview,onMeetNeed,onVisitProject}:{district:DistrictId;onDistrict:(district:DistrictId)=>void;plan:Plan;result:ScenarioResult|null;review:PlanReview|null;onNavigate:(space:'map'|'residents'|'dashboard',district?:DistrictId)=>void;onAskAya:(text:string)=>void;onReview:()=>void;onMeetNeed:(district:DistrictId,indicator:IndicatorId,initiative?:InitiativeId)=>void;onVisitProject:(id:InitiativeId)=>void}) {
+ const decisionLabel=useDecisionLabel();
+ const {mode,DISTRICTS,INITIATIVES,areaNames,districtName,indicatorNames,terms,unitFor}=useContent();
+ const summary=summarizePlan(plan);
+ const assessment=result??BASELINE_ASSESSMENT;
+ return <>
+  <section className="dash-hero">
+   <div><p className="dash-eyebrow">{result?'ГОРОД ПОСЛЕ ВАШИХ РЕШЕНИЙ':'ОТПРАВНАЯ ТОЧКА'}</p><h2>{result?(mode.id==='khanate'?'Летопись двух лет':'Ваши решения стали частью города'):'Город ждёт ваших решений'}</h2><p>{result?`${mode.id==='khanate'?'Пять указов':'Пять проектов'}. Потрачено ${summary.spent} из 100. Вот что изменилось за два года.`:'Выберите пять проектов. Итог покажет, кому они помогли и что ещё важно.'}</p>
+   <div className="dash-actions">{result?<><button className="dash-primary" onClick={()=>onNavigate('residents')}>Вернуться к людям <ControlIcon kind="arrow-right" size={18}/></button><button onClick={onReview}>Сравнить другой вариант</button></>:<><button className="dash-primary" onClick={()=>onNavigate('map')}>К следующему решению <ControlIcon kind="arrow-right" size={18}/></button><button onClick={()=>onAskAya('Доведи план')}>Ая, помоги закончить</button></>}</div></div>
+   <div className="dash-score-orbit"><span>{result?'ИТОГОВЫЙ БАЛЛ':'БАЛЛ ГОРОДА СЕЙЧАС'}</span><strong>{number(assessment.finalScore)}</strong><small>{result?`${signed(result.scoreChange)} к исходному ${number(BASELINE_ASSESSMENT.finalScore)}`:'Исходный расчёт · без решений'}</small></div>
+  </section>
+  {result&&<ImpactSummary result={result} onMeet={onMeetNeed}/>}
+  <details className="dash-full-details"><summary>Все показатели и ваш план <span>5 {mode.id==='khanate'?'кварталов':'районов'} · 10 показателей</span></summary><div className="dash-stats"><article><span>Решения</span><strong>{summary.count}<small> / 5</small></strong><p>{5-summary.count?`Осталось выбрать ${5-summary.count}`:'План готов к обсуждению'}</p></article><article><span>Свободный бюджет</span><strong>{summary.remaining}<small> {unitFor(summary.remaining)}</small></strong><p>Потратить всё необязательно</p></article><article><span>Место среди допустимых планов</span><strong>{review?number(review.rank,0):'—'}</strong><p>{review?`из ${number(review.total,0)} вариантов`:result?'Идёт точный расчёт':'Появится после пятого решения'}</p></article><article><span>Показатели ниже 40</span><strong>{assessment.criticalPairs.length}</strong><p>{result?`${BASELINE_ASSESSMENT.criticalPairs.length} было до изменений`:'Точки, требующие внимания'}</p></article></div>
+  <div className="dash-two-column"><section className="dash-panel paper-card"><div className="dash-section-heading"><h3>Пять {mode.id==='khanate'?'кварталов':'районов'} — разные последствия</h3><span>До → после</span></div><div className="dash-districts">{DISTRICTS.map(d=><button key={d.id} className={`dash-district ${district===d.id?'selected':''}`} aria-pressed={district===d.id} onClick={()=>onDistrict(d.id)} style={{'--district':districtColors[d.id]} as React.CSSProperties}><span><i/>{d.name}</span><div className="dash-track"><i style={{width:`${BASELINE_ASSESSMENT.districtScores[d.id]}%`}}/><b style={{width:`${assessment.districtScores[d.id]}%`}}/></div><strong>{number(BASELINE_ASSESSMENT.districtScores[d.id])} <span>→</span> {number(assessment.districtScores[d.id])}</strong></button>)}</div><p className="dash-muted">Баллы учитывают десять показателей. Общий результат также учитывает население, самое слабое место города и критические значения.</p></section>
+   <section className="dash-panel paper-card"><div className="dash-section-heading"><h3>{districtName(district)} · в деталях</h3><button onClick={()=>onNavigate('residents',district)}>К жителям <ControlIcon kind="arrow-right" size={18}/></button></div><div className="dash-indicators">{INDICATOR_IDS.map(k=>{const before=BASELINE[district][k],after=result?.indicators[district][k]??before;return <div key={k}><span>{indicatorNames[k]}</span><strong className={after<40?'dash-danger':''}>{number(before)} → {number(after)}</strong><small className={after>before?'dash-positive':after<before?'dash-danger':''}>{signed(after-before)}</small></div>;})}</div></section></div>
+  <section className="dash-panel paper-card"><div className="dash-section-heading"><h3>Ваши обязательства</h3><span>{summary.spent} / 100 {terms.unit}</span></div>{plan.length?<div className="dash-plan-list">{plan.map(d=><article key={d.initiativeId}><span className="dash-project-id">{d.initiativeId}</span><div><strong>{decisionLabel(d)}</strong><small>{areaNames[INITIATIVES[d.initiativeId].area]} · эффект с {INITIATIVES[d.initiativeId].lag+1}-го {mode.id==='khanate'?'сезона':'квартала'}</small></div><b>{INITIATIVES[d.initiativeId].cost} {unitFor(INITIATIVES[d.initiativeId].cost)}</b><button onClick={()=>onVisitProject(d.initiativeId)}>На карту <ControlIcon kind="arrow-right" size={18}/></button></article>)}</div>:<p>Пока ничего не потрачено. Начните с потребности жителя — Ая поможет подобрать действие.</p>}</section>
+ </details></>;
+}
+export const districtColors:Record<DistrictId,string>=DISTRICT_COLORS;

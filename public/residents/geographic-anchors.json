@@ -1,0 +1,457 @@
+{
+  "esil:garden": {
+    "position": [
+      71.4195759,
+      51.0914509
+    ],
+    "pathSource": "way/1126613518",
+    "nearbySource": "way/1456208624",
+    "nearbyDistanceM": 0,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3479876",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "esil:clinic": {
+    "position": [
+      71.4066872,
+      51.0832345
+    ],
+    "pathSource": "way/1449270311",
+    "nearbySource": "way/734478941",
+    "nearbyDistanceM": 37,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3479876",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "esil:school": {
+    "position": [
+      71.4270827,
+      51.0859827
+    ],
+    "pathSource": "way/1420898980",
+    "nearbySource": null,
+    "nearbyDistanceM": 0,
+    "semanticExact": false,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3479876",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "esil:entrance": {
+    "position": [
+      71.4273078,
+      51.0865552
+    ],
+    "pathSource": "way/1420899015",
+    "nearbySource": "way/914979610",
+    "nearbyDistanceM": 19,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3479876",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "esil:stop": {
+    "position": [
+      71.4274186,
+      51.0863808
+    ],
+    "pathSource": "way/1420922707",
+    "nearbySource": "way/870797282",
+    "nearbyDistanceM": 7,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3479876",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "esil:crossing": {
+    "position": [
+      71.4274186,
+      51.0863808
+    ],
+    "pathSource": "way/1420922707",
+    "nearbySource": "way/870797282",
+    "nearbyDistanceM": 7,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3479876",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "esil:service": {
+    "position": [
+      71.4273078,
+      51.0865552
+    ],
+    "pathSource": "way/1420899015",
+    "nearbySource": "way/914979610",
+    "nearbyDistanceM": 19,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3479876",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "almaty:garden": {
+    "position": [
+      71.4986768,
+      51.1417024
+    ],
+    "pathSource": "way/1524320844",
+    "nearbySource": "way/243930491",
+    "nearbyDistanceM": 0,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3482819",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "almaty:clinic": {
+    "position": [
+      71.505733,
+      51.1537951
+    ],
+    "pathSource": "way/1540010638",
+    "nearbySource": "way/240706686",
+    "nearbyDistanceM": 62,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3482819",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "almaty:school": {
+    "position": [
+      71.4857132,
+      51.1596617
+    ],
+    "pathSource": "way/1560151710",
+    "nearbySource": "relation/3464850",
+    "nearbyDistanceM": 160,
+    "semanticExact": false,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3482819",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "almaty:entrance": {
+    "position": [
+      71.5018723,
+      51.1494308
+    ],
+    "pathSource": "way/1410845042",
+    "nearbySource": "way/167300587",
+    "nearbyDistanceM": 20,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3482819",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "almaty:stop": {
+    "position": [
+      71.4991268,
+      51.1445837
+    ],
+    "pathSource": "way/1556587599",
+    "nearbySource": "way/165570752",
+    "nearbyDistanceM": 9,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3482819",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "almaty:crossing": {
+    "position": [
+      71.4991268,
+      51.1445837
+    ],
+    "pathSource": "way/1556587599",
+    "nearbySource": "way/165570752",
+    "nearbyDistanceM": 9,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3482819",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "almaty:service": {
+    "position": [
+      71.5018723,
+      51.1494308
+    ],
+    "pathSource": "way/1410845042",
+    "nearbySource": "way/167300587",
+    "nearbyDistanceM": 20,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3482819",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "saryarka:garden": {
+    "position": [
+      71.3552263,
+      51.1789852
+    ],
+    "pathSource": "way/1355004778",
+    "nearbySource": "way/885788799",
+    "nearbyDistanceM": 0,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3486954",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "saryarka:clinic": {
+    "position": [
+      71.4067968,
+      51.1922455
+    ],
+    "pathSource": "way/1165553155",
+    "nearbySource": "way/24805419",
+    "nearbyDistanceM": 20,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3486954",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "saryarka:school": {
+    "position": [
+      71.372694,
+      51.1820543
+    ],
+    "pathSource": "way/1164606039",
+    "nearbySource": null,
+    "nearbyDistanceM": 0,
+    "semanticExact": false,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3486954",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "saryarka:entrance": {
+    "position": [
+      71.3780549,
+      51.1813948
+    ],
+    "pathSource": "way/1525812665",
+    "nearbySource": "way/315860526",
+    "nearbyDistanceM": 21,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3486954",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "saryarka:stop": {
+    "position": [
+      71.3694177,
+      51.1827337
+    ],
+    "pathSource": "way/1174741376",
+    "nearbySource": "way/162101432",
+    "nearbyDistanceM": 12,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3486954",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "saryarka:crossing": {
+    "position": [
+      71.3694177,
+      51.1827337
+    ],
+    "pathSource": "way/1174741376",
+    "nearbySource": "way/162101432",
+    "nearbyDistanceM": 12,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3486954",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "saryarka:service": {
+    "position": [
+      71.3780549,
+      51.1813948
+    ],
+    "pathSource": "way/1525812665",
+    "nearbySource": "way/315860526",
+    "nearbyDistanceM": 21,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/3486954",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "baikonur:garden": {
+    "position": [
+      71.4267642,
+      51.1714082
+    ],
+    "pathSource": "way/409183339",
+    "nearbySource": "way/1428964223",
+    "nearbyDistanceM": 0,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/8593081",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "baikonur:clinic": {
+    "position": [
+      71.4337824,
+      51.1956018
+    ],
+    "pathSource": "way/1501823417",
+    "nearbySource": null,
+    "nearbyDistanceM": 0,
+    "semanticExact": false,
+    "clearRadiusM": 19,
+    "districtSource": "relation/8593081",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "baikonur:school": {
+    "position": [
+      71.4300819,
+      51.1743745
+    ],
+    "pathSource": "way/1411064327",
+    "nearbySource": "way/240376652",
+    "nearbyDistanceM": 19,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/8593081",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "baikonur:entrance": {
+    "position": [
+      71.4303673,
+      51.1964685
+    ],
+    "pathSource": "way/1501815369",
+    "nearbySource": "way/216575993",
+    "nearbyDistanceM": 35,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/8593081",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "baikonur:stop": {
+    "position": [
+      71.4337824,
+      51.1956018
+    ],
+    "pathSource": "way/1501823417",
+    "nearbySource": "way/243286665",
+    "nearbyDistanceM": 6,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/8593081",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "baikonur:crossing": {
+    "position": [
+      71.4337824,
+      51.1956018
+    ],
+    "pathSource": "way/1501823417",
+    "nearbySource": "way/243286665",
+    "nearbyDistanceM": 6,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/8593081",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "baikonur:service": {
+    "position": [
+      71.4303673,
+      51.1964685
+    ],
+    "pathSource": "way/1501815369",
+    "nearbySource": "way/216575993",
+    "nearbyDistanceM": 35,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/8593081",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "nura:garden": {
+    "position": [
+      71.3626927,
+      51.1328907
+    ],
+    "pathSource": "way/1526900311",
+    "nearbySource": "way/1526900307",
+    "nearbyDistanceM": 0,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/20593940",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "nura:clinic": {
+    "position": [
+      71.3799365,
+      51.1467745
+    ],
+    "pathSource": "way/1164888007",
+    "nearbySource": "way/243183886",
+    "nearbyDistanceM": 24,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/20593940",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "nura:school": {
+    "position": [
+      71.360268,
+      51.1318695
+    ],
+    "pathSource": "way/1077909290",
+    "nearbySource": null,
+    "nearbyDistanceM": 0,
+    "semanticExact": false,
+    "clearRadiusM": 19,
+    "districtSource": "relation/20593940",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "nura:entrance": {
+    "position": [
+      71.3593942,
+      51.1294232
+    ],
+    "pathSource": "way/1411745089",
+    "nearbySource": "way/427143584",
+    "nearbyDistanceM": 21,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/20593940",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "nura:stop": {
+    "position": [
+      71.360793,
+      51.1298752
+    ],
+    "pathSource": "way/1411745088",
+    "nearbySource": "way/649748231",
+    "nearbyDistanceM": 8,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/20593940",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "nura:crossing": {
+    "position": [
+      71.360793,
+      51.1298752
+    ],
+    "pathSource": "way/1411745088",
+    "nearbySource": "way/649748231",
+    "nearbyDistanceM": 8,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/20593940",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  },
+  "nura:service": {
+    "position": [
+      71.3593942,
+      51.1294232
+    ],
+    "pathSource": "way/1411745089",
+    "nearbySource": "way/427143584",
+    "nearbyDistanceM": 21,
+    "semanticExact": true,
+    "clearRadiusM": 19,
+    "districtSource": "relation/20593940",
+    "note": "Иллюстративное место на пешеходной геометрии; не адрес и не подтверждённый вход, остановка или переход."
+  }
+}

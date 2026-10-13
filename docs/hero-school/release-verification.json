@@ -1,0 +1,254 @@
+{
+  "createdAt": "2026-09-27T08:46:52.459549+00:00",
+  "baseCommit": "3dd99307de41a2e8faf0a222038e5c314bd07efa",
+  "branch": "codex/latest-assemble-release",
+  "normalEntry": "Бюджет → Модульная школа и детский сад → Нура → Добавить в план",
+  "build": {
+    "version": {
+      "application": "alem",
+      "commit": "3dd99307de41a2e8faf0a222038e5c314bd07efa",
+      "dirty": true,
+      "model": "astana-education-1",
+      "builtAt": "2026-09-27T08:39:22.394Z"
+    },
+    "note": "Local final runtime built from this fixed source snapshot before its commit. GitHub CI rebuilds the final PR commit.",
+    "assets": {
+      "assets/index-DtZOoQ9W.css": {
+        "sha256": "05ed3e7155d50c29b08db1089cf6f276353d61b2f99029e7a74c681c1482a802",
+        "bytes": 79225
+      },
+      "assets/index-K4lc8MRO.js": {
+        "sha256": "6451eb248494090c7d83de8cf61a457bc9d312790a5fb4a12b18b15bab1b3d84",
+        "bytes": 887967
+      }
+    },
+    "cityBytes": 176194320,
+    "runtimeAssets": 30
+  },
+  "latestAssemble": {
+    "source": "Completed foundation worktree snapshot; original workspace is preserved",
+    "byteIdenticalFiles": {
+      "src/world/hero-school-site.json": "8b001ebc6d47f03d51c9b4de879d5eab666a24d8e8d9a7774d13f5c38626d1e1",
+      "src/world/choreography.js": "d2843caf264b2fc57c9fece27941ff8b87f32f7fca09943b37b469a2f2c39833",
+      "src/world/city-math.js": "9b1a627714795e5963c86b531dbfd72949dae753a95be5c432cabe3f4971e6f5",
+      "src/world/project-objects.js": "e0b20a0a7a980c42eae3d0198bcc511a8740f420e3c8216d631119491461268b",
+      "src/world/macro-interventions.js": "21c1883d339f355e59fd6fbb5c7305901fcf912c793ac58ecb237884a009cef3",
+      "src/world/placements.json": "b8b7d471c8b72ffbfc28f44db33e6b2cd2fe7682008e76b35cf9a98ceb9951df",
+      "src/world/bootstrap.json": "9beb3c35079cb61724937eb5cc5157b6f04042aa13aba7bb0d74d65dc19d22eb",
+      "public/alem/geometry.json": "dfee674cd7cea64127966401457cfab9cf35f2ded0a46749e4c8d6d9b90eec40",
+      "public/alem/geometry-low.json": "dfee674cd7cea64127966401457cfab9cf35f2ded0a46749e4c8d6d9b90eec40"
+    },
+    "integrationChanges": [
+      "Preserved released migration, runtime, testing and reduced-motion fixes",
+      "School reduced motion returns instantly to overview and cannot replay after changing the preference",
+      "School source-geometry audit added to CI and Railway verify gate",
+      "Browser evidence outputs redirected to ignored artifacts directory"
+    ],
+    "formatOnlyFiles": {
+      "src/world/hero-school.js": {
+        "sourceSha256": "2fa2226b786b437418cfdc8eb2e32360b511cf57d035a538be8300f199d85a2d",
+        "releaseSha256": "3cf7672a6f95a8d4494f6fe364683284fe101b6f12c4e3b706bd034b782f4b34",
+        "difference": "One trailing-whitespace line removed; all source tokens unchanged."
+      }
+    }
+  },
+  "unitTests": 170,
+  "runtimeChecks": 11,
+  "geometry": {
+    "sites": 70,
+    "meshVariants": 560,
+    "buildingFeatures": 60978,
+    "completeCityAuditPassed": true,
+    "school": {
+      "passed": true,
+      "site": "M7:nura",
+      "position": [
+        71.3650546206891,
+        51.12345150529793
+      ],
+      "sourceWays": [
+        "way/1526038118",
+        "way/824123621"
+      ],
+      "sourceObstacles": 61714,
+      "pedestrianSamples": 2008,
+      "vehicleSamples": 611,
+      "checks": [
+        "Footprint clears all source buildings and polygonal water",
+        "Anchor is in Nura",
+        "Every delivery segment exists in a recorded OSM way",
+        "Swept delivery envelopes clear mapped buildings and water",
+        "Every cast route clears existing mapped geometry; family crosses the service street after deliveries",
+        "No OSM footprint replaced or suppressed"
+      ],
+      "note": "Scenario visualization, not a real parcel recommendation. Audits geometry; does not model traffic or pedestrian right of way."
+    }
+  },
+  "oracle": {
+    "baseline": 52.55768,
+    "example": 56.54307,
+    "improvement": 3.98539
+  },
+  "browser": {
+    "schoolCapture": {
+      "passed": true,
+      "checks": 9,
+      "reportSha256": "b4036bd62f00b8458dec0ca08c0188d007121c8bfdd0c0f849e1ff0c7ec28314"
+    },
+    "schoolBehavior": {
+      "passed": true,
+      "checks": 9,
+      "reportSha256": "b614c0004d88ff26336169c1f378ff25786bf3c0da6ba3fd8919cebd374243fa"
+    },
+    "release": {
+      "passed": true,
+      "checks": 39,
+      "reportSha256": "05f17c2e3fe61af48c740c5338770bb0b391c086a14a62d2abedc8b796e41821"
+    },
+    "fullscreen": {
+      "passed": true,
+      "checks": 50,
+      "reportSha256": "921733c51c14607947b8524caa24260a6bc6bdab389850f8af6cba34f53f4316"
+    },
+    "consequences": {
+      "passed": true,
+      "checks": 40,
+      "reportSha256": "2ae36f9d49c69623dc37edeb9d1ac4944d1978a6965f3c59331c082bf3f0c786"
+    },
+    "budget": {
+      "passed": true,
+      "checks": 38,
+      "reportSha256": "4e448bbc306ebe7b58e81a5ffd1008b0e0f1668c40761775533e0ba5f72e8fde"
+    },
+    "api": {
+      "passed": true,
+      "checks": 7,
+      "reportSha256": "ec17b9c8f78afa0618bb4ac3f022a68685c1cbf77fecde098239c133e6461b76"
+    }
+  },
+  "browserCheckTotal": 192,
+  "schoolSequence": {
+    "durationSeconds": 22,
+    "sampleCount": 234,
+    "stages": [
+      "overview",
+      "district",
+      "approach",
+      "anticipation",
+      "arrival",
+      "build",
+      "activation",
+      "people",
+      "return",
+      "settle",
+      "idle"
+    ],
+    "maximumZoom": 248,
+    "plannedNotEvaluated": true,
+    "recordingSha256": "c7bd9cb143da4fefbb84a970e87d2954c6f290a7d4411d5a97fd853e58040a24"
+  },
+  "gallery": {
+    "initiatives": [
+      "M1",
+      "M2",
+      "M3",
+      "M4",
+      "M5",
+      "M6",
+      "M7",
+      "M8",
+      "M9",
+      "M10",
+      "M11",
+      "M12",
+      "M13",
+      "M14"
+    ],
+    "passed": true,
+    "reportSha256": "282166d570c509119d7ea28775a0bf6cbbabe486a7a656f43710fa6d2a97eb46"
+  },
+  "anchors": {
+    "samples": 2664,
+    "anchorObservations": 12498,
+    "distinctZooms": 326,
+    "maxErrorPixels": 0.0007004871877783139,
+    "tracked": [
+      "esil:garden",
+      "M4:esil",
+      "M5:esil",
+      "M7:esil",
+      "M8:esil",
+      "M8:nura",
+      "M11:nura",
+      "M11:almaty",
+      "M12:esil",
+      "M12:almaty",
+      "M12:saryarka",
+      "M12:baikonur",
+      "M12:nura",
+      "M14:esil",
+      "M14:almaty",
+      "M14:saryarka",
+      "M14:baikonur",
+      "M14:nura",
+      "scenario:M4:esil"
+    ],
+    "method": "Independently reconstruct GPU clip projection from each sampled camera pose and checked-in placement or sampled physical actor position; compare to resident foot and project anchor delivered in that same frame. Includes motion, orientation changes and safe-area shifts."
+  },
+  "measurements": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "firstCityMs": 310.8,
+      "initialTransferBytes": 34989992,
+      "navigationRoundTripMs": 34.51
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "firstCityMs": 310.4,
+      "initialTransferBytes": 34989992,
+      "navigationRoundTripMs": 34.36
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "firstCityMs": 294.1,
+      "initialTransferBytes": 34989992,
+      "navigationRoundTripMs": 34.16
+    }
+  ],
+  "sourceSha256": {
+    "package.json": "0769a30d2820510b9b985d08064b06e20df8eaf5bb77f593580c02ff4da089ee",
+    "scripts/alem/placements.mjs": "669972ba02123302e7bbf6b01171ebb43f0220fcbfa6d46d5be9f08741c7ff94",
+    "scripts/consequences/check-models.mjs": "0d0ad18a12eea6a993d0c07f1c5447e6a8724ffa0cfc00b2c9e50408a81b4c71",
+    "scripts/hero-school/audit-site.mjs": "e80af7d13e782d9263a5830f3dedf0cbbd4d0a44726131d5c35fb593ca2d43b0",
+    "scripts/hero-school/behavior.mjs": "8b61ebfd256e1afbadc6e7c20ee7bf63469ad0b516fc10981276f49ef87efce7",
+    "scripts/hero-school/capture.mjs": "04bdf9ddbcfa698bf59c3c682f0a1a38081c95bd8683fc3ac71271659994004c",
+    "src/world/alem-runtime.js": "0e14ff3158dac4f82582e768ef694416ac397c7e80fbc01b5e5869c23ecd3e47",
+    "src/world/bootstrap.json": "9beb3c35079cb61724937eb5cc5157b6f04042aa13aba7bb0d74d65dc19d22eb",
+    "src/world/choreography.js": "d2843caf264b2fc57c9fece27941ff8b87f32f7fca09943b37b469a2f2c39833",
+    "src/world/city-math.js": "9b1a627714795e5963c86b531dbfd72949dae753a95be5c432cabe3f4971e6f5",
+    "src/world/hero-school-site.json": "8b001ebc6d47f03d51c9b4de879d5eab666a24d8e8d9a7774d13f5c38626d1e1",
+    "src/world/hero-school.js": "3cf7672a6f95a8d4494f6fe364683284fe101b6f12c4e3b706bd034b782f4b34",
+    "src/world/intervention-effects.js": "8a148ea9dd2f784df28724c0a2672270689df9347e4343932f1be8672eec8376",
+    "src/world/macro-interventions.js": "21c1883d339f355e59fd6fbb5c7305901fcf912c793ac58ecb237884a009cef3",
+    "src/world/placements.json": "b8b7d471c8b72ffbfc28f44db33e6b2cd2fe7682008e76b35cf9a98ceb9951df",
+    "src/world/project-objects.js": "e0b20a0a7a980c42eae3d0198bcc511a8740f420e3c8216d631119491461268b",
+    "tests/city.test.ts": "afd201810a4abdb35b1a8d1b4b5b2f101e82acad2f9859e2e11b49bd19e342ec",
+    "tests/consequences.test.ts": "56e6f91f99ca5b53483a32a223c5eee294c201946dceea1a8cbc904ed74d2c84",
+    "tests/hero-school.test.ts": "0ad0418fbd2386ba54f8fe33722711cfc8c66908bfadd591aa3f81f44995bb53"
+  },
+  "limits": [
+    "Local production desktop and touch emulation; no physical handset or mobile network benchmark",
+    "First draw followed by rAF is not GPU fence timing",
+    "Real API uses labelled local explanation without a paid provider call",
+    "The full city still transfers about 35 MB and uses a 176.2 MB raw vertex buffer"
+  ]
+}

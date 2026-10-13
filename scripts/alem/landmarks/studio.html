@@ -1,0 +1,27 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Astana · model inspection</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#263e42;color:#fff5d9;font:14px system-ui}canvas{position:fixed;inset:0;width:100%;height:100%;touch-action:none}header{position:absolute;left:28px;top:22px;pointer-events:none}h1{font:500 26px Georgia;margin:4px 0}small{letter-spacing:.12em;text-transform:uppercase;color:#d9d3b6}nav{position:absolute;left:28px;bottom:24px;display:flex;gap:8px;flex-wrap:wrap;max-width:90vw}button,select{background:#f0e5cddd;color:#29494c;border:1px solid #a1b5a4;border-radius:12px;padding:10px 15px;cursor:pointer}button.active{background:#bce0d2}#metrics{position:absolute;right:24px;top:24px;color:#eee8cd}</style>
+<canvas></canvas><header><small>Alem · architectural studies</small><h1 id="name">Astana landmarks</h1><p>Drag to orbit · scroll to inspect</p></header><div id="metrics"></div><nav id="nav"></nav>
+<script type="module">
+import {createRenderer} from '/src/world/city-gl.js';
+import {rotation} from '/src/world/city-math.js';
+const manifest=await(await fetch('/artifacts/landmarks/models/manifest.json')).json();
+let renderer,pose={yaw:-.35,pitch:.82,zoom:50},selected,time=.20;
+const canvas=document.querySelector('canvas'),params=new URLSearchParams(location.search);time=Number(params.get('time')??.20);
+async function select(id){selected=manifest.find(m=>m.id===id)||manifest[0];
+ const data=await(await fetch('/artifacts/landmarks/models/'+selected.id+'.bin')).arrayBuffer();
+ renderer?.destroy();
+ // Destroying a production renderer intentionally loses its GL context. Replace
+ // the canvas for each isolated inspection just as the application would.
+ if(renderer){const next=canvas.cloneNode();canvas.replaceWith(next);location.search='?id='+id;return;}
+ pose={yaw:Number(params.get('yaw')??selected.yaw??-.35),pitch:Number(params.get('pitch')??.82),zoom:Number(params.get('zoom')??selected.zoom??50)};
+ renderer=createRenderer(canvas,data,{tiles:[],groundCount:0,buildingFeatures:0,projection:'planar'});
+ document.querySelector('#name').textContent=selected.name||selected.id;document.querySelector('#metrics').textContent=(data.byteLength/60).toLocaleString()+' triangles';
+ window.landmarkStudio={renderer,pose,selected,draw,setTime(v){time=v;draw();},setPose(v){Object.assign(pose,v);draw();}};
+ document.body.dataset.ready='true';draw();
+}
+function draw(){if(!renderer)return;const h=selected.focusHeight/12000||.003,w=innerWidth,he=innerHeight;
+ renderer.draw({rotation:rotation(pose.yaw,pose.pitch),zoom:pose.zoom,center:[Math.sin(pose.yaw)*Math.tan(pose.pitch)*h,Math.cos(pose.yaw)*Math.tan(pose.pitch)*h,0],width:w,height:he,time,tick:0,focusPoint:[0,0,h]});}
+for(const m of manifest){const b=document.createElement('button');b.textContent=m.name||m.id;b.onclick=()=>location.search='?id='+m.id;document.querySelector('#nav').append(b);}
+let drag;canvas.onpointerdown=e=>{drag={x:e.clientX,y:e.clientY,yaw:pose.yaw,pitch:pose.pitch};canvas.setPointerCapture(e.pointerId);};canvas.onpointermove=e=>{if(!drag)return;pose.yaw=drag.yaw+(e.clientX-drag.x)*.005;pose.pitch=Math.max(.25,Math.min(1.4,drag.pitch+(e.clientY-drag.y)*.004));draw();};canvas.onpointerup=()=>drag=null;canvas.onwheel=e=>{e.preventDefault();pose.zoom=Math.max(5,Math.min(200,pose.zoom*Math.exp(-e.deltaY*.001)));draw();};onresize=draw;
+await select(params.get('id'));
+</script></html>

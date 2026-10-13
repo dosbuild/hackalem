@@ -1,0 +1,172 @@
+{
+  "createdAt": "2026-09-26T17:31:39.445280+00:00",
+  "baseCommit": "26154d4aa4d43fc5102e7d37c14c4c22b70688d8",
+  "branch": "codex/decision-events-release",
+  "build": {
+    "version": {
+      "application": "alem",
+      "commit": "26154d4aa4d43fc5102e7d37c14c4c22b70688d8",
+      "dirty": true,
+      "model": "astana-education-1",
+      "builtAt": "2026-09-26T17:24:59.076Z"
+    },
+    "note": "Built before committing this fixed source snapshot; GitHub CI verifies the final commit.",
+    "assets": {
+      "assets/index-B6ymZClN.js": {
+        "sha256": "46cb0974f59ccbb4b0432aeffdbb49ed049c36f6dec2b6447a375b02ce758d66",
+        "bytes": 874354
+      },
+      "assets/index-DtZOoQ9W.css": {
+        "sha256": "05ed3e7155d50c29b08db1089cf6f276353d61b2f99029e7a74c681c1482a802",
+        "bytes": 79225
+      }
+    },
+    "cityBytes": 176196840
+  },
+  "unitTests": 168,
+  "runtimeChecks": 11,
+  "geometry": {
+    "sites": 70,
+    "meshes": 560,
+    "buildingFeatures": 60978,
+    "completeCityAuditPassed": true
+  },
+  "oracle": {
+    "baseline": 52.55768,
+    "example": 56.54307,
+    "improvement": 3.98539
+  },
+  "browser": {
+    "release": {
+      "passed": true,
+      "checks": 39,
+      "reportSha256": "f55146c87015e8b758a7ef1f34da567774386cb32712dd1b6d65f1e41742e450"
+    },
+    "fullscreen": {
+      "passed": true,
+      "checks": 50,
+      "reportSha256": "90afdff308daeed6e6a1dfc28553ba320c9eb43d067c8818bead31001ce44053"
+    },
+    "consequences": {
+      "passed": true,
+      "checks": 40,
+      "reportSha256": "f32a509c86d38d92363467d8bd73780cf80d1e2e005dcb17da688f45524a1ca1"
+    },
+    "budget": {
+      "passed": true,
+      "checks": 38,
+      "reportSha256": "15a98bf94b58f55a8e1f4a58469ca7ee670e9da8380222c51460d3b1f3cf1829"
+    },
+    "api": {
+      "passed": true,
+      "checks": 7,
+      "reportSha256": "2edcec95ee2b5e3ba8cb117a4a495aa8b5b2b2454c430872cb33c6116c5540ca"
+    }
+  },
+  "browserCheckTotal": 174,
+  "gallery": {
+    "initiatives": [
+      "M1",
+      "M2",
+      "M3",
+      "M4",
+      "M5",
+      "M6",
+      "M7",
+      "M8",
+      "M9",
+      "M10",
+      "M11",
+      "M12",
+      "M13",
+      "M14"
+    ],
+    "passed": true,
+    "reportSha256": "0dc59bb3fc684ff0c01028df55c97ee99075a02ddc8728c3303585ef6c7c481b",
+    "checks": "Actual construction geometry and camera scale, clear labels, completed close geometry and correct scope"
+  },
+  "anchors": {
+    "samples": 2678,
+    "anchorObservations": 12625,
+    "distinctZooms": 325,
+    "maxErrorPixels": 0.0007053387977911785,
+    "tracked": [
+      "esil:garden",
+      "M4:esil",
+      "M5:esil",
+      "M7:esil",
+      "M8:esil",
+      "M8:nura",
+      "M11:nura",
+      "M11:almaty",
+      "M12:esil",
+      "M12:almaty",
+      "M12:saryarka",
+      "M12:baikonur",
+      "M12:nura",
+      "M14:esil",
+      "M14:almaty",
+      "M14:saryarka",
+      "M14:baikonur",
+      "M14:nura",
+      "scenario:M4:esil"
+    ],
+    "method": "Independently reconstruct GPU clip projection from each sampled camera pose and checked-in placement or sampled physical actor position; compare to resident foot and project anchor delivered in that same frame. Includes motion, orientation changes and safe-area shifts."
+  },
+  "measurements": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "firstCityMs": 397.2,
+      "initialTransferBytes": 34985322,
+      "navigationRoundTripMs": 35.09
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "firstCityMs": 298.6,
+      "initialTransferBytes": 34985322,
+      "navigationRoundTripMs": 35.04
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "firstCityMs": 299,
+      "initialTransferBytes": 34985322,
+      "navigationRoundTripMs": 34.94
+    }
+  ],
+  "consequenceJourney": {
+    "score": "55,14",
+    "frameIntervals": {
+      "samples": 2069,
+      "medianMs": 33.3,
+      "p95Ms": 40.5
+    }
+  },
+  "sourceSha256": {
+    "scripts/consequences/gallery.mjs": "b6f3fbbbebe227a01e9ff2608156796e3d6b54236010283a7baa81e015598a25",
+    "scripts/release/verify.mjs": "2dcc3c5286a2fd7417a8c1b234a163a5e2e18a85254330ec0625415e096bc631",
+    "src/ui/fullscreen.css": "ad78f14d798c38526f7362601e4f0bf56a56244115233abce2282018f6f32cb7",
+    "src/world/alem-runtime.js": "7383c139fa2895b22f185d116a26d201d98d368f4d50fbaf95291032d6ddf9f4",
+    "src/world/choreography.d.ts": "9e59675aa4cf96683a6560d186a4c87b5525fc305dd82ed326ae6a0c286f0cb6",
+    "src/world/choreography.js": "b196944e18da118f81c83ecdf03c97942443f68f693d0a5be155ad94e21f6144",
+    "src/world/city-gl.js": "ef3ab5dcf76303e0c4674d309ac76514a39a0c615d8788486370c14c5ccc6ab0",
+    "src/world/intervention-effects.js": "32b5e6e85cf80ec42b5b48350ac66d8ec31d75c069c60e096b30726969b46bce",
+    "src/world/macro-interventions.js": "1e637d3f0e93a812215df8cc8e91164fe2bf98ab0ada18693d275f70a571ec19",
+    "src/world/project-objects.js": "078f1a9a9f6eeda3e55556a3b629303dd9fd2e5e631020b69af36d229b2e8369",
+    "tests/consequences.test.ts": "afd1a6c12119ace553bbfa67a7794cc1469bf2c4133eec7315885463dc23df85"
+  },
+  "limits": [
+    "Local production browser checks on desktop and touch emulation; no physical handset measurement",
+    "Browser frame intervals and first draw followed by rAF are not GPU fence timing",
+    "Real API uses labelled local explanation; no paid provider call",
+    "The complete city transfers about 35 MB and uses a 176.2 MB raw mesh"
+  ]
+}

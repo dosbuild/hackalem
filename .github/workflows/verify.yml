@@ -1,0 +1,86 @@
+name: Release verification
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-verification-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  verify:
+    name: Verify production release
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      CI: true
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.13'
+      - name: Install locked dependencies
+        run: npm ci --include=dev --ignore-scripts
+      - name: Reproduce the independent calculation oracle
+        run: |
+          python3 scripts/scenario/oracle.py
+          git diff --exit-code -- tests/scenario-oracle.ts docs/scenario/calculation-audit.md
+      - name: Install the browser
+        run: npx playwright install --with-deps chromium
+      - name: Prepare native assets and export current own-model previews
+        run: |
+          npm run prepare:city
+          npm run prepare:alem
+          npm run prepare:khanate
+          node node_modules/vite/bin/vite.js --host 127.0.0.1 --port 5174 --strictPort > /tmp/alem-preview-dev.log 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..60}; do
+            if curl --fail --silent --output /dev/null http://127.0.0.1:5174/scripts/cityrt/preview-studio.html; then
+              break
+            fi
+            if ! kill -0 "$preview_pid" 2>/dev/null; then
+              cat /tmp/alem-preview-dev.log
+              exit 1
+            fi
+            sleep 1
+          done
+          curl --fail --silent --output /dev/null http://127.0.0.1:5174/scripts/cityrt/preview-studio.html
+          APP_URL=http://127.0.0.1:5174 npm run prepare:previews
+      - name: Typecheck, test and build
+        run: npm run verify
+      - name: Check the isolated production runtime
+        run: npm run test:runtime
+      - name: Check the integrated development server
+        run: npm run test:dev
+      - name: Exercise the complete city and five-decision game in a browser
+        run: npm run test:browser
+      - name: Build and play both worlds on plain static hosting
+        run: |
+          npm run build:static
+          node scripts/release/runtime-smoke.mjs --static
+          node scripts/khanate/static-server.mjs > /tmp/alem-static.log 2>&1 &
+          static_pid=$!
+          trap 'kill "$static_pid"' EXIT
+          npm run test:static
+      - name: Reproduce scenario placements from the attributed fixture
+        run: npm run prepare:placements
+      - name: Ensure code and runtime assets are reproducible
+        # Generated descriptors contain hashes of CPU-dependent floating-point
+        # geometry. Native preview pixels and their provenance manifest are also
+        # platform-generated: Metal and SwiftShader need not produce identical
+        # image bytes. Font/preview and runtime gates check this platform's exact
+        # source freshness, image hashes, wire hashes and lossless map decode;
+        # geographic audits still verify buildings, placements and clearances.
+        run: git diff --exit-code -- . ':(exclude)public/alem/geometry*.json' ':(exclude)public/alem/landmarks.json' ':(exclude)src/world/bootstrap.json' ':(exclude)public/khanate/geometry.json' ':(exclude)src/world/khanate/bootstrap.json' ':(exclude)public/project-previews'
