@@ -1,0 +1,31 @@
+import {ControlIcon} from '../ui/ControlIcon';
+import {useContent} from '../modes/content';
+import {useDecisionLabel} from './useFormat';
+import {DISTRICT_COLORS} from '../world/district-colors.js';
+import {BASELINE_ASSESSMENT} from '../domain/evaluate';
+import {BASELINE} from '../domain/scenario';
+import {summarizePlan} from '../domain/plan';
+import type { DistrictId, IndicatorId, InitiativeId, Plan, ScenarioResult } from '../domain/types';
+import {INDICATOR_IDS} from '../domain/types';
+import {number, signed} from './format';
+import type { PlanReview } from './types';
+import {ImpactSummary} from './ImpactSummary';
+export function Overview({plan,result,review,district,onDistrict,onNavigate,onAskAya,onReview,onMeetNeed,onVisitProject}:{district:DistrictId;onDistrict:(district:DistrictId)=>void;plan:Plan;result:ScenarioResult|null;review:PlanReview|null;onNavigate:(space:'map'|'residents'|'dashboard',district?:DistrictId)=>void;onAskAya:(text:string)=>void;onReview:()=>void;onMeetNeed:(district:DistrictId,indicator:IndicatorId,initiative?:InitiativeId)=>void;onVisitProject:(id:InitiativeId)=>void}) {
+ const decisionLabel=useDecisionLabel();
+ const {mode,DISTRICTS,INITIATIVES,areaNames,districtName,indicatorNames,terms,unitFor}=useContent();
+ const summary=summarizePlan(plan);
+ const assessment=result??BASELINE_ASSESSMENT;
+ return <>
+  <section className="dash-hero">
+   <div><p className="dash-eyebrow">{result?'THE CITY AFTER YOUR DECISIONS':'STARTING POINT'}</p><h2>{result?(mode.id==='khanate'?'A two-year chronicle':'Your decisions became part of the city'):'The city awaits your decisions'}</h2><p>{result?`${mode.id==='khanate'?'Five decrees':'Five projects'}. Spent ${summary.spent} of 100. Here is what changed in two years.`:'Choose five projects. The result shows whom they helped and what still matters.'}</p>
+   <div className="dash-actions">{result?<><button className="dash-primary" onClick={()=>onNavigate('residents')}>Return to the people <ControlIcon kind="arrow-right" size={18}/></button><button onClick={onReview}>Compare another option</button></>:<><button className="dash-primary" onClick={()=>onNavigate('map')}>To the next decision <ControlIcon kind="arrow-right" size={18}/></button><button onClick={()=>onAskAya('Complete the plan')}>Aya, help me finish</button></>}</div></div>
+   <div className="dash-score-orbit"><span>{result?'FINAL SCORE':'CURRENT CITY SCORE'}</span><strong>{number(assessment.finalScore)}</strong><small>{result?`${signed(result.scoreChange)} from the baseline ${number(BASELINE_ASSESSMENT.finalScore)}`:'Baseline calculation · no decisions'}</small></div>
+  </section>
+  {result&&<ImpactSummary result={result} onMeet={onMeetNeed}/>}
+  <details className="dash-full-details"><summary>All indicators and your plan <span>5 {mode.id==='khanate'?'quarters':'districts'} · 10 indicators</span></summary><div className="dash-stats"><article><span>Decisions</span><strong>{summary.count}<small> / 5</small></strong><p>{5-summary.count?`Still to choose: ${5-summary.count}`:'The plan is ready for discussion'}</p></article><article><span>Available budget</span><strong>{summary.remaining}<small> {unitFor(summary.remaining)}</small></strong><p>You do not have to spend it all</p></article><article><span>Rank among valid plans</span><strong>{review?number(review.rank,0):'—'}</strong><p>{review?`of ${number(review.total,0)} alternatives`:result?'Exact calculation in progress':'Available after the fifth decision'}</p></article><article><span>Indicators below 40</span><strong>{assessment.criticalPairs.length}</strong><p>{result?`${BASELINE_ASSESSMENT.criticalPairs.length} before the changes`:'Points needing attention'}</p></article></div>
+  <div className="dash-two-column"><section className="dash-panel paper-card"><div className="dash-section-heading"><h3>Five {mode.id==='khanate'?'quarters':'districts'} — different consequences</h3><span>Before → after</span></div><div className="dash-districts">{DISTRICTS.map(d=><button key={d.id} className={`dash-district ${district===d.id?'selected':''}`} aria-pressed={district===d.id} onClick={()=>onDistrict(d.id)} style={{'--district':districtColors[d.id]} as React.CSSProperties}><span><i/>{d.name}</span><div className="dash-track"><i style={{width:`${BASELINE_ASSESSMENT.districtScores[d.id]}%`}}/><b style={{width:`${assessment.districtScores[d.id]}%`}}/></div><strong>{number(BASELINE_ASSESSMENT.districtScores[d.id])} <span>→</span> {number(assessment.districtScores[d.id])}</strong></button>)}</div><p className="dash-muted">Scores account for ten indicators. The overall result also includes population, the city’s weakest point and critical values.</p></section>
+   <section className="dash-panel paper-card"><div className="dash-section-heading"><h3>{districtName(district)} · in detail</h3><button onClick={()=>onNavigate('residents',district)}>Meet residents <ControlIcon kind="arrow-right" size={18}/></button></div><div className="dash-indicators">{INDICATOR_IDS.map(k=>{const before=BASELINE[district][k],after=result?.indicators[district][k]??before;return <div key={k}><span>{indicatorNames[k]}</span><strong className={after<40?'dash-danger':''}>{number(before)} → {number(after)}</strong><small className={after>before?'dash-positive':after<before?'dash-danger':''}>{signed(after-before)}</small></div>;})}</div></section></div>
+  <section className="dash-panel paper-card"><div className="dash-section-heading"><h3>Your commitments</h3><span>{summary.spent} / 100 {terms.unit}</span></div>{plan.length?<div className="dash-plan-list">{plan.map(d=><article key={d.initiativeId}><span className="dash-project-id">{d.initiativeId}</span><div><strong>{decisionLabel(d)}</strong><small>{areaNames[INITIATIVES[d.initiativeId].area]} · effects from {mode.id==='khanate'?'season':'quarter'} {INITIATIVES[d.initiativeId].lag+1}</small></div><b>{INITIATIVES[d.initiativeId].cost} {unitFor(INITIATIVES[d.initiativeId].cost)}</b><button onClick={()=>onVisitProject(d.initiativeId)}>On the map <ControlIcon kind="arrow-right" size={18}/></button></article>)}</div>:<p>Nothing has been spent yet. Start with a resident’s need; Aya can help choose an action.</p>}</section>
+ </details></>;
+}
+export const districtColors:Record<DistrictId,string>=DISTRICT_COLORS;

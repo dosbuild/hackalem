@@ -1,0 +1,16 @@
+import type {ModeId} from '../modes/types';
+import type { Assessment, Decision, Plan, ScenarioResult } from '../domain/types';
+export type HistogramBin={from:number;to:number;count:number};
+export type Swap={id:string;replace:Decision;with:Decision;plan:Plan;score:number;gain:number;cost:number};
+export type MoveReview={decision:Decision;contribution:number;grade:'careful'|'improve'|'strong'|'best';bestSwap:Swap|null};
+export type PlanReview={fingerprint:string;result:ScenarioResult;rank:number;total:number;percentile:number;histogram:HistogramBin[];efficiency:number;optimum:{plan:Plan;score:number};moves:MoveReview[];swaps:Swap[]};
+export type Analysis={fingerprint:string;mode:'ai'|'local';reason:string|null;strengths:string[];risks:string[];recommendations:string[]};
+export type MemberId='transport'|'environment'|'social'|'safety'|'municipal'|'ombudsman'|'finance';
+export type Member={id:MemberId|'chair';name:string;title:string;initials:string;focus:string};
+export type MetricImpact={member:MemberId;before:number;after:number;delta:number};
+export type Amendment=Swap&{proposer:MemberId;impacts:MetricImpact[]};
+export type Vote={member:MemberId;vote:'for'|'against'|'abstain';reason:string;delta:number};
+export type PackageCheck={valid:boolean;ids:string[];reason:string|null;plan:Plan|null;score:number|null;cost:number|null;impacts:MetricImpact[];votes:Vote[]};
+export type CouncilEvent={seq:number;type:'opening'|'speech'|'amendment'|'objection'|'response'|'package'|'vote'|'protocol'|'closed';member:MemberId|'chair';text:string;amendmentId?:string;source:'local'|'ai'};
+export type CouncilSession={worldMode?:ModeId;rulesVersion?:string;id:string;fingerprint:string;plan:Plan;score:number;createdAt:string;status:'complete';members:Member[];events:CouncilEvent[];amendments:Amendment[];recommendation:PackageCheck;summary:string;mode:'local'|'ai';originalAssessment:Assessment};
+export type RegistryEntry={worldMode?:ModeId;local?:boolean;volatile?:boolean;id:string;team:string;createdAt:string;fingerprint:string;plan:Plan;score:number;spent:number;rank:number;total:number;sessionId:string|null};

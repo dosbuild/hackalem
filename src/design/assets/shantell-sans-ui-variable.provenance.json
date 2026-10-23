@@ -1,0 +1,151 @@
+{
+  "schema": 1,
+  "source": {
+    "file": "shantell-sans-variable.woff2",
+    "url": "https://raw.githubusercontent.com/arrowtype/shantell-sans/1.011/fonts/Shantell%20Sans/Web/ShantellSans%5BBNCE%2CINFM%2CSPAC%2Cital%2Cwght%5D.woff2",
+    "version": "1.011",
+    "bytes": 726944,
+    "sha256": "1473f076cf7ab16865ba2337841776cd67db4744f7bac3b4c36508a0a083dfa7",
+    "axes": {
+      "wght": {
+        "min": 300.0,
+        "default": 300.0,
+        "max": 800.0
+      },
+      "ital": {
+        "min": 0.0,
+        "default": 0.0,
+        "max": 1.0
+      },
+      "INFM": {
+        "min": 0.0,
+        "default": 0.0,
+        "max": 100.0
+      },
+      "BNCE": {
+        "min": -100.0,
+        "default": 0.0,
+        "max": 100.0
+      },
+      "SPAC": {
+        "min": 0.0,
+        "default": 0.0,
+        "max": 100.0
+      }
+    }
+  },
+  "ui": {
+    "file": "shantell-sans-ui-variable.woff2",
+    "bytes": 355796,
+    "sha256": "3f8ec5de47e2434963564d87ffe873e3e2620707409ad11253894d098f4f7bfc",
+    "axes": {
+      "wght": {
+        "min": 300.0,
+        "default": 300.0,
+        "max": 800.0
+      },
+      "INFM": {
+        "min": 0.0,
+        "default": 0.0,
+        "max": 100.0
+      }
+    }
+  },
+  "generator": {
+    "file": "scripts/cityrt/prepare-paper-font.py",
+    "sha256": "57d617d524d669ce64d57ab0a6316fe915f5ffc1585b8221aaa5385bab5dc30b",
+    "fontTools": "4.66.1",
+    "Brotli": "1.2.0"
+  },
+  "transformation": {
+    "pinnedAxes": {
+      "ital": 0.0,
+      "BNCE": 0.0,
+      "SPAC": 0.0
+    },
+    "characterSubset": false,
+    "removedZeroSupportTuples": 21195,
+    "retainedExactSparseTuples": 4758
+  },
+  "verification": {
+    "glyphCount": 1728,
+    "unicodeCodepoints": 837,
+    "cmapAndGlyphOrderIdentical": true,
+    "baseGlyfBytesIdentical": true,
+    "retainedGvarAndAvarIdentical": true,
+    "unitsPerEmIdentical": true,
+    "requiredKazakh": "\u04d8\u04d9\u0492\u0493\u049a\u049b\u04a2\u04a3\u04e8\u04e9\u04b0\u04b1\u04ae\u04af\u04ba\u04bb\u0406\u0456",
+    "instances": [
+      {
+        "weight": 300,
+        "INFM": 0,
+        "glyphs": 1728,
+        "outlineDifferenceFontUnits": 0,
+        "metricsHintsAndLayoutIdentical": true
+      },
+      {
+        "weight": 300,
+        "INFM": 8,
+        "glyphs": 1728,
+        "outlineDifferenceFontUnits": 0,
+        "metricsHintsAndLayoutIdentical": true
+      },
+      {
+        "weight": 500,
+        "INFM": 0,
+        "glyphs": 1728,
+        "outlineDifferenceFontUnits": 0,
+        "metricsHintsAndLayoutIdentical": true
+      },
+      {
+        "weight": 500,
+        "INFM": 8,
+        "glyphs": 1728,
+        "outlineDifferenceFontUnits": 0,
+        "metricsHintsAndLayoutIdentical": true
+      },
+      {
+        "weight": 550,
+        "INFM": 0,
+        "glyphs": 1728,
+        "outlineDifferenceFontUnits": 0,
+        "metricsHintsAndLayoutIdentical": true
+      },
+      {
+        "weight": 550,
+        "INFM": 8,
+        "glyphs": 1728,
+        "outlineDifferenceFontUnits": 0,
+        "metricsHintsAndLayoutIdentical": true
+      },
+      {
+        "weight": 650,
+        "INFM": 0,
+        "glyphs": 1728,
+        "outlineDifferenceFontUnits": 0,
+        "metricsHintsAndLayoutIdentical": true
+      },
+      {
+        "weight": 650,
+        "INFM": 8,
+        "glyphs": 1728,
+        "outlineDifferenceFontUnits": 0,
+        "metricsHintsAndLayoutIdentical": true
+      },
+      {
+        "weight": 800,
+        "INFM": 0,
+        "glyphs": 1728,
+        "outlineDifferenceFontUnits": 0,
+        "metricsHintsAndLayoutIdentical": true
+      },
+      {
+        "weight": 800,
+        "INFM": 8,
+        "glyphs": 1728,
+        "outlineDifferenceFontUnits": 0,
+        "metricsHintsAndLayoutIdentical": true
+      }
+    ]
+  }
+}

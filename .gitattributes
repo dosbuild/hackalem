@@ -1,0 +1,9 @@
+# Reproduced and audited during CI; keep hand-authored changes prominent in reviews.
+/src/world/bootstrap.json linguist-generated=true
+/src/world/placements.json linguist-generated=true
+
+# Preserve the official license text verbatim, including its source whitespace.
+src/design/assets/SHANTELL-OFL.txt -whitespace
+
+# Preserve the supplied assignment exactly, including source whitespace.
+docs/scenario/source/mayor-for-5-hours.original.txt -whitespace

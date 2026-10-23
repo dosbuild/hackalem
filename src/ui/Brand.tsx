@@ -1,0 +1,3 @@
+import {useMode} from '../modes/context';
+import {KhanSeal} from '../modes/Artifacts';
+export function Brand(){const {mode}=useMode();return <div className="hud-brand">{mode.id==='khanate'?<KhanSeal/>:<svg className="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="14" fill="#f2eadb"/><path d="M11 28V19H19V28M22 27V11H30V27M33 27V17H39V30" fill="#365e53"/><path d="M8 31C17 24 22 38 32 32C36 29 39 29 42 31" fill="none" stroke="#bea16a" strokeWidth="4" strokeLinecap="round"/><path d="M10 37C18 32 22 41 33 37" fill="none" stroke="#668d91" strokeWidth="3" strokeLinecap="round"/></svg>}<div><h1>Alem</h1><span>{mode.id==='khanate'?'CITY BY THE ESIL · 18TH CENTURY':'FIVE DECISIONS FOR ASTANA'}</span></div></div>}

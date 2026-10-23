@@ -1,0 +1,81 @@
+{
+  "name": "alem",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env node_modules/vite/bin/vite.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "build": "node scripts/release/build.mjs",
+    "preview": "vite preview --host 127.0.0.1 --port 4174 --strictPort",
+    "verify": "npm run typecheck && npm test && npm run test:fonts && npm run test:previews && npm run test:world && npm run test:landmarks && npm run test:khanate && npm run build && npm run test:geometry",
+    "test:fonts": "node scripts/cityrt/check-paper-fonts.mjs",
+    "test:previews": "node scripts/cityrt/check-previews.mjs",
+    "prepare:previews": "node scripts/cityrt/prepare-previews.mjs",
+    "prepare:city": "node scripts/city/prepare.mjs",
+    "predev": "npm run prepare:city && npm run prepare:alem && npm run prepare:khanate",
+    "prebuild": "npm run prepare:city && npm run prepare:alem && npm run prepare:khanate",
+    "start": "node --env-file-if-exists=.env .server/server.mjs",
+    "test:journey": "node scripts/integration/journey.mjs",
+    "prepare:alem": "node scripts/alem/prepare.mjs",
+    "test:alem": "npm run test:release",
+    "test:release": "node scripts/release/verify.mjs",
+    "test:runtime": "node scripts/release/runtime-smoke.mjs",
+    "test:map-loading": "node scripts/release/map-loading.mjs",
+    "test:budget": "node scripts/budget/verify.mjs",
+    "test:fullscreen": "node scripts/fullscreen/verify.mjs && node scripts/fullscreen/audit-anchors.mjs",
+    "prepare:placements": "node scripts/alem/placements.mjs",
+    "test:world": "node scripts/consequences/check-models.mjs",
+    "test:consequences": "node scripts/consequences/journey.mjs && node scripts/consequences/gallery.mjs",
+    "test:programs": "node scripts/consequences/program-acceptance.mjs",
+    "test:geometry": "node scripts/consequences/audit-placement.mjs && node scripts/consequences/audit-programs.mjs && node scripts/khanate/audit-programs.mjs && node scripts/city-synthesis/audit.mjs && node scripts/hero-school/audit-site.mjs && node scripts/consequences/context-sites.mjs --check",
+    "test:school": "node scripts/hero-school/capture.mjs && node scripts/hero-school/behavior.mjs",
+    "test:renderer": "node scripts/release/renderer-residency.mjs && node scripts/release/surface-depth.mjs",
+    "test:zoom": "node scripts/release/zoom-performance.mjs",
+    "test:materials": "node scripts/release/material-stability.mjs",
+    "test:integration": "node scripts/integration/journey.mjs && node scripts/integration/independent.mjs && node scripts/integration/recovery.mjs && node scripts/integration/council-recovery.mjs && node scripts/integration/construction-and-arrival.mjs && node scripts/integration/residents.mjs && node scripts/integration/layout.mjs && node scripts/assistant/verify.mjs && npm run test:automation && node scripts/integration/alternative-navigation.mjs && node scripts/integration/section-recovery.mjs",
+    "test:refinement": "node scripts/refinement/verify.mjs",
+    "test:provider": "node scripts/integration/live-provider.mjs",
+    "test:landmarks": "node scripts/alem/landmarks/check-models.mjs && node scripts/alem/landmarks/check-motion.mjs",
+    "test:dev": "node scripts/dev/verify.mjs",
+    "test:browser": "node scripts/release/browser-smoke.mjs",
+    "build:static": "node scripts/release/build.mjs --static",
+    "prebuild:static": "npm run prepare:city && npm run prepare:alem && npm run prepare:khanate",
+    "prepare:khanate": "node scripts/khanate/prepare.mjs",
+    "test:khanate": "node scripts/khanate/check.mjs",
+    "test:static": "node scripts/khanate/test-static.mjs",
+    "test:automation": "node scripts/integration/automation-presentation.mjs",
+    "preverify": "npm run prepare:city && npm run prepare:alem && npm run prepare:khanate",
+    "test:design": "node scripts/design/verify.mjs"
+  },
+  "dependencies": {
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@fontsource-variable/noto-sans": "5.3.0",
+    "@fontsource-variable/noto-serif": "5.3.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "6.1.1",
+    "earcut": "3.0.2",
+    "playwright": "1.63.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.5",
+    "vitest": "5.0.5"
+  },
+  "description": "A playable city-management simulator with exact scenario calculations and optional AI explanations.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dosbuild/hackalem.git"
+  },
+  "homepage": "https://hackalem-alem.up.railway.app/",
+  "bugs": {
+    "url": "https://github.com/dosbuild/hackalem/issues"
+  }
+}

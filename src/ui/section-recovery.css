@@ -1,0 +1,9 @@
+.city-application.play-application[data-space] .product-space:has(>.section-recovery){inset:var(--shell-top) var(--shell-side) var(--shell-bottom);background:transparent;border:0;box-shadow:none;overflow:visible;pointer-events:none}
+.section-recovery{width:min(100%,560px);max-height:100%;overflow:auto;pointer-events:auto;margin-inline:auto;padding:24px;display:grid;gap:16px;align-content:start}
+.section-recovery h2,.section-recovery p{margin:0}
+.section-recovery h2{font-size:24px;line-height:1.2;letter-spacing:-.025em}
+.section-recovery p{line-height:1.5}
+.section-recovery .button-row{display:flex;flex-wrap:wrap;gap:8px}
+.section-recovery button{min-height:44px;white-space:normal}
+@media(max-width:600px){.section-recovery{padding:20px}.section-recovery .button-row{flex-direction:column}}
+@media(max-height:500px){.section-recovery{padding:16px;gap:12px}.section-recovery>.eyebrow{display:none}}

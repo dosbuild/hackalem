@@ -1,0 +1,9 @@
+{
+  "name": "Alem",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:24-bookworm",
+  "forwardPorts": [5174],
+  "portsAttributes": {
+    "5174": {"label": "Alem — city and API", "onAutoForward": "openPreview"}
+  },
+  "postCreateCommand": "npm ci --include=dev --ignore-scripts"
+}

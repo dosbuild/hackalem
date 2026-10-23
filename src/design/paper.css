@@ -1,0 +1,431 @@
+/* Alem river-atlas material. Surface layout and state belong to their components.
+ * Every edge and fibre is deterministic; there is no screen-space noise or
+ * animated decoration. Geographic district colours remain in palette.js.
+ */
+:root {
+  --font-ui:'Noto Sans Variable',sans-serif;
+  --font-hand:'Noto Serif Variable',serif;
+  --font-note:'Shantell Sans Variable','Noto Sans Variable',sans-serif;
+  --font-story:var(--font-hand);
+  --paper-sheet:#f5f5ed;
+  --paper-card:#fcfcf6;
+  --paper-sand:#dce5df;
+  --paper-ink:#283c40;
+  --paper-muted:#536970;
+  --paper-line:#91a39e;
+  --paper-rule:#d2ded7;
+  --paper-action:#27675f;
+  --paper-action-hover:#1c514c;
+  --paper-focus:#1c514c;
+  --paper-tint:#e7eee7;
+  --paper-grain:url('./assets/paper-grain.svg');
+  --paper-edge:5px;
+  --paper-shadow:0 1px 1px #283c4020,3px 4px 0 #283c400d,0 10px 24px #283c401a;
+}
+.city-application.play-application {
+  --ink:var(--paper-ink);
+  --muted:var(--paper-muted);
+  --paper:var(--paper-sheet);
+  --surface:var(--paper-tint);
+  --line:var(--paper-rule);
+  --accent:var(--paper-action);
+  --tint:var(--paper-tint);
+  --glass:var(--paper-sheet);
+  --radius-control:5px;
+  --radius-card:6px;
+  --radius-panel:7px;
+  --shadow-panel:var(--paper-shadow);
+  color:var(--paper-ink);
+  font:15px/1.55 var(--font-ui);
+}
+.paper-sheet,
+.city-application.play-application :is(.paper-sheet,.city-drawer,.decision-deck,.consequence-card,.street-conversation,.street-roster,.living-register,.living-reader,.landmark-caption,.aya-dialogue,.dash-comparison) {
+  color:var(--paper-ink);
+  background-color:var(--paper-sheet);
+  background-image:var(--paper-grain);
+  background-size:160px 160px;
+  border:1px solid var(--paper-line);
+  border-radius:var(--paper-edge);
+  box-shadow:var(--paper-shadow);
+  backdrop-filter:none;
+  scrollbar-color:var(--paper-line) transparent;
+}
+.paper-card,
+.city-application.play-application :is(.paper-card,.need-card,.project-choice,.outcome-stories article,.dash-panel,.living-appeal-row,.aya-message.from-assistant) {
+  color:var(--paper-ink);
+  background-color:var(--paper-card);
+  background-image:var(--paper-grain);
+  background-size:160px 160px;
+  border:1px solid var(--paper-rule);
+  border-radius:4px;
+  box-shadow:0 1px 1px #283c400d;
+}
+.city-application.play-application :is(.need-card,.project-choice,.living-appeal-row):hover {
+  background-color:var(--paper-sheet);
+  border-color:var(--paper-line);
+}
+.paper-preview {
+  background-color:var(--paper-sand);
+  background-image:var(--paper-grain);
+  border:1px solid #b5c8c0;
+  border-radius:4px;
+  overflow:hidden;
+}
+.city-application.play-application :is(.paper-sheet,.city-drawer,.decision-deck,.consequence-card,.street-conversation,.living-register,.living-reader,.alem-dashboard,.dash-comparison,.aya-dialogue) :is(p,label,li) {
+  font-family:var(--font-ui);
+  font-size:15px;
+  line-height:1.55;
+}
+.city-application.play-application :is(.paper-sheet,.city-drawer,.decision-deck,.consequence-card,.street-conversation,.living-register,.living-reader,.alem-dashboard,.dash-comparison,.aya-dialogue) :is(small,.small,.muted) {
+  font-family:var(--font-ui);
+  font-size:12px;
+  line-height:1.5;
+}
+.paper-title,
+.city-application.play-application :is(.paper-title,.drawer-heading h2,.decision-deck h2,.consequence-card h2,.candidate h3,.street-conversation h2,.conversation-heading h3,.living-register h2,.living-reader h2,.landmark-caption h2,.aya-dialogue-header h2,.dash-hero h2,.historical-invitation h2) {
+  color:var(--paper-ink);
+  font-family:var(--font-hand);
+  font-size:28px;
+  font-weight:550;
+  line-height:1.2;
+  letter-spacing:-.025em;
+  font-variation-settings:normal;
+  text-wrap:balance;
+}
+.city-application.play-application :is(.need-person strong,.proposal-person strong,.outcome-stories h3,.resident-request strong,.resident-orientation strong,.living-appeal-row>span:nth-child(2)>strong) {
+  color:var(--paper-ink);
+  font-family:var(--font-ui);
+  font-size:19px;
+  font-weight:650;
+  line-height:1.3;
+  letter-spacing:-.02em;
+  font-variation-settings:normal;
+}
+.city-application.play-application .catalogue-project-name strong {
+  font-family:var(--font-hand);
+  font-size:17px;
+  font-weight:550;
+  line-height:1.3;
+  letter-spacing:-.02em;
+  font-variation-settings:normal;
+}
+.city-application.play-application :is(.hud-brand h1,.aya-entry-label strong) {
+  color:var(--paper-ink);
+  font-family:var(--font-hand);
+  font-weight:650;
+  letter-spacing:-.025em;
+}
+.paper-body,
+.city-application.play-application :is(.paper-body,.deck-intro,.need-quote,.candidate p,.street-words,.living-reader>p,.living-appeal-row>span:nth-child(2)>span,.aya-message,.dash-hero>div>p:not(.dash-eyebrow),.outcome-stories article>p,.resident-russian,.conversation-model) {
+  font-family:var(--font-ui);
+  font-size:15px;
+  line-height:1.55;
+  color:var(--paper-ink);
+}
+.paper-label,
+.city-application.play-application :is(.paper-label,.eyebrow,.need-person small,.need-project,.proposal-person>div>span,.proposal-project-title .eyebrow,.project-choice small,.proposal-confirmation>span,.compact-tradeoff,.compact-synergy,.replacement-summary,.decision-deck>footer,.street-conversation>header>div>span,.street-conversation>header small,.street-details,.street-effect span,.living-eyebrow,.living-document-heading,.living-addressee,.living-reader>p.living-appeal-topic,.living-plan-relation small,.living-sources,.aya-message-author,.aya-context-card>span,.aya-context-card p,.aya-chat-note,.aya-control-row span,.aya-entry-label small,.aya-fact-details,.dash-eyebrow,.dash-brand,.dash-footer,.dash-stats p,.dash-registry-list small,.outcome-stories header small) {
+  color:var(--paper-muted);
+  font-family:var(--font-ui);
+  font-size:12px;
+  line-height:1.5;
+  letter-spacing:normal;
+}
+.city-application.play-application .eyebrow {letter-spacing:.08em; font-weight:650;}
+/* Override the request archive's important font shorthand. */
+.city-application.play-application .living-addressee {font-family:var(--font-ui)!important; font-size:12px!important;}
+.city-application.play-application .text-button {font-family:var(--font-ui); font-size:14px; color:var(--paper-ink);}
+.paper-price,
+.city-application.play-application :is(.paper-price,.coin-price,.proposal-price,.direct-price,.result-score>strong,.arrival-score>strong,.dash-score-orbit strong,.dash-stats strong,.dash-impact-value strong,.dash-compare-score strong,.planning-toggle b) {
+  color:var(--paper-ink);
+  font-family:var(--font-ui);
+  font-variant-numeric:tabular-nums lining-nums;
+  font-feature-settings:'tnum' 1;
+  font-variation-settings:normal;
+  letter-spacing:-.025em;
+}
+.city-application.play-application :is(.coin-price,.proposal-price,.paper-price) {
+  background:var(--paper-sand) var(--paper-grain);
+  border-radius:4px;
+}
+.city-application.play-application :is(.paper-price small,.coin-price small,.proposal-price small,.catalogue-project-name>b small,.planning-toggle small,.result-score>span,.dash-score-orbit span,.dash-score-orbit small,.dash-stats span) {
+  font:12px/1.4 var(--font-ui);
+  color:var(--paper-muted);
+  letter-spacing:normal;
+}
+.paper-button,
+.city-application.play-application :is(.paper-button,.candidate button,.consequence-card button,.street-primary,.street-details button,.living-reader-actions button,.living-related button,.resident-questions button,.aya-message-action,.aya-repair button,.dash-actions button,.dash-primary) {
+  font-family:var(--font-ui);
+  font-size:14px;
+  line-height:1.4;
+  min-height:44px;
+  border:1px solid var(--paper-line);
+  border-radius:4px;
+  background-color:var(--paper-tint);
+  color:var(--paper-ink);
+  box-shadow:0 1px 0 #283c401a;
+}
+.paper-button.primary,
+.city-application.play-application :is(button.primary,.paper-button.primary,.street-primary,.living-primary,.dash-primary) {
+  background:var(--paper-action);
+  border-color:var(--paper-action-hover);
+  color:var(--paper-card);
+  font-weight:600;
+}
+.paper-button.primary:hover:not(:disabled),
+.city-application.play-application :is(button.primary,.paper-button.primary,.street-primary,.living-primary,.dash-primary):hover:not(:disabled) {
+  background:var(--paper-action-hover);
+  border-color:var(--paper-action-hover);
+  color:var(--paper-card);
+}
+.city-application.play-application .street-primary>b {color:var(--paper-card); font-size:12px;}
+.paper-button:disabled,
+.city-application.play-application button:disabled {opacity:.55; cursor:default;}
+.paper-tabs,
+.city-application.play-application :is(.paper-tabs,.street-tabs,.mode-control) {
+  background:var(--paper-tint) var(--paper-grain);
+  border:1px solid var(--paper-rule);
+  border-radius:4px;
+}
+.paper-tabs button,
+.city-application.play-application :is(.paper-tabs button,.street-tabs button,.mode-control button,.dash-tabs button) {
+  color:var(--paper-muted);
+  font:12px/1.4 var(--font-ui);
+  border-radius:4px;
+  min-height:40px;
+  background:transparent;
+}
+.paper-tabs button[aria-pressed=true],
+.city-application.play-application :is(.paper-tabs button[aria-pressed=true],.street-tabs button[aria-pressed=true],.mode-control button[aria-pressed=true],.dash-tabs .selected) {
+  color:var(--paper-ink);
+  background:var(--paper-card) var(--paper-grain);
+  box-shadow:0 1px 2px #283c401a,inset 0 -2px var(--paper-action);
+}
+.paper-nameplate,
+.city-application.play-application :is(.paper-nameplate,.district-wayfinding,.geo-labels .district-label,.geo-labels .map-project) {
+  color:var(--paper-ink);
+  font:12px/1.4 var(--font-ui);
+  background:var(--paper-card) var(--paper-grain);
+  border-color:var(--paper-line);
+  border-radius:4px;
+}
+.city-application.play-application .geo-labels .district-label small {color:var(--paper-muted); font:12px/1.4 var(--font-ui); letter-spacing:normal;}
+.city-application.play-application .alem-world .geographic-districts button {font-size:12px!important;}
+.paper-notice,
+.city-application.play-application :is(.paper-notice,.city-notice,.drawer-error,.plan-feedback,.dash-notice) {
+  color:var(--paper-ink);
+  font:14px/1.5 var(--font-ui);
+  background:var(--paper-tint) var(--paper-grain);
+  border:1px solid var(--paper-line);
+  border-radius:4px;
+  box-shadow:0 2px 5px #283c4015;
+}
+.city-application.play-application :is(.proposal-confirmation,.aya-context-card,.aya-dialogue-header,.need-project,.street-effect,.impact-chips>span,.dash-score-orbit,.dash-stats,.dash-compare-score) {
+  background-color:var(--paper-tint);
+  color:var(--paper-ink);
+  border-color:var(--paper-rule);
+}
+.city-application.play-application :is(.primary-navigation,.city-hud,.aya-entry) {
+  background:var(--paper-sheet) var(--paper-grain);
+  border-color:var(--paper-line);
+  color:var(--paper-ink);
+  border-radius:var(--paper-edge);
+}
+.city-application.play-application .primary-navigation button[aria-current=page] {background:var(--paper-action); color:var(--paper-card);}
+.city-application.play-application :is(.aya-message.from-user,.aya-composer button) {background:var(--paper-action); color:var(--paper-card);}
+.city-application.play-application .aya-message.from-user .aya-message-author {color:var(--paper-card);}
+.city-application.play-application .aya-message.from-user p {color:var(--paper-card);}
+.city-application.play-application :is(input,select,textarea,.candidate>.field select) {
+  color:var(--paper-ink);
+  background-color:var(--paper-card);
+  border-color:var(--paper-line);
+  font-family:var(--font-ui);
+  font-size:14px;
+  accent-color:var(--paper-action);
+}
+.city-application.play-application :is(button,input,select,textarea,summary,a):focus-visible,
+.paper-button:focus-visible {outline:3px solid var(--paper-focus); outline-offset:3px;}
+dialog::backdrop,.paper-modal-backdrop {background:#314d535c; backdrop-filter:blur(5px);}
+.city-application.play-application :is(table,.effects-table,.proposal-details table) {font-family:var(--font-ui); font-size:14px; font-variant-numeric:tabular-nums;}
+.city-application.play-application :is(th,td) {border-color:var(--paper-rule);}
+.city-application.play-application :is(.proposal-details summary,.street-details summary,.other-projects summary,.plan-tools summary,.resident-evidence summary,.original-language summary,.dash-full-details summary,.aya-fact-details summary) {font-size:14px; color:var(--paper-muted); min-height:44px;}
+@media(max-width:800px) {
+  .city-application.play-application :is(.paper-title,.drawer-heading h2,.decision-deck h2,.consequence-card h2,.candidate h3,.street-conversation h2,.living-register h2,.living-reader h2,.landmark-caption h2,.dash-hero h2) {font-size:26px;}
+  .city-application.play-application :is(.paper-body,.deck-intro,.need-quote,.candidate p,.street-words,.living-reader>p,.aya-message,.outcome-stories article>p) {font-size:14px;}
+  .city-application.play-application :is(.paper-sheet,.city-drawer,.decision-deck,.consequence-card,.street-conversation,.living-register,.living-reader,.alem-dashboard,.dash-comparison,.aya-dialogue) :is(p,label,li) {font-size:14px;}
+  .city-application.play-application :is(input,select,textarea,.candidate>.field select) {font-size:16px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .paper-sheet,.paper-card,.paper-button {animation:none; transition:none;}
+}
+@media(forced-colors:active) {
+  .paper-sheet,.paper-card,.paper-button,.paper-price,.paper-nameplate {background-image:none; border-color:CanvasText; box-shadow:none;}
+}
+
+/* The books and native city controls use the same material as the first choice. */
+.city-application.play-application[data-space=dashboard],
+.city-application.play-application .dashboard-space {background:var(--paper-sand);}
+.city-application.play-application .alem-dashboard,
+.city-application.play-application .dash-comparison {
+  --dash-bg:var(--paper-sheet);
+  --dash-panel:var(--paper-card);
+  --dash-border:var(--paper-rule);
+  --dash-muted:var(--paper-muted);
+  --dash-mint:var(--paper-ink);
+  color:var(--paper-ink);
+  color-scheme:light;
+  font-family:var(--font-ui);
+  background-color:var(--paper-sheet);
+  background-image:var(--paper-grain);
+  border-radius:var(--paper-edge);
+}
+.city-application.play-application :is(.alem-dashboard,.dash-comparison) :is(h2,h3) {
+  font:550 28px/1.2 var(--font-hand);
+  font-variation-settings:normal;
+  letter-spacing:-.025em;
+  text-wrap:balance;
+  color:var(--paper-ink);
+}
+.city-application.play-application :is(.alem-dashboard,.dash-comparison) h3 {font-size:26px;}
+.city-application.play-application .alem-dashboard h4 {font:650 16px/1.4 var(--font-ui); color:var(--paper-ink);}
+.city-application.play-application :is(.alem-dashboard,.dash-comparison) :is(p,li) {font-family:var(--font-ui);font-size:15px;line-height:1.55;color:var(--paper-ink);}
+.city-application.play-application :is(.alem-dashboard button,.dash-comparison button,.living-pagination button,.living-search-count button,.living-close,.conversation-place button,.complete-plan-button,.demonstration-card button,.next-step-card button,.alternative-invitation button,.future-decisions button,.future-toggle button,.future-switcher .hold-future) {
+  font:14px/1.4 var(--font-ui);
+  min-height:44px;
+  color:var(--paper-ink);
+  background-color:var(--paper-tint);
+  border:1px solid var(--paper-line);
+  border-radius:4px;
+  box-shadow:0 1px 0 #283c401a;
+}
+.city-application.play-application :is(.alem-dashboard button,.dash-comparison button,.living-pagination button,.future-decisions button,.future-toggle button):hover:not(:disabled) {background-color:var(--paper-card);border-color:var(--paper-ink);}
+.city-application.play-application :is(.alem-dashboard .dash-primary,.dash-comparison .dash-primary,.future-decisions .primary,.game-dialog .primary) {background:var(--paper-action);border-color:var(--paper-action-hover);color:var(--paper-card);}
+.city-application.play-application :is(.alem-dashboard .dash-primary,.dash-comparison .dash-primary,.future-decisions .primary,.game-dialog .primary):hover:not(:disabled) {background:var(--paper-action-hover);border-color:var(--paper-action-hover);color:var(--paper-card);}
+.city-application.play-application :is(.dash-tabs button,.dash-council-controls button,.dash-section-heading button,.dash-topline>button) {font-size:12px;}
+.city-application.play-application :is(.dash-tabs .selected,.dash-district.selected,.dash-amendments label.selected,.dash-members article.active) {background:var(--paper-tint);border-color:var(--paper-line);color:var(--paper-ink);}
+.city-application.play-application .dash-tabs .selected {box-shadow:inset 0 -2px var(--paper-action);}
+.city-application.play-application :is(.dash-muted,.dash-loading,.dash-topline p,.dash-plan-list small,.dash-members small,.dash-votes small,.dash-registry-list small,.dash-submit small,.dash-section-heading>span,.dash-histogram-legend,.dash-moves span,.dash-council-controls>span,.dash-speech header span,.dash-compare-score span) {font:12px/1.5 var(--font-ui);color:var(--paper-muted);}
+.city-application.play-application :is(.dash-district>span,.dash-district strong,.dash-indicators>div,.dash-indicators strong,.dash-impact-chips span,.dash-votes span,.dash-tabs button span,.dash-project-id,.dash-compare-districts>div,.dash-registry-place) {font-size:12px;color:var(--paper-ink);}
+.city-application.play-application :is(.dash-moves strong,.dash-plan-list strong,.dash-registry-list strong,.saved-choice strong) {font:550 17px/1.4 var(--font-hand);color:var(--paper-ink);overflow-wrap:anywhere;}
+.city-application.play-application :is(.dash-members strong,.dash-speech b,.dash-amendments strong,.dash-votes b) {font:600 14px/1.4 var(--font-ui);color:var(--paper-ink);}
+.city-application.play-application :is(.dash-district strong,.dash-indicators strong,.dash-plan-list b,.dash-optimum>strong,.dash-moves b,.dash-registry-list b,.dash-package-result strong,.dash-compare-districts strong,.dash-compare-districts b,.dash-impact-value b,.future-score strong) {font-family:var(--font-ui);font-variant-numeric:tabular-nums lining-nums;font-variation-settings:normal;color:var(--paper-ink);}
+.city-application.play-application .dash-optimum>strong {font-size:42px;letter-spacing:-.025em;}
+.city-application.play-application .dash-positive {color:var(--paper-ink)!important;}
+.city-application.play-application .dash-danger {color:var(--paper-action-hover)!important;}
+.city-application.play-application :is(.dash-council-record,.dash-council-circle,.dash-members article,.dash-speech,.dash-amendments label,.dash-votes article,.saved-choice,.alternative-workbench,.alternative-invitation,.future-switcher,.future-comparison) {background-color:var(--paper-card);background-image:var(--paper-grain);border-color:var(--paper-rule);border-radius:var(--paper-edge);color:var(--paper-ink);box-shadow:0 1px 1px #283c400d;}
+.city-application.play-application :is(.dash-speech.objection,.dash-comparison-tradeoffs,.dash-error,.dash-move-mark.improve) {background:var(--paper-tint);border-color:var(--paper-line);color:var(--paper-ink);}
+.city-application.play-application :is(.dash-speech.protocol,.dash-impact-chips span,.dash-move-mark,.dash-members article>span,.dash-project-id) {background:var(--paper-tint);border-color:var(--paper-rule);color:var(--paper-ink);}
+.city-application.play-application :is(.dash-council-circle span,.dash-histogram-legend b,.dash-comparison-tradeoffs p,.dash-comparison-tradeoffs b,.dash-comparison-tradeoffs span,.dash-comparison-tradeoffs strong,.dash-impact-value b) {color:var(--paper-ink);}
+.city-application.play-application :is(.dash-stats,.dash-compare-score,.dash-track) {background:var(--paper-tint);border-color:var(--paper-rule);}
+.city-application.play-application .dash-histogram>div {background:var(--paper-line);}
+.city-application.play-application .dash-histogram>div.current {background:var(--paper-action);box-shadow:none;}
+.city-application.play-application :is(.dash-tabs i,.dash-council-controls i,.dash-council-controls i.playing) {background:var(--paper-action);box-shadow:none;}
+.city-application.play-application :is(.dash-plan-list article,.dash-registry-list article,.dash-package-result,.dash-comparison-changes,.dash-histogram,.dash-full-details,.dash-footer,.local-future-difference li) {border-color:var(--paper-rule);}
+.city-application.play-application .dash-speeches {scrollbar-color:var(--paper-line) var(--paper-sheet);}
+.city-application.play-application .dash-submit input {background:var(--paper-card);border-color:var(--paper-line);color:var(--paper-ink);}
+.city-application.play-application .dash-comparison::backdrop {background:#314d535c;backdrop-filter:blur(5px);}
+.city-application.play-application :is(.game-dialog,.alternative-workbench,.future-comparison,.demonstration-card,.next-step-card) h2 {font:550 28px/1.2 var(--font-hand);color:var(--paper-ink);letter-spacing:-.025em;}
+.city-application.play-application :is(.game-dialog,.alternative-workbench,.future-comparison) :is(p,li,label) {font:15px/1.55 var(--font-ui);color:var(--paper-ink);}
+.city-application.play-application :is(.game-guide-numbers span,.game-guide-note,.switcher-caption span,.future-score small,.conversation-heading span,.resident-eyebrow,.living-filters label,.living-appeal-row small,.living-pagination span,.living-provenance,.living-search-count) {font:12px/1.5 var(--font-ui);color:var(--paper-muted);}
+.city-application.play-application :is(.game-guide-formula summary,.alternative-invitation summary) {font:14px/1.4 var(--font-ui);color:var(--paper-ink);min-height:44px;}
+.city-application.play-application :is(.living-plan-relation,.street-effect,.living-close,.living-appeal-row:hover,.living-appeal-row:focus-visible) {background:var(--paper-tint);border-color:var(--paper-rule);color:var(--paper-ink);}
+.city-application.play-application .living-reader>p {font-family:var(--font-ui);}
+.city-application.play-application .living-appeal-row>span:nth-child(2)>small {font-size:12px;color:var(--paper-muted);}
+.city-application.play-application :is(.resident-evidence,.original-language,.conversation-model,.conversation-context,.living-sources,.aya-facts) {border-color:var(--paper-rule);color:var(--paper-ink);}
+.city-application.play-application :is(.living-sources a,.quiet-link) {font-family:var(--font-ui);font-size:14px!important;color:var(--paper-action-hover);}
+.city-application.play-application .project-glyph {color:var(--paper-ink);}
+/* Keep the hold control's important styles aligned with the paper palette. */
+.city-application.play-application .future-switcher .hold-future {font-size:14px!important;background:var(--paper-tint)!important;border-color:var(--paper-line)!important;color:var(--paper-ink)!important;}
+.city-application.play-application .future-switcher .hold-future[aria-pressed=true] {background:var(--paper-action)!important;color:var(--paper-card)!important;box-shadow:inset 0 2px 0 var(--paper-action-hover);}
+.city-application.play-application .future-toggle button[aria-pressed=true] {background:var(--paper-action);color:var(--paper-card);border-color:var(--paper-action-hover);}
+
+/* Aya's compact actions are readable controls rather than small annotations. */
+.city-application.play-application :is(.aya-suggestions button,.aya-districts button,.aya-control-row button) {font:12px/1.4 var(--font-ui);min-height:40px;color:var(--paper-ink);background:var(--paper-tint);border:1px solid var(--paper-rule);border-radius:4px;padding:7px 10px;}
+.city-application.play-application :is(.aya-suggestions button,.aya-districts button,.aya-control-row button):hover:not(:disabled) {background:var(--paper-card);border-color:var(--paper-line);}
+.city-application.play-application .aya-control-row .aya-stop {color:var(--paper-action-hover);background:var(--paper-tint);border-color:var(--paper-line);}
+.city-application.play-application .aya-context-card strong {font:600 14px/1.4 var(--font-ui);color:var(--paper-ink);}
+.city-application.play-application .aya-message {font:15px/1.55 var(--font-ui);}
+.city-application.play-application .aya-facts {font:14px/1.5 var(--font-ui);color:var(--paper-ink);}
+.city-application.play-application .aya-composer {background:var(--paper-card);border-color:var(--paper-line);border-radius:4px;}
+.city-application.play-application .aya-composer textarea {color:var(--paper-ink);background:transparent;}
+.city-application.play-application .aya-composer textarea::placeholder {color:var(--paper-muted);font-size:14px;}
+.city-application.play-application :is(.aya-icon-button,.aya-clear-context) {color:var(--paper-ink);background:var(--paper-tint);border-radius:4px;}
+.city-application.play-application .aya-entry:hover {transform:none;box-shadow:var(--paper-shadow);}
+.city-application.play-application .aya-entry:hover .aya-cloud {transform:none;}
+.city-application.play-application .aya-progress-orbit {border-color:var(--paper-rule);border-top-color:var(--paper-action);}
+
+/* Native DOM annotations share the paper and font; geography keeps its colours. */
+.city-application.play-application .landmark-atlas {font:14px/1.4 var(--font-ui);color:var(--paper-ink);}
+.city-application.play-application .landmark-atlas:not([open]) {border:0;background:none;box-shadow:none;}
+.city-application.play-application .landmark-atlas[open] {background:var(--paper-sheet) var(--paper-grain);border:1px solid var(--paper-line);border-radius:var(--paper-edge);box-shadow:var(--paper-shadow);}
+.city-application.play-application .landmark-atlas summary {font:12px/1.4 var(--font-ui);min-height:40px;background:var(--paper-sheet) var(--paper-grain);color:var(--paper-ink);border:1px solid var(--paper-line);border-radius:4px;box-shadow:0 1px 0 #283c401a;}
+.city-application.play-application .landmark-atlas[open] summary {background:var(--paper-tint);color:var(--paper-ink);}
+.city-application.play-application .landmark-atlas summary small {font-size:12px;color:var(--paper-muted);opacity:1;}
+.city-application.play-application .landmark-atlas-list button {font:14px/1.4 var(--font-ui);min-height:44px;color:var(--paper-ink);border-radius:4px;}
+.city-application.play-application .landmark-atlas-list button:hover,
+.city-application.play-application .landmark-atlas-list button[aria-current=true] {background:var(--paper-tint);}
+.city-application.play-application .landmark-atlas-list button i {background:var(--paper-tint);color:var(--paper-ink);border-radius:4px;}
+.city-application.play-application .landmark-atlas-list button i svg {width:22px;height:22px;}
+.city-application.play-application :is(.landmark-atlas-heading,.landmark-eyebrow) {font:600 12px/1.4 var(--font-ui);color:var(--paper-muted);letter-spacing:.04em;}
+.city-application.play-application .landmark-caption p {font:15px/1.55 var(--font-ui);color:var(--paper-ink);}
+.city-application.play-application .landmark-actions button {min-height:44px;min-width:44px;background:var(--paper-tint);border:1px solid var(--paper-line);color:var(--paper-ink);border-radius:4px;font:14px/1.4 var(--font-ui);}
+.city-application.play-application .landmark-actions .landmark-back {background:var(--paper-action);color:var(--paper-card);border-color:var(--paper-action-hover);font-size:12px;}
+.city-application.play-application .map-landmark {font:12px/1.4 var(--font-ui);color:var(--paper-ink);background:var(--paper-card) var(--paper-grain);border-color:var(--paper-line);border-radius:4px;}
+.city-application.play-application .city-navigation button {color:var(--paper-ink);background:var(--paper-card) var(--paper-grain);border-color:var(--paper-line);border-radius:4px;}
+.city-application.play-application :is(.city-navigation button,.alem-time button) {display:flex;align-items:center;justify-content:center;}
+.city-application.play-application .city-navigation .camera-orbit[aria-pressed=true] {background:var(--paper-tint);border-color:var(--paper-action);}
+.city-application.play-application .landmark-atlas-list button b svg {width:16px;height:16px;}
+.control-icon {width:22px;height:22px;display:block;flex:none;}
+.city-application.play-application .primary-navigation .control-icon {width:19px;height:19px;}
+.city-application.play-application .geographic-districts .control-icon {width:14px;height:14px;}
+.city-application.play-application .alem-time .control-icon {width:20px;height:20px;}
+
+@media(max-width:800px) {
+  .city-application.play-application :is(.alem-dashboard,.dash-comparison) :is(h2,h3),
+  .city-application.play-application :is(.game-dialog,.alternative-workbench,.future-comparison,.demonstration-card,.next-step-card) h2 {font-size:26px;}
+  .city-application.play-application :is(.alem-dashboard,.dash-comparison,.game-dialog,.alternative-workbench,.future-comparison,.landmark-caption) :is(p,li,label),
+  .city-application.play-application :is(.aya-message,.landmark-caption p) {font-size:14px;}
+  .city-application.play-application .dash-members strong {font-size:13px;}
+  .city-application.play-application :is(.dash-speech header,.dash-section-heading) {flex-wrap:wrap;gap:8px;}
+  .city-application.play-application .dash-council-controls>div {flex-wrap:wrap;}
+  .city-application.play-application .aya-composer textarea {font-size:16px;}
+}
+
+/* Alem river atlas: quiet folios, jade actions and graphite registration.
+ * Static CSS strokes sit outside text; there are no filtered paper layers. */
+.city-application.play-application .hud-brand h1 {font-family:var(--font-ui);font-weight:800;letter-spacing:-.06em;}
+.city-application.play-application .hud-brand>div>span {font-size:9px;letter-spacing:.14em;color:var(--paper-muted);}
+.city-application.play-application :is(.decision-deck,.planning-drawer,.outcome-sheet,.context-encounter) {border-top:3px solid var(--paper-action);}
+.city-application.play-application :is(.need-card,.project-choice) {box-shadow:none;border-radius:3px;}
+.city-application.play-application .need-card:hover {box-shadow:inset 3px 0 var(--paper-action);}
+.city-application.play-application :is(.coin-price,.proposal-price,.catalogue-project-name>b) {background:#eee5d3;color:#684d31;border:1px solid #d4c5a8;border-radius:3px;}
+.city-application.play-application :is(.need-person strong,.proposal-person strong,.outcome-stories h3,.catalogue-project-name strong) {font-family:var(--font-ui);font-weight:650;letter-spacing:-.02em;}
+.city-application.play-application :is(.decision-deck h2,.drawer-heading h2,.outcome-sheet h2) {letter-spacing:-.04em;}
+.city-application.play-application .plan-ribbon button {border-radius:4px;background:var(--paper-sheet);border-color:var(--paper-rule);}
+.city-application.play-application .plan-ribbon .next button {background:var(--paper-tint);border-color:var(--paper-action);color:var(--paper-action);}
+.city-application.play-application .plan-ribbon .filled button {background:var(--paper-action);border-color:var(--paper-action);color:var(--paper-card);}
+.city-application.play-application :is(.city-hud button,.geographic-districts,.geographic-districts button,.primary-navigation button) {border-radius:4px;}
+.city-application.play-application .city-hud button {background:var(--paper-sheet);border-color:var(--paper-rule);}
+.city-application.play-application .alem-world .geographic-districts {background:var(--paper-sheet);border-color:var(--paper-rule);}
+.city-application.play-application .alem-world .geographic-districts button[aria-pressed=true] {background:var(--paper-tint);}
+.city-application.play-application .geographic-caption {font-size:10px;}
+.city-application.play-application .result-score>strong {color:var(--paper-action);}
+.city-application.play-application :is(.need-quote,.proposal-quote) {font-style:normal;}
+.city-application.play-application :is(.alem-time strong,.map-time-switch strong) {font-family:var(--font-note);}
+.city-application.play-application .primary-navigation {border-color:var(--paper-line);}
+
+.city-application.play-application :is(h2,h3)[tabindex="-1"]:focus {outline:none;}
+
+.city-application.play-application .coin-price {height:auto;min-height:42px;padding:6px 8px;font-size:22px;line-height:1.1;align-content:center;}
+.city-application.play-application .coin-price small {display:block;margin-top:3px;font-size:11px;line-height:1.2;}
+/* Choice tools stay available while a short screen scrolls the stories. */
+.city-application.play-application .decision-deck {display:flex;flex-direction:column;overflow:hidden;}
+.city-application.play-application .decision-deck>header,
+.city-application.play-application .decision-deck>.deck-intro,
+.city-application.play-application .decision-deck>footer {flex:none;}
+.city-application.play-application .decision-deck .choice-cards {min-height:0;overflow:auto;overscroll-behavior:contain;grid-auto-rows:max-content;scrollbar-width:thin;}
+.city-application.play-application .decision-deck>footer {border-top:1px solid var(--paper-rule);padding-top:6px;}
+@media(max-width:800px) and (max-height:700px) {
+  /* Zoom remains in the settings tray and through direct pinch gestures. */
+  .city-application.play-application .alem-world .city-navigation .camera-primary-zoom {display:none;}
+  .city-application.play-application .alem-world .city-navigation .camera-mobile-zoom {display:block;}
+}
